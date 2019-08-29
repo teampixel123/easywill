@@ -38,6 +38,41 @@ $('.gender-radio').change(function(){
   }
 });
 
+
+// Personal Info Page...
+// birthdate change...
+$('#birthdate').datepicker({ format: 'dd-mm-yyyy' }).on('changeDate', function(ev){
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+  var today2 = dd + '/' + mm + '/' + yyyy;
+  // Get Today date end...
+  var birthdate2 = $(this).val();
+  var today = moment(today2,'DD/MM/YYYY');
+  var birthdate = moment(birthdate2,'DD/MM/YYYY');
+
+  var years = today.diff(birthdate, 'year');
+  birthdate.add(years, 'years');
+  if(years < 18 || years > 120){
+    $(this).val('');
+    $(this).attr("placeholder", "Invalid Date");
+    $(this).addClass('invalide-input');
+  }
+  // alert(years);
+
+  $('.datepicker').hide();
+    // $(this).removeClass('required-input');
+    // $(this).removeClass('invalide-input');
+});
+
+
 // Save start info... Datta...
 $('#start_save_btn').click(function(){
   var full_name = $('#full_name').val();
@@ -305,173 +340,4 @@ $('#family_prev_btn').click(function(){
 });
 $('#family_next_btn').click(function(){
   window.location.href = base_url+"Assets-Information";
-});
-
-
-// Assets JS...
-// Save real estate... Datta...
-$('#real_estate_save_btn').click(function(){
-  $('.required').each(function(){
-     var val = $(this).val();
-     if(val == '' || val == '0'){
-       $(this).addClass('required-input');
-       $(this).attr("placeholder", "This field is required");
-     }
-     else{
-       $(this).removeClass('required-input');
-     }
-  });
-
-  var estate_type = $('#estate_type').val();
-  var estate_number = $('#estate_number').val();
-  var survey_number_type = $('#survey_number_type').val();
-  var survey_number = $('#survey_number').val();
-  var measurement_area = $('#measurement_area').val();
-  var measurement_unit = $('#measurement_unit').val();
-  var real_estate_address = $('#real_estate_address').val();
-  var real_estate_city = $('#real_estate_city').val();
-  var real_estate_pin = $('#real_estate_pin').val();
-  var real_estate_state = $('#real_estate_state').val();
-  var real_estate_country = $('#real_estate_country').val();
-  var pin_format = /^[0-9]{6}$/;
-
-  if(estate_type == '0' || estate_number == '' || survey_number_type == '' ||  survey_number_type == '' ||  survey_number == ''
- ||  measurement_area == '' ||  measurement_unit == '0' ||  real_estate_address == '' ||  real_estate_city == ''
- ||  real_estate_pin == '' ||  real_estate_state == '' ||  real_estate_country == '' || !pin_format.test(real_estate_pin)){
-
- }
- else{
-   $('#form_real_estate').submit();
- }
-});
-
-// Get info for Edit Real Estate... Datta...
-$(".real_estate_edit").on('click', function(event){
-  event.stopPropagation();
-  event.stopImmediatePropagation();
-  $('#real_estate_save_btn').hide();
-  $('#real_estate_update_btn').show();
-  var estate_type = $(this).closest('.edit-btn-div').closest('.info-div').find('.estate_type').text();
-  var estate_number = $(this).closest('.edit-btn-div').closest('.info-div').find('.estate_number').text();
-  var survey_number_type = $(this).closest('.edit-btn-div').closest('.info-div').find('.survey_number_type').text();
-  var survey_number = $(this).closest('.edit-btn-div').closest('.info-div').find('.survey_number').text();
-  var measurement_area = $(this).closest('.edit-btn-div').closest('.info-div').find('.measurement_area').text();
-  var measurement_unit = $(this).closest('.edit-btn-div').closest('.info-div').find('.measurement_unit').text();
-  var real_estate_address = $(this).closest('.edit-btn-div').closest('.info-div').find('.real_estate_address').text();
-  var real_estate_city = $(this).closest('.edit-btn-div').closest('.info-div').find('.real_estate_city').text();
-  var real_estate_pin = $(this).closest('.edit-btn-div').closest('.info-div').find('.real_estate_pin').text();
-  var real_estate_state = $(this).closest('.edit-btn-div').closest('.info-div').find('.real_estate_state').text();
-  var real_estate_country = $(this).closest('.edit-btn-div').closest('.info-div').find('.real_estate_country').text();
-  var real_estate_id = $(this).closest('.edit-btn-div').closest('.info-div').find('#real_estate_id').val();
-
-
-  $('#estate_type').val(estate_type);
-  $('#estate_number').val(estate_number);
-  $('#survey_number_type').val(survey_number_type);
-  $('#survey_number').val(survey_number);
-  $('#measurement_area').val(measurement_area);
-  $('#measurement_unit').val(measurement_unit);
-  $('#real_estate_address').val(real_estate_address);
-  $('#real_estate_city').val(real_estate_city);
-  $('#real_estate_pin').val(real_estate_pin);
-  $('#real_estate_state').val(real_estate_state);
-  $('#real_estate_country').val(real_estate_country);
-  $('#real_estate_id2').val(real_estate_id);
-
-  // Active tab...
-  $('.rem_class').removeClass('show');
-  $('.rem_class').removeClass('active');
-  $('#real_estate').addClass('active');
-  $('#real_estate').addClass('show');
-  $('#real_estate_tab').addClass('active');
-  //
-  // if(is_minar == 'yes'){
-  //   $('#guardian_div').show();
-  //   $('#guardian_name_title').val(guardian_name_title);
-  //   $('#guardian_name').val(guardian_name);
-  //   $('#major_age').val(major_age);
-  // }
-  // else{
-  //   $('#guardian_div').hide();
-  //   $('#guardian_name').val('');
-  //   $('#major_age').val('');
-  // }
-});
-
-$('#real_estate_update_btn').click(function(){
-  $('.required').each(function(){
-     var val = $(this).val();
-     if(val == '' || val == '0'){
-       $(this).addClass('required-input');
-       $(this).attr("placeholder", "This field is required");
-     }
-     else{
-       $(this).removeClass('required-input');
-     }
-  });
-
-  var estate_type = $('#estate_type').val();
-  var estate_number = $('#estate_number').val();
-  var survey_number_type = $('#survey_number_type').val();
-  var survey_number = $('#survey_number').val();
-  var measurement_area = $('#measurement_area').val();
-  var measurement_unit = $('#measurement_unit').val();
-  var real_estate_address = $('#real_estate_address').val();
-  var real_estate_city = $('#real_estate_city').val();
-  var real_estate_pin = $('#real_estate_pin').val();
-  var real_estate_state = $('#real_estate_state').val();
-  var real_estate_country = $('#real_estate_country').val();
-  var pin_format = /^[0-9]{6}$/;
-
-  if(estate_type == '0' || estate_number == '' || survey_number_type == '' ||  survey_number_type == '' ||  survey_number == ''
- ||  measurement_area == '' ||  measurement_unit == '0' ||  real_estate_address == '' ||  real_estate_city == ''
- ||  real_estate_pin == '' ||  real_estate_state == '' ||  real_estate_country == '' || !pin_format.test(real_estate_pin)){
-
- }
- else{
-   // $('#form_real_estate').submit();
-   $("#save_load_modal").modal("show");
-   var form_data = $('#form_real_estate').serialize();
-   $.ajax({
-      data: form_data,
-      type: "post",
-      url: base_url+"Will_controller/update_real_estate_info",
-      success: function (data){
-        window.location.href = base_url+"Assets-Information";
-      }
-   });
- }
-});
-
-$(".real_estate_delete").on('click', function(event){
-  event.stopPropagation();
-  event.stopImmediatePropagation();
-  $('#exampleModal').modal('show');
-
-  var real_estate_id = $(this).closest('.edit-btn-div').closest('.info-div').find('#real_estate_id').val();
-  var estate_type = $(this).closest('.edit-btn-div').closest('.info-div').find('.estate_type').text();
-  var estate_number = $(this).closest('.edit-btn-div').closest('.info-div').find('.estate_number').text();
-  // var relationship = $(this).closest('.edit-btn-div').closest('.info-div').find('.relationship').text();
-  // var family_person_name = $(this).closest('.edit-btn-div').closest('.info-div').find('.family_person_name').text();
-  // $('#exampleModal').find('.modal-member-relationship').text('Relationship : '+relationship);
-  $('#exampleModal').find('.modal-real-type').text(''+estate_type+' Number : '+estate_number);
-  $('#exampleModal').find('#modal-real-id').val(real_estate_id);
-});
-
-$('#btn-delete-assets-confirm').click(function(){
-  var real_estate_id = $('#modal-real-id').val();
-  $.ajax({
-     data: {'real_estate_id':real_estate_id},
-     type: "post",
-     url: base_url+"Will_controller/delete_real_estate",
-     success: function (data){
-       window.location.href = base_url+"Assets-Information";
-     }
-  });
-  // alert(member_id);
-  $('#exampleModal').modal('hide');
-});
-
-$('#assets_prev_btn').click(function(){
-  window.location.href = base_url+"Family-Information";
 });

@@ -25,12 +25,20 @@
    </div>
 
   <div class="topstrip"></div>
-
-  <section class="terms">
+  <div class="container-fluid mt-3">
+    <ul class="list-unstyled multi-steps m-0 pt-3 pb-3">
+      <li class="personal-tab" >Personal Information</li>
+      <li class="family-tab is-active">Family Information</li>
+      <li class="assets-tab">Assets</li>
+      <li class="executor-tab">Distribution & Executor</li>
+      <li class="witness-tab">Witness</li>
+    </ul>
+  </div>
+  <!-- <section class="terms">
     <div class="text-center">
       <h1 class="">Start Your Will Now</h1>
     </div>
-  </section>
+  </section> -->
   <?php
   $is_spouse = 'false';
   foreach($family_info as $family_info2){
@@ -78,7 +86,7 @@
                   <div class="row text-center">
                     <label class="col-md-2 text-right p-0" for="exampleInputEmail1">Birthdate</label>
                     <div class="col-md-6">
-            					<input type="text" name="family_person_dob" id="family_person_dob" value="" class="required form-control form-control-sm" placeholder="">
+            					<input type="text" name="family_person_dob" id="family_person_dob" value="" class="required form-control form-control-sm" placeholder="" readonly style="background:#fff;">
                       <p id="invalide_dob" style="color:red; display:none" class="text-left valide">*Invalide Birthdate.</p>
                     </div>
                   </div>

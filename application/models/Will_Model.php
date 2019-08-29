@@ -62,7 +62,7 @@ class Will_Model extends CI_Model{
     $this->db->insert('tbl_real_estate',$real_estate_data);
   }
   // Get Real Estate Data...
-  public function real_estate_data($will_id){
+  public function get_real_estate_data($will_id){
     $query = $this->db->select('*')
             ->where('will_id',$will_id)
             ->from('tbl_real_estate')
@@ -81,6 +81,31 @@ class Will_Model extends CI_Model{
     $this->db->where('id', $real_estate_id);
     $this->db->where('will_id', $will_id);
     $this->db->delete('tbl_real_estate');
+  }
+
+  public function save_bank_assets_info($bank_assets_data){
+    $this->db->insert('tbl_bank_assets',$bank_assets_data);
+  }
+
+  public function get_bank_assets_data($will_id){
+    $query = $this->db->select('*')
+          ->where('will_id',$will_id)
+          ->from('tbl_bank_assets')
+          ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  public function update_bank_assets_info($assets_id, $will_id, $bank_assets_data_update){
+    $this->db->where('id',$assets_id);
+    $this->db->where('will_id',$will_id);
+    $this->db->update('tbl_bank_assets',$bank_assets_data_update);
+  }
+
+  public function delete_bank_assets($bank_assets_id, $will_id){
+    $this->db->where('id',$bank_assets_id);
+    $this->db->where('will_id',$will_id);
+    $this->db->delete('tbl_bank_assets');
   }
 }
 ?>

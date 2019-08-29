@@ -17,11 +17,20 @@
 
   <div class="topstrip"></div>
 
-  <section class="terms">
+  <!-- <section class="terms">
     <div class="text-center">
       <h1 class="">Start Your Will Now</h1>
     </div>
-  </section>
+  </section> -->
+  <div class="container-fluid mt-3">
+  <ul class="list-unstyled multi-steps m-0 pt-3 pb-3">
+    <li class="personal-tab" >Personal Information</li>
+    <li class="family-tab">Family Information</li>
+    <li class="assets-tab is-active">Assets</li>
+    <li class="executor-tab">Distribution & Executor</li>
+    <li class="witness-tab">Witness</li>
+  </ul>
+  </div>
   <?php
   // foreach($personal_info as $personal_info1){
   // }
@@ -52,10 +61,12 @@
 
             <div id="myTabContent" class="tab-content">
               <div class="tab-pane fade active show rem_class" id="real_estate">
+                <h6 class="mt-3">Real Estate</h6>
+                <hr>
                 <form class="" id="form_real_estate" action="<?php echo base_url(); ?>Will_Controller/save_real_estate_info" method="post">
                   <input type="hidden" name="real_estate_id" id="real_estate_id2">
                   <fieldset>
-                    <div class="form-group mt-4">
+                    <div class="form-group mt-1">
                       <div class="row text-center">
                         <label class="col-md-2 f-14 text-right p-0" for="exampleInputEmail1">Estate Type</label>
                         <div class="col-md-10">
@@ -150,7 +161,107 @@
                 </form>
               </div>
               <div class="tab-pane fade rem_class" id="bank_assets">
-                bank_assets
+                <h6 class="mt-3">Bank Assets</h6>
+                <hr>
+                <form class="" id="form_bank_assets" action="<?php echo base_url(); ?>Will_Controller/save_bank_assets_info" method="post">
+                  <input type="hidden" id="assets_id" name="assets_id">
+                  <fieldset>
+                    <div class="form-group mt-1">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">Account Type</label>
+                        <div class="col-md-9">
+                          <select class="required form-control form-control-sm" name="account_type" id="account_type">
+                            <option value="0" >Select Acount Type</option>
+                            <option>Savings Account</option>
+                					  <option>Current Account</option>
+                					  <option>Fixed Deposits</option>
+                					  <option value="PPF">Public Provident Fund</option>
+                					  <option>Bank Locker</option>
+                					  <option>Mutual Funds</option>
+                					  <option>Stock Equities</option>
+                					  <option>Insurance Policy</option>
+                          </select>
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group acc_no_div">
+                      <div class="row text-center">
+                        <label id="lbl_acc_num" class="col-md-3 f-14 hide text-right p-0" for="exampleInputEmail1">Account Number</label>
+                        <label id="lbl_cust_id" class="col-md-3 f-14 hide text-right p-0" for="exampleInputEmail1" style="display:none;">Customer ID No.</label>
+                        <label id="lbl_lock_num" class="col-md-3 f-14 hide text-right p-0" for="exampleInputEmail1" style="display:none;">Locker No.</label>
+                        <label id="lbl_folio_num" class="col-md-3 f-14 hide text-right p-0" for="exampleInputEmail1" style="display:none;">Folio No.</label>
+                        <label id="lbl_isin_num" class="col-md-3 f-14 hide text-right p-0" for="exampleInputEmail1" style="display:none;">ISIN/Serial No.</label>
+                        <label id="lbl_policy_num" class="col-md-3 f-14 hide text-right p-0" for="exampleInputEmail1" style="display:none;">Policy No.</label>
+                        <div class="col-md-9">
+                					<input type="text" name="account_number2" id="account_number" value="" class="required only_number form-control form-control-sm" placeholder="">
+                          <input type="text" name="account_number" id="acc_no_addr" value="" class="required address form-control form-control-sm" style="display:none;" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group acc_no_div" id="bank_name_div">
+                      <div class="row text-center">
+                        <label id="lbl_bank_name" class="col-md-3 f-14 bnk-name-hide text-right p-0" for="exampleInputEmail1">Bank Name</label>
+                        <label id="lbl_com_name" class="col-md-3 f-14 bnk-name-hide text-right p-0" for="exampleInputEmail1" style="display:none;">Company Name</label>
+                        <label id="lbl_inc_com_name" class="col-md-3 bnk-name-hide f-14 text-right p-0" for="exampleInputEmail1" style="display:none;">Insurance Company</label>
+                        <div class="col-md-9">
+                					<input type="text" name="bank_name" id="bank_name" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group" id="est_brach">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">Branch</label>
+                        <div class="col-md-9">
+                					<input type="text" name="bank_branch" id="bank_branch" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group" id="est_state">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">State</label>
+                        <div class="col-md-9">
+                					<input type="text" name="bank_state" id="bank_state" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group" id="est_pin">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">Pin Code</label>
+                        <div class="col-md-9">
+                					<input type="text" name="bank_pin_code" id="bank_pin_code" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group" id="fd_rec_no" style="display:none;">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">FD Receipt No</label>
+                        <div class="col-md-9">
+                					<input type="text" name="fd_recipt_no" id="fd_recipt_no" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group" id="sum_ass_amt" style="display:none;">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">Sum Assurance Amount</label>
+                        <div class="col-md-9">
+                					<input type="text" name="sum_assurance_amount" id="sum_assurance_amount" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group" id="key_num" style="display:none;">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">Key Number</label>
+                        <div class="col-md-9">
+                					<input type="text" name="key_number" id="key_number" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group text-right mt-4 mr-3" >
+                      <button type="button" class="btn btn-md btn-primary" style="display:none" id="bank_update_btn">Update</button>
+                      <button type="button" class="btn btn-md btn-success" id="bank_save_btn"> Save </button>
+                    </div>
+                  </fieldset>
+                </form>
               </div>
               <div class="tab-pane fade rem_class" id="vehicle">
                 vehicle
@@ -177,7 +288,7 @@
         <div class="col-md-6">
           <h5 class="txt-black">Assets Details</h5>
         <?php if($real_estate_data){ ?>
-          <div class="info-box pt-3">
+          <div class="info-box pt-3 mb-2">
             <h6 class="txt-black">Real Estate</h6>
             <hr>
             <?php
@@ -193,8 +304,8 @@
                    having property bearing <b><span class="survey_number_type">'.$real1->survey_number_type.'</span>
                    <span class="survey_number">'.$real1->survey_number.'</span></b> measuring about
                    <b><span class="measurement_area">'.$real1->measurement_area.'</span>
-                   <span class="measurement_unit">'.$real1->measurement_unit.'</span>
-                   </b>, located at <span class="real_estate_address">'.$real1->real_estate_address.'</span>,
+                   <span class="measurement_unit">'.$real1->measurement_unit.'</span>,
+                   </b> located at <span class="real_estate_address">'.$real1->real_estate_address.'</span>,
                    <span class="real_estate_city">'.$real1->real_estate_city.'</span>,
                    <span class="real_estate_state">'.$real1->real_estate_state.'</span>,
                    <span class="real_estate_country">'.$real1->real_estate_country.'</span> -
@@ -206,8 +317,8 @@
               </div>
               <div class="col-md-2 align-self-center edit-btn-div pl-0 pr-0">
                 <button type="button" style="width:100%" class="badge1 row" title="Delete Family Member">
-                  <a data-toggle="modal" data-target="#exampleModal" class="badge1 badge-pill real_estate_delete" title="Delete Family Member"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
-                  <a class="badge1 badge-pill real_estate_edit" title="Edit Family Member"> <i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                  <a data-toggle="modal" data-target="#exampleModal" class="badge1 badge-pill real_estate_delete" title="Delete Real Estate"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                  <a class="badge1 badge-pill real_estate_edit" title="Edit Real Estate"> <i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
                 </button>
               </div>
             </div>
@@ -215,6 +326,83 @@
             <?php } ?>
           </div>
           <?php } ?>
+
+          <div class="info-box pt-3">
+            <h6 class="txt-black">Bank Assets</h6>
+            <hr>
+            <?php
+              $i=0;
+              foreach ($bank_assets_data as $bank) {
+              $i++;
+              $assets_type = $bank->account_type;
+
+              if($assets_type == 'Savings Account' || $assets_type == 'Current Account'){
+                $name = 'Bank Name';
+                $acc_no = 'Account Number';
+                $other='';
+              }
+              elseif($assets_type == 'Fixed Deposits'){
+                $name = 'Bank Name';
+                $acc_no = 'Customer ID No.';
+                $other = ', FD Receipt No: '.$bank->fd_recipt_no;
+
+              }
+              elseif($assets_type == 'PPF'){
+                $name = 'Company Name';
+                $acc_no = 'Account Number';
+                $other='';
+              }
+              elseif($assets_type == 'Bank Locker'){
+                $name = 'Bank Name';
+                $acc_no = 'Locker Number';
+                $other = ', Key Number: '.$bank->key_number;
+              }
+              elseif($assets_type == 'Mutual Funds'){
+                $name = 'Company Name';
+                $acc_no = 'Folio Number';
+                $other='';
+              }
+              elseif($assets_type == 'Stock Equities'){
+                $name = 'Company Name';
+                $acc_no = 'ISIN/Serial Number';
+                $other='';
+              }
+              elseif($assets_type == 'Insurance Policy'){
+                $name = 'Company Name';
+                $acc_no = 'Policy Number';
+                $other=', Sum Assurance Amount: '.$bank->sum_assurance_amount.'Rs.';
+              }
+
+            ?>
+              <div class="row info-div">
+                <div class="col-md-10">
+                  <p class="mb-0">
+                    <?php
+                      echo ''.$i.') Type: <b>'.$assets_type.'</b>, '.$name.': '.$bank->bank_name.', Branch: '.$bank->bank_branch.', '.$acc_no.': '.$bank->account_number.''.$other.'';
+                    ?>
+                    <input type="hidden" id="bank_assets_id" value="<?php echo $bank->id; ?>">
+                    <input type="hidden" id="acc_type" value="<?php echo $bank->account_type; ?>">
+                    <input type="hidden" id="acc_number" value="<?php echo $bank->account_number; ?>">
+                    <input type="hidden" id="bnk_name" value="<?php echo $bank->bank_name; ?>">
+                    <input type="hidden" id="bnk_branch" value="<?php echo $bank->bank_branch; ?>">
+                    <input type="hidden" id="bnk_state" value="<?php echo $bank->bank_state; ?>">
+                    <input type="hidden" id="bnk_pin" value="<?php echo $bank->bank_pin_code; ?>">
+                    <input type="hidden" id="fd_re_no" value="<?php echo $bank->fd_recipt_no; ?>">
+                    <input type="hidden" id="sum_assu_amt" value="<?php echo $bank->sum_assurance_amount; ?>">
+                    <input type="hidden" id="key_nmbr" value="<?php echo $bank->key_number; ?>">
+                  </p>
+                </div>
+                <div class="col-md-2 align-self-center edit-btn-div pl-0 pr-0">
+                  <button type="button" style="width:100%" class="badge1 row" title="Delete Family Member">
+                    <a data-toggle="modal" data-target="#bank_delete_modal" class="badge1 badge-pill bank_assets_delete" title="Delete Bank Assets"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                    <a class="badge1 badge-pill bank_assets_edit" title="Edit Bank Assets"> <i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                  </button>
+                </div>
+              </div>
+              <hr>
+            <?php } ?>
+          </div>
+
         </div>
       </div>
     </div>
@@ -225,12 +413,12 @@
     Launch demo modal
   </button> -->
 
-  <!-- Modal -->
+  <!-- Modal Real Estate Delete-->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title txt-black" id="exampleModalLabel">Do You want To Delete</h5>
+          <h5 class="modal-title txt-black" id="exampleModalLabel">Do You want To Delete Real Estate</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -247,18 +435,60 @@
     </div>
   </div>
 
-  <!-- <section class="p-2 protect mt-5 text-center">
-    <h2>Protect Your Family Today </h2>
-  </section> -->
+  <!-- Modal Bank Assets Delete-->
+  <div class="modal fade" id="bank_delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title txt-black" id="exampleModalLabel">Do You want To Delete Bank Asset</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-bank-type"></p>
+          <p class="modal-bank-name"></p>
+          <p class="modal-bank-num"></p>
+          <input type="hidden" name="modal-bank-id" id="modal-bank-id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" id="btn-delete-bank-confirm" class="btn btn-primary">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- footer -->
   <?php include(__DIR__ .'../../footer.php');  ?>
   <script type="text/javascript">var base_url = "<?php echo base_url() ?>";</script>
-  <script src="<?php echo base_url(); ?>assets/js/will_js/start_will.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/will_js/assets_js.js"></script>
   <script type="text/javascript">
-  $('#family_person_dob').datepicker({
-    format: 'dd/mm/yyyy',
-  });
+    $('#family_person_dob').datepicker({
+      format: 'dd/mm/yyyy',
+    });
   </script>
+  <?php
+  $assets_open_tab = $this->session->flashdata('assets_tab');
+  if($assets_open_tab){ ?>
+    <input type="text" id="assets_open_tab" value="<?php echo $assets_open_tab; ?>">
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var assets_open_tab = $('#assets_open_tab').val();
+        $('.rem_class').removeClass('show');
+        $('.rem_class').removeClass('active');
+        if(assets_open_tab == 'real'){
+          $('#real_estate').addClass('active');
+          $('#real_estate').addClass('show');
+          $('#real_estate_tab').addClass('active');
+        }
+        else if(assets_open_tab == 'bank'){
+          $('#bank_assets').addClass('active');
+          $('#bank_assets').addClass('show');
+          $('#bank_assets_tab').addClass('active');
+        }
+      });
+    </script>
+  <?php } ?>
   </body>
 </html>

@@ -7,11 +7,22 @@
   <?php include(__DIR__ .'../../navbar.php'); ?>
   <div class="topstrip"></div>
 
-  <section class="terms">
+  <!-- <section class="terms">
     <div class="text-center">
       <h1 class="">Start Your Will Now</h1>
     </div>
-  </section>
+  </section> -->
+  <!-- status bar satrt -->
+  <div class="container-fluid mt-3">
+    <ul class="list-unstyled multi-steps m-0 pt-3 pb-3">
+      <li class="personal-tab is-active" >Personal Information</li>
+      <li class="family-tab">Family Information</li>
+      <li class="assets-tab">Assets</li>
+      <li class="executor-tab">Distribution & Executor</li>
+      <li class="witness-tab">Witness</li>
+    </ul>
+  </div>
+ <!-- end status bar -->
   <?php
   foreach($personal_info as $personal_info1){
   }
@@ -22,6 +33,7 @@
         <div class="col-md-7">
           <div class="input-box pt-4 pb-4 pl-2 pr-2">
             <form class="" id="form_personal_info" action="<?php echo base_url() ?>Will_Controller/save_personal_info" method="post">
+              <input type="hidden" name="age" id="age">
               <fieldset>
                 <h5 class="text-left txt-black mb-4 ml-4">Personal Information </h5>
                 <div class="form-group">
@@ -60,7 +72,7 @@
                   <div class="row text-center">
                     <label class="col-md-2 text-right p-0" for="exampleInputEmail1">Birthdate</label>
                     <div class="col-md-4">
-            					<input type="text" name="birthdate" id="birthdate" value="<?php echo $personal_info1->birthdate; ?>" class="required text title-case form-control form-control-sm" placeholder="">
+            					<input type="text" name="birthdate" id="birthdate" value="<?php echo $personal_info1->birthdate; ?>" class="required form-control form-control-sm" readonly placeholder="" style="background:#fff;">
             				</div>
                     <label class="col-md-2 text-right p-0" for="exampleInputEmail1">Occupation</label>
                     <div class="col-md-4">

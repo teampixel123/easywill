@@ -187,7 +187,8 @@
     public function assets_info(){
       $will_id = $this->session->userdata('will_id');
       if($will_id){
-        $data['real_estate_data'] = $this->Will_Model->real_estate_data($will_id);
+        $data['real_estate_data'] = $this->Will_Model->get_real_estate_data($will_id);
+        $data['bank_assets_data'] = $this->Will_Model->get_bank_assets_data($will_id);
         $this->load->view('pages/will/assets_info',$data);
       }
       else{
@@ -213,6 +214,7 @@
           'real_estate_country' => $this->input->post('real_estate_country'),
         );
         $this->Will_Model->save_real_estate_info($real_estate_data);
+        $this->session->set_flashdata('assets_tab','real');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -249,6 +251,65 @@
       if($will_id){
         $real_estate_id = $this->input->post('real_estate_id');
         $this->Will_Model->delete_real_estate($real_estate_id, $will_id);
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    public function save_bank_assets_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $bank_assets_data = array(
+          'will_id' => $will_id,
+          'account_type' => $this->input->post('account_type'),
+          'account_number' => $this->input->post('account_number'),
+          'bank_name' => $this->input->post('bank_name'),
+          'bank_branch' => $this->input->post('bank_branch'),
+          'bank_state' => $this->input->post('bank_state'),
+          'bank_pin_code' => $this->input->post('bank_pin_code'),
+          'fd_recipt_no' => $this->input->post('fd_recipt_no'),
+          'sum_assurance_amount' => $this->input->post('sum_assurance_amount'),
+          'key_number' => $this->input->post('key_number'),
+        );
+        $this->Will_Model->save_bank_assets_info($bank_assets_data);
+        $this->session->set_flashdata('assets_tab','bank');
+        header('Location:'.base_url().'Assets-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    public function update_bank_assets_info(){
+      $will_id = $this->session->userdata('will_id');
+      $assets_id = $this->input->post('assets_id');
+      if($will_id){
+        $bank_assets_data_update = array(
+          'account_type' => $this->input->post('account_type'),
+          'account_number' => $this->input->post('account_number'),
+          'bank_name' => $this->input->post('bank_name'),
+          'bank_branch' => $this->input->post('bank_branch'),
+          'bank_state' => $this->input->post('bank_state'),
+          'bank_pin_code' => $this->input->post('bank_pin_code'),
+          'fd_recipt_no' => $this->input->post('fd_recipt_no'),
+          'sum_assurance_amount' => $this->input->post('sum_assurance_amount'),
+          'key_number' => $this->input->post('key_number'),
+        );
+        $this->Will_Model->update_bank_assets_info($assets_id, $will_id, $bank_assets_data_update);
+        $this->session->set_flashdata('assets_tab','bank');
+        header('Location:'.base_url().'Assets-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    public function delete_bank_assets(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $bank_assets_id = $this->input->post('bank_assets_id');
+        $this->Will_Model->delete_bank_assets($bank_assets_id, $will_id);
       }
       else{
         header('Location:'.base_url().'');
