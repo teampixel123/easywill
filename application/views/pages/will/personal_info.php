@@ -18,8 +18,8 @@
       <li class="personal-tab is-active" >Personal Information</li>
       <li class="family-tab">Family Information</li>
       <li class="assets-tab">Assets</li>
-      <li class="executor-tab">Distribution & Executor</li>
-      <li class="witness-tab">Witness</li>
+      <li class="executor-tab">Distribution</li>
+      <li class="witness-tab">Other Information</li>
     </ul>
   </div>
  <!-- end status bar -->

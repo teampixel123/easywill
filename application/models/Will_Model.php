@@ -107,5 +107,55 @@ class Will_Model extends CI_Model{
     $this->db->where('will_id',$will_id);
     $this->db->delete('tbl_bank_assets');
   }
+  // Save Vehicle Info..
+  public function save_vehicle_assets_info($vehicle_data){
+    $this->db->insert('tbl_vehicle',$vehicle_data);
+  }
+  // Get Vehicle data...
+  public function get_vehicle_assets_data($will_id){
+    $query = $this->db->select('*')
+            ->where('will_id',$will_id)
+            ->from('tbl_vehicle')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  public function update_vehicle_assets_info($vehicle_id, $will_id, $vehicle_data_update){
+    $this->db->where('id', $vehicle_id)
+    ->where('will_id', $will_id)
+    ->update('tbl_vehicle', $vehicle_data_update);
+  }
+
+  public function delete_vehicle($vehicle_id, $will_id){
+    $this->db->where('id',$vehicle_id);
+    $this->db->where('will_id',$will_id);
+    $this->db->delete('tbl_vehicle');
+  }
+  // save Other gift...
+  public function save_other_gift_info($other_gift_data){
+    $this->db->insert('tbl_other_gift',$other_gift_data);
+  }
+  // Get Other gift data...
+  public function get_other_gift_data($will_id){
+    $query = $this->db->select('*')
+            ->where('will_id',$will_id)
+            ->from('tbl_other_gift')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+  //Update Other Gift...
+  public function update_other_gift_info($gift_id, $will_id, $other_gift_data_update){
+    $this->db->where('id', $gift_id)
+    ->where('will_id', $will_id)
+    ->update('tbl_other_gift',$other_gift_data_update);
+  }
+  // Delete Other Gift...
+  public function delete_other_gift($gift_id, $will_id){
+    $this->db->where('id', $gift_id)
+    ->where('will_id', $will_id)
+    ->delete('tbl_other_gift');
+  }
 }
 ?>

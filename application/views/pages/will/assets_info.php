@@ -27,8 +27,8 @@
     <li class="personal-tab" >Personal Information</li>
     <li class="family-tab">Family Information</li>
     <li class="assets-tab is-active">Assets</li>
-    <li class="executor-tab">Distribution & Executor</li>
-    <li class="witness-tab">Witness</li>
+    <li class="executor-tab">Distribution</li>
+    <li class="witness-tab">Other Information</li>
   </ul>
   </div>
   <?php
@@ -52,7 +52,7 @@
                 <a id="vehicle_tab" class="nav-link rem_class" data-toggle="tab" href="#vehicle"><i class="fa fa-car fa-2x"  ></i></br> Vehicle</a>
               </li>
               <li class="nav-item text-center" style="width:24%;">
-                <a id="vehicle_tab" class="nav-link rem_class" data-toggle="tab" href="#other_gifts"><i class="fa fa-gift fa-2x"  ></i></br> Vehicle</a>
+                <a id="other_gifts_tab" class="nav-link rem_class" data-toggle="tab" href="#other_gifts"><i class="fa fa-gift fa-2x"  ></i></br> Other Gifts</a>
               </li>
               <!-- <li class="nav-item " style="width:25%;">
                 <a id="other_gifts_tab" class="nav-link rem_class" data-toggle="tab" href="#other_gifts "><i class="fa fa-gift fa-2x"  ></i></br> Other Gifts </a>
@@ -264,10 +264,74 @@
                 </form>
               </div>
               <div class="tab-pane fade rem_class" id="vehicle">
-                vehicle
+                <h6 class="mt-3">Vehicle Assets</h6>
+                <hr>
+                <form class="" id="form_vehicle" action="<?php echo base_url(); ?>Will_Controller/save_vehicle_assets_info" method="post">
+                  <input type="hidden" id="vehicle_id" name="vehicle_id">
+                  <fieldset>
+                    <div class="form-group">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0">Model Name</label>
+                        <div class="col-md-9">
+                          <input type="text" name="vehicle_model_name" id="vehicle_model_name" value="" class="required address form-control form-control-sm" placeholder="Company & Model Name">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0">Registration No</label>
+                        <div class="col-md-9">
+                					<input type="text" name="vehicle_registration_no" id="vehicle_registration_no" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0">Make Year</label>
+                        <div class="col-md-9">
+                					<input type="text" name="vehicle_make_year" id="vehicle_make_year" value="" class="required only_number form-control form-control-sm" placeholder="yyyy">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group text-right mt-4 mr-3" >
+                      <button type="button" class="btn btn-md btn-primary" style="display:none" id="vehicle_update_btn">Update</button>
+                      <button type="button" class="btn btn-md btn-success" id="vehicle_save_btn"> Save </button>
+                    </div>
+                  </fieldset>
+                </form>
               </div>
               <div class="tab-pane fade rem_class" id="other_gifts">
-                other_gifts
+                <h6 class="mt-3">Vehicle Assets</h6>
+                <hr>
+                <form class="" id="form_other_gifts" action="<?php echo base_url(); ?>Will_Controller/save_other_gift_info" method="post">
+                  <input type="hidden" id="gift_id" name="gift_id">
+                  <fieldset>
+                    <div class="form-group mt-1">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0" for="exampleInputEmail1">Gift Type</label>
+                        <div class="col-md-9">
+                          <select class="required form-control form-control-sm" name="gift_type" id="gift_type">
+                            <option value="0" >Select Gift</option>
+                            <option>Jewellery and Valuables</option>
+                					  <option>Remained Assets</option>
+                          </select>
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row text-center">
+                        <label class="col-md-3 f-14 text-right p-0">Description</label>
+                        <div class="col-md-9">
+                					<input type="text" name="gift_description" id="gift_description" value="" class="required address form-control form-control-sm" placeholder="">
+                				</div>
+                      </div>
+                    </div>
+                    <div class="form-group text-right mt-4 mr-3" >
+                      <button type="button" class="btn btn-md btn-primary" style="display:none" id="gift_update_btn">Update</button>
+                      <button type="button" class="btn btn-md btn-success" id="gift_save_btn"> Save </button>
+                    </div>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
@@ -276,12 +340,11 @@
               <button type="button" class="btn btn-md btn-primary" id="assets_prev_btn">Previous</button>
             </div>
             <div class="col-6 mb-5 text-right">
-              <?php if($real_estate_data){ ?>
+              <?php if($real_estate_data || $bank_assets_data || $vehicle_assets_data){ ?>
                 <button type="button" class="btn btn-md btn-primary" id="assets_next_btn">Next</button>
               <?php } else{
                 echo '<p style="color:red;"><b>Add Information for Next</b></p>';
               }?>
-
             </div>
           </div>
         </div>
@@ -326,9 +389,9 @@
             <?php } ?>
           </div>
           <?php } ?>
-
-          <div class="info-box pt-3">
-            <h6 class="txt-black">Bank Assets</h6>
+          <?php if($bank_assets_data){ ?>
+          <div class="info-box pt-3 mb-2">
+            <h6 class="txt-black">Bank Information</h6>
             <hr>
             <?php
               $i=0;
@@ -402,7 +465,65 @@
               <hr>
             <?php } ?>
           </div>
-
+          <?php } ?>
+          <?php if($vehicle_assets_data){ ?>
+            <div class="info-box pt-3 mb-2">
+              <h6 class="txt-black">Vehicle Information</h6>
+              <hr>
+              <?php
+                $i = 0;
+                foreach ($vehicle_assets_data as $vehicle):
+                $i++;
+              ?>
+              <div class="row info-div">
+                <div class="col-md-10">
+                  <p class="mb-0">
+                    <?php echo ''.$i.') <b>Vehicle</b> with model name <b>'.$vehicle->vehicle_model_name.'</b>, registration no '.$vehicle->vehicle_registration_no.'. and make year '.$vehicle->vehicle_make_year.''; ?>
+                    <input type="hidden" id="vehicle_ass_id" value="<?php echo $vehicle->id; ?>">
+                    <input type="hidden" id="vehicle_model" value="<?php echo $vehicle->vehicle_model_name; ?>">
+                    <input type="hidden" id="vehicle_registration" value="<?php echo $vehicle->vehicle_registration_no; ?>">
+                    <input type="hidden" id="vehicle_make" value="<?php echo $vehicle->vehicle_make_year; ?>">
+                  </p>
+                </div>
+                <div class="col-md-2 align-self-center edit-btn-div pl-0 pr-0">
+                  <button type="button" style="width:100%" class="badge1 row" title="Delete Family Member">
+                    <a data-toggle="modal" data-target="#vehicle_delete_modal" class="badge1 badge-pill vehicle_delete" title="Delete This Vehicle Information"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                    <a class="badge1 badge-pill vehicle_edit" title="Edit This Vehicle Information"> <i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                  </button>
+                </div>
+              </div>
+              <hr>
+              <?php endforeach; ?>
+            </div>
+          <?php } ?>
+          <?php if($other_gift_data){ ?>
+            <div class="info-box pt-3 mb-2">
+              <h6 class="txt-black">Other Gift Information</h6>
+              <hr>
+              <?php
+                $i = 0;
+                foreach ($other_gift_data as $other_gift) {
+                $i++;
+              ?>
+              <div class="row info-div">
+                <div class="col-md-10">
+                  <p class="mb-0">
+                    <?php echo ''.$i.') Gift Type : '.$other_gift->gift_type.', <br> Description : '.$other_gift->gift_description.''; ?>
+                    <input type="hidden" id="other_gift_id" value="<?php echo $other_gift->id; ?>">
+                    <input type="hidden" id="gift_typ" value="<?php echo $other_gift->gift_type; ?>">
+                    <input type="hidden" id="gift_desc" value="<?php echo $other_gift->gift_description; ?>">
+                  </p>
+                </div>
+                <div class="col-md-2 align-self-center edit-btn-div pl-0 pr-0">
+                  <button type="button" style="width:100%" class="badge1 row">
+                    <a data-toggle="modal" data-target="#other_gifts_delete_modal" class="badge1 badge-pill other_gifts_delete" title="Delete This Other Gift Information"> <i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                    <a class="badge1 badge-pill other_gifts_edit" title="Edit This Other Gift Information"> <i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px;"></i></a>
+                  </button>
+                </div>
+              </div>
+              <hr>
+              <?php } ?>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -459,6 +580,53 @@
     </div>
   </div>
 
+  <!-- Modal Vehicle Delete-->
+  <div class="modal fade" id="vehicle_delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title txt-black" id="exampleModalLabel">Do You want To Delete Vehicle Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-vehicle-model"></p>
+          <p class="modal-vehicle-reg"></p>
+          <p class="modal-vehicle-make"></p>
+          <input type="hidden" name="modal-vehicle-id" id="modal-vehicle-id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" id="btn-delete-vehicle-confirm" class="btn btn-primary">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Other Gift Delete-->
+  <div class="modal fade" id="other_gifts_delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title txt-black" id="exampleModalLabel">Do You want To Delete Gift Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-gift-type"></p>
+          <p class="modal-gift-description"></p>
+          <input type="hidden" name="modal-other-gift-id" id="modal-other-gift-id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" id="btn-delete-other-gift-confirm" class="btn btn-primary">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <!-- footer -->
   <?php include(__DIR__ .'../../footer.php');  ?>
   <script type="text/javascript">var base_url = "<?php echo base_url() ?>";</script>
@@ -487,6 +655,17 @@
           $('#bank_assets').addClass('show');
           $('#bank_assets_tab').addClass('active');
         }
+        else if(assets_open_tab == 'vehicle'){
+          $('#vehicle').addClass('active');
+          $('#vehicle').addClass('show');
+          $('#vehicle_tab').addClass('active');
+        }
+        else if(assets_open_tab == 'other_gifts'){
+          $('#other_gifts').addClass('active');
+          $('#other_gifts').addClass('show');
+          $('#other_gifts_tab').addClass('active');
+        }
+        // other_gifts
       });
     </script>
   <?php } ?>

@@ -30,8 +30,8 @@
       <li class="personal-tab" >Personal Information</li>
       <li class="family-tab is-active">Family Information</li>
       <li class="assets-tab">Assets</li>
-      <li class="executor-tab">Distribution & Executor</li>
-      <li class="witness-tab">Witness</li>
+      <li class="executor-tab">Distribution</li>
+      <li class="witness-tab">Other Information</li>
     </ul>
   </div>
   <!-- <section class="terms">
@@ -135,7 +135,7 @@
               <button type="button" class="btn btn-md btn-primary" id="family_prev_btn">Previous</button>
             </div>
             <div class="col-6 mb-5 text-right">
-              <button type="button" class="btn btn-md btn-primary" id="family_next_btn">Next</button>
+              <button type="button" class="btn btn-md btn-primary" id="family_next_btn">Skip & Next</button>
             </div>
           </div>
         </div>

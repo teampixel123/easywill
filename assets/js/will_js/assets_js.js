@@ -119,15 +119,17 @@ $('#real_estate_update_btn').click(function(){
  else{
    // $('#form_real_estate').submit();
    $("#save_load_modal").modal("show");
-   var form_data = $('#form_real_estate').serialize();
-   $.ajax({
-      data: form_data,
-      type: "post",
-      url: base_url+"Will_controller/update_real_estate_info",
-      success: function (data){
-        window.location.href = base_url+"Assets-Information";
-      }
-   });
+   $('#form_real_estate').attr('action', base_url+"Will_Controller/update_real_estate_info");
+   $('#form_real_estate').submit();
+   // var form_data = $('#form_real_estate').serialize();
+   // $.ajax({
+   //    data: form_data,
+   //    type: "post",
+   //    url: base_url+"Will_controller/update_real_estate_info",
+   //    success: function (data){
+   //      window.location.href = base_url+"Assets-Information";
+   //    }
+   // });
  }
 });
 
@@ -397,16 +399,17 @@ $('#bank_update_btn').click(function(){
   }
   else{
     $("#save_load_modal").modal("show");
-    var form_data = $('#form_bank_assets').serialize();
-    $.ajax({
-       data: form_data,
-       type: "post",
-       url: base_url+"Will_controller/update_bank_assets_info",
-       success: function (data){
-         window.location.href = base_url+"Assets-Information";
-       }
-    });
-    // $('#form_bank_assets').submit();
+    $('#form_bank_assets').attr('action', base_url+"Will_Controller/update_bank_assets_info");
+    $('#form_bank_assets').submit();
+    // var form_data = $('#form_bank_assets').serialize();
+    // $.ajax({
+    //    data: form_data,
+    //    type: "post",
+    //    url: base_url+"Will_controller/update_bank_assets_info",
+    //    success: function (data){
+    //      window.location.href = base_url+"Assets-Information";
+    //    }
+    // });
   }
 });
 
@@ -439,7 +442,244 @@ $('#btn-delete-bank-confirm').click(function(){
   $('#exampleModal').modal('hide');
 });
 
+// Vehicle JS...
+$(document).ready(function(){
+  // Vehicle Make Year Validation...
+  $('#vehicle_make_year').blur(function(){
+    var cur_year = new Date().getFullYear();
+    var min_year = cur_year - 100;
+    var vehicle_make_year = $(this).val();
+    if(vehicle_make_year < min_year || vehicle_make_year > cur_year){
+      $(this).addClass('invalide-input');
+    }
+    else{
+      $(this).removeClass('invalide-input');
+    }
+  });
+});
+
+$('#vehicle_save_btn').click(function(){
+  var vehicle_registration_no = $('#vehicle_registration_no').val();
+  var vehicle_make_year = $('#vehicle_make_year').val();
+  var vehicle_model_name = $('#vehicle_model_name').val();
+  var cur_year = new Date().getFullYear();
+  var min_year = cur_year - 100;
+
+  $('.required').each(function(){
+    var val = $(this).val();
+    if(val == ''){
+      $(this).addClass('required-input');
+    }
+    else{
+      $(this).removeClass('required-input');
+    }
+  });
+
+  if(vehicle_registration_no == '' || vehicle_make_year == '' || vehicle_model_name == '' || vehicle_make_year < min_year || vehicle_make_year > cur_year){
+    // Blank...
+  }
+  else {
+    $('#form_vehicle').submit();
+  }
+});
+
+$(".vehicle_edit").on('click', function(event){
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  $('#vehicle_save_btn').hide();
+  $('#vehicle_update_btn').show();
+  $('.rem_class').removeClass('show');
+  $('.rem_class').removeClass('active');
+  $('#vehicle').addClass('active');
+  $('#vehicle').addClass('show');
+  $('#vehicle_tab').addClass('active');
+
+  var vehicle_id = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_ass_id').val();
+  var vehicle_model = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_model').val();
+  var vehicle_registration = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_registration').val();
+  var vehicle_make = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_make').val();
+
+  $('#vehicle_id').val(vehicle_id);
+  $('#vehicle_model_name').val(vehicle_model);
+  $('#vehicle_registration_no').val(vehicle_registration);
+  $('#vehicle_make_year').val(vehicle_make);
+
+  $('html, body').animate({
+      scrollTop: $(".input-box").offset().top
+  }, 500);
+});
+
+$('#vehicle_update_btn').click(function(){
+  var vehicle_registration_no = $('#vehicle_registration_no').val();
+  var vehicle_make_year = $('#vehicle_make_year').val();
+  var vehicle_model_name = $('#vehicle_model_name').val();
+  var cur_year = new Date().getFullYear();
+  var min_year = cur_year - 100;
+
+  $('.required').each(function(){
+    var val = $(this).val();
+    if(val == ''){
+      $(this).addClass('required-input');
+    }
+    else{
+      $(this).removeClass('required-input');
+    }
+  });
+
+  if(vehicle_registration_no == '' || vehicle_make_year == '' || vehicle_model_name == '' || vehicle_make_year < min_year || vehicle_make_year > cur_year){
+    // Blank...
+  }
+  else {
+    $("#save_load_modal").modal("show");
+    $('#form_vehicle').attr('action', base_url+"Will_Controller/update_vehicle_assets_info");
+    $('#form_vehicle').submit();
+  }
+});
+
+$('.vehicle_delete').click(function(){
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  $('.rem_class').removeClass('show');
+  $('.rem_class').removeClass('active');
+  $('#vehicle').addClass('active');
+  $('#vehicle').addClass('show');
+  $('#vehicle_tab').addClass('active');
+
+  $('#vehicle_delete_modal').modal('show');
+
+  var vehicle_id = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_ass_id').val();
+  var vehicle_model = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_model').val();
+  var vehicle_registration = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_registration').val();
+  var vehicle_make = $(this).closest('.edit-btn-div').closest('.info-div').find('#vehicle_make').val();
+
+  $('#vehicle_delete_modal').find('.modal-vehicle-model').text('Model : '+vehicle_model);
+  $('#vehicle_delete_modal').find('.modal-vehicle-reg').text('Registration No : '+vehicle_registration);
+  $('#vehicle_delete_modal').find('.modal-vehicle-make').text('Make Year : '+vehicle_make);
+  $('#vehicle_delete_modal').find('#modal-vehicle-id').val(vehicle_id);
+});
+
+$('#btn-delete-vehicle-confirm').click(function(){
+  var vehicle_id = $('#modal-vehicle-id').val();
+  $.ajax({
+     data: {'vehicle_id':vehicle_id},
+     type: "post",
+     url: base_url+"Will_controller/delete_vehicle",
+     success: function (data){
+       window.location.href = base_url+"Assets-Information";
+     }
+  });
+  $('#vehicle_delete_modal').modal('hide');
+});
+
+// Other Gift JS...
+$('#gift_save_btn').click(function(){
+  var gift_type = $('#gift_type').val();
+  var gift_description = $('#gift_description').val();
+
+  $('.required').each(function(){
+    var val = $(this).val();
+    if(val == ''){
+      $(this).addClass('required-input');
+    }
+    else{
+      $(this).removeClass('required-input');
+    }
+  });
+
+  if(gift_type == '0' || gift_description == ''){
+    // Blank...
+  }
+  else {
+    $('#form_other_gifts').submit();
+  }
+});
+
+$(".other_gifts_edit").on('click', function(event){
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  $('#gift_save_btn').hide();
+  $('#gift_update_btn').show();
+  $('.rem_class').removeClass('show');
+  $('.rem_class').removeClass('active');
+  $('#other_gifts').addClass('active');
+  $('#other_gifts').addClass('show');
+  $('#other_gifts_tab').addClass('active');
+
+  var other_gift_id = $(this).closest('.edit-btn-div').closest('.info-div').find('#other_gift_id').val();
+  var gift_type = $(this).closest('.edit-btn-div').closest('.info-div').find('#gift_typ').val();
+  var gift_description = $(this).closest('.edit-btn-div').closest('.info-div').find('#gift_desc').val();
+
+  $('#gift_id').val(other_gift_id);
+  $('#gift_type').val(gift_type);
+  $('#gift_description').val(gift_description);
+
+  $('html, body').animate({
+      scrollTop: $(".input-box").offset().top
+  }, 500);
+});
+// Other Gift Update...
+$('#gift_update_btn').click(function(){
+  var gift_type = $('#gift_type').val();
+  var gift_description = $('#gift_description').val();
+
+  $('.required').each(function(){
+    var val = $(this).val();
+    if(val == ''){
+      $(this).addClass('required-input');
+    }
+    else{
+      $(this).removeClass('required-input');
+    }
+  });
+
+  if(gift_type == '0' || gift_description == ''){
+    // Blank...
+  }
+  else {
+    $("#save_load_modal").modal("show");
+    $('#form_other_gifts').attr('action', base_url+"Will_Controller/update_other_gift_info");
+    $('#form_other_gifts').submit();
+  }
+});
+
+$('.other_gifts_delete').click(function(){
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  $('.rem_class').removeClass('show');
+  $('.rem_class').removeClass('active');
+  $('#other_gifts').addClass('active');
+  $('#other_gifts').addClass('show');
+  $('#other_gifts_tab').addClass('active');
+
+  $('#other_gifts_delete_modal').modal('show');
+
+  var other_gift_id = $(this).closest('.edit-btn-div').closest('.info-div').find('#other_gift_id').val();
+  var gift_type = $(this).closest('.edit-btn-div').closest('.info-div').find('#gift_typ').val();
+  var gift_description = $(this).closest('.edit-btn-div').closest('.info-div').find('#gift_desc').val();
+
+  $('#other_gifts_delete_modal').find('.modal-gift-type').text('Type : '+gift_type);
+  $('#other_gifts_delete_modal').find('.modal-gift-description').text('Description : '+gift_description);
+  $('#other_gifts_delete_modal').find('#modal-other-gift-id').val(other_gift_id);
+});
+
+$('#btn-delete-other-gift-confirm').click(function(){
+  var gift_id = $('#modal-other-gift-id').val();
+  $.ajax({
+     data: {'gift_id':gift_id},
+     type: "post",
+     url: base_url+"Will_controller/delete_other_gift",
+     success: function (data){
+       window.location.href = base_url+"Assets-Information";
+     }
+  });
+  $('#other_gifts_delete_modal').modal('hide');
+});
+
+
 
 $('#assets_prev_btn').click(function(){
   window.location.href = base_url+"Family-Information";
+});
+$('#assets_next_btn').click(function(){
+  window.location.href = base_url+"Distribution";
 });

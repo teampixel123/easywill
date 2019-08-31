@@ -64,6 +64,7 @@ $route['Start-Will'] = 'Will_Controller/start_will';
 $route['Persinal-Information'] = 'Will_Controller/personal_info';
 $route['Family-Information'] = 'Will_Controller/family_information';
 $route['Assets-Information'] = 'Will_Controller/assets_info';
+$route['Distribution'] = 'Will_Controller/distribution_info';
 
 $route['clear'] = 'Login_Controller/clear_session';
 

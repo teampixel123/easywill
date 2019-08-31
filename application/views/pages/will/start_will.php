@@ -118,7 +118,7 @@
                   </div>
                 </div>
                 <div class="form-group text-center mt-4">
-                  <button type="button" class="btn btn-lg btn-success" id="start_save_btn">Success</button>
+                  <button type="button" class="btn btn-md btn-success pl-4 pr-4" id="start_save_btn">Save and Next</button>
                 </div>
               </fieldset>
             </form>

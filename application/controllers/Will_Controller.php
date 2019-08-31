@@ -189,6 +189,8 @@
       if($will_id){
         $data['real_estate_data'] = $this->Will_Model->get_real_estate_data($will_id);
         $data['bank_assets_data'] = $this->Will_Model->get_bank_assets_data($will_id);
+        $data['vehicle_assets_data'] = $this->Will_Model->get_vehicle_assets_data($will_id);
+        $data['other_gift_data'] = $this->Will_Model->get_other_gift_data($will_id);
         $this->load->view('pages/will/assets_info',$data);
       }
       else{
@@ -240,6 +242,8 @@
           'real_estate_country' => $this->input->post('real_estate_country'),
         );
         $this->Will_Model->update_real_estate_info($real_estate_id, $will_id, $real_estate_data_update);
+        $this->session->set_flashdata('assets_tab','real');
+        header('Location:'.base_url().'Assets-Information');
       }
       else{
         header('Location:'.base_url().'');
@@ -310,6 +314,113 @@
       if($will_id){
         $bank_assets_id = $this->input->post('bank_assets_id');
         $this->Will_Model->delete_bank_assets($bank_assets_id, $will_id);
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+    // Save Vehicle... Datta...
+    public function save_vehicle_assets_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $vehicle_data = array(
+          'will_id' => $will_id,
+          'vehicle_model_name' => $this->input->post('vehicle_model_name'),
+          'vehicle_registration_no' => $this->input->post('vehicle_registration_no'),
+          'vehicle_make_year' => $this->input->post('vehicle_make_year'),
+        );
+        $this->Will_Model->save_vehicle_assets_info($vehicle_data);
+        $this->session->set_flashdata('assets_tab','vehicle');
+        header('Location:'.base_url().'Assets-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+    // Update Vehicle... Datta...
+    public function update_vehicle_assets_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $vehicle_id = $this->input->post('vehicle_id');
+        $vehicle_data_update = array(
+          'vehicle_model_name' => $this->input->post('vehicle_model_name'),
+          'vehicle_registration_no' => $this->input->post('vehicle_registration_no'),
+          'vehicle_make_year' => $this->input->post('vehicle_make_year'),
+        );
+        $this->Will_Model->update_vehicle_assets_info($vehicle_id, $will_id, $vehicle_data_update);
+        $this->session->set_flashdata('assets_tab','vehicle');
+        header('Location:'.base_url().'Assets-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+    // Delete Vehicle
+    public function delete_vehicle(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $vehicle_id = $this->input->post('vehicle_id');
+        $this->Will_Model->delete_vehicle($vehicle_id, $will_id);
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+    // save Other gift...
+    public function save_other_gift_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $other_gift_data = array(
+          'will_id' => $will_id,
+          'gift_type' => $this->input->post('gift_type'),
+          'gift_description' => $this->input->post('gift_description'),
+        );
+        $this->Will_Model->save_other_gift_info($other_gift_data);
+        $this->session->set_flashdata('assets_tab','other_gifts');
+        header('Location:'.base_url().'Assets-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+    // Update Other Gift...
+    public function update_other_gift_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $gift_id = $this->input->post('gift_id');
+        $other_gift_data_update = array(
+          'gift_type' => $this->input->post('gift_type'),
+          'gift_description' => $this->input->post('gift_description'),
+        );
+        $this->Will_Model->update_other_gift_info($gift_id, $will_id, $other_gift_data_update);
+        $this->session->set_flashdata('assets_tab','other_gifts');
+        header('Location:'.base_url().'Assets-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+    // Delete Other Gift...
+    public function delete_other_gift(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $gift_id = $this->input->post('gift_id');
+        $this->Will_Model->delete_other_gift($gift_id, $will_id);
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Load Distribution view...
+    public function distribution_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $data['real_estate_data'] = $this->Will_Model->get_real_estate_data($will_id);
+        $data['bank_assets_data'] = $this->Will_Model->get_bank_assets_data($will_id);
+        $data['vehicle_assets_data'] = $this->Will_Model->get_vehicle_assets_data($will_id);
+        $data['other_gift_data'] = $this->Will_Model->get_other_gift_data($will_id);
+        $this->load->view('pages/will/distribution',$data);
       }
       else{
         header('Location:'.base_url().'');
