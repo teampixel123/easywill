@@ -426,5 +426,53 @@
         header('Location:'.base_url().'');
       }
     }
+
+    // Save Distribution...
+    public function save_distribution(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $flashdata = $this->input->post('flashdata');
+        $distribution_data = array(
+          'will_id' => $will_id,
+          'estate_id' => $this->input->post('estate_id'),
+          'estate_type' => $this->input->post('estate_type'),
+          'distribution_name' => $this->input->post('distribution_name'),
+          'distribution_percent' => $this->input->post('distribution_percent')
+        );
+
+        $this->Will_Model->save_distribution($distribution_data);
+        $this->session->set_flashdata('assets_tab',$flashdata);
+        header('Location:'.base_url().'Distribution');
+    }
+    else{
+      header('Location:'.base_url().'');
+    }
+    }
+
+    // Delete Destribution...
+    public function delete_destribution(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $distribution_id = $this->input->post('distribution_id');
+        // echo $distribution_id;
+        $this->Will_Model->delete_destribution($distribution_id, $will_id);
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Other Information View...
+    // Executor, Witness, Date & Place...
+    public function other_information(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $this->load->view('pages/will/other_info');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
   }
 ?>

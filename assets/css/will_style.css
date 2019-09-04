@@ -5,6 +5,12 @@
 .txt-black{
   color:#000;
 }
+.txt-red{
+  color:red;
+}
+.txt-green{
+  color:green;
+}
 a{
   color:#000;
 }
@@ -273,4 +279,11 @@ button:focus {
   /* .col-md-2{
     text-align: left !important;
   } */
+}
+
+.distri_table td, .distri_table th{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 13px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }

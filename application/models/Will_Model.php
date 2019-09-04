@@ -157,5 +157,38 @@ class Will_Model extends CI_Model{
     ->where('will_id', $will_id)
     ->delete('tbl_other_gift');
   }
+  // Save Distribution...
+  public function save_distribution($distribution_data){
+    $this->db->insert('tbl_distribution',$distribution_data);
+  }
+
+  public function get_distribution_percent($estate_id, $will_id, $estate_type){
+    $query = $this->db->select('SUM(distribution_percent) as distribution_percent')
+            ->where('estate_id', $estate_id)
+            ->where('will_id', $will_id)
+            ->where('estate_type', $estate_type)
+            ->from('tbl_distribution')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  public function get_distribution_list($estate_id, $will_id, $estate_type ){
+    $query = $this->db->select('*')
+            ->where('estate_id', $estate_id)
+            ->where('will_id', $will_id)
+            ->where('estate_type', $estate_type)
+            ->from('tbl_distribution')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  // Delete Other Gift...
+  public function delete_destribution($distribution_id, $will_id){
+    $this->db->where('id', $distribution_id)
+    ->where('will_id', $will_id)
+    ->delete('tbl_distribution');
+  }
 }
 ?>

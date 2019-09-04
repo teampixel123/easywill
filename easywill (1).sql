@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2019 at 02:49 PM
+-- Generation Time: Sep 03, 2019 at 08:18 AM
 -- Server version: 10.1.38-MariaDB
--- PHP Version: 7.2.16
+-- PHP Version: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,7 +50,13 @@ INSERT INTO `tbl_bank_assets` (`id`, `will_id`, `account_type`, `account_number`
 (1, 39854716, 'Current Account', '123', 'seg', 'sdfg', 'sdfg', 555777, '', 0, ''),
 (2, 39854716, 'Current Account', '3456', 'ttt', 'yyy', 'uuu', 111111, '', 0, ''),
 (3, 39854716, 'Insurance Policy', '7788', 'fgh', 'dfgh', 'Maharashtra', 555777, '', 90000, ''),
-(4, 39854716, 'Insurance Policy', '5678', 'fghdf', 'dfghdh', '', 0, '', 999999, '');
+(4, 39854716, 'Insurance Policy', '5678', 'fghdf', 'dfghdh', '', 0, '', 999999, ''),
+(5, 65938471, 'Savings Account', '3456', 'dghdfh dfghdh', 'fghdfgh', 'Maharashtra', 555777, '', 0, ''),
+(6, 86579314, 'Bank Locker', '3456', 'dbd d', 'sdfghsdfg', 'Maharashtra', 555777, '', 3456, '3456'),
+(7, 86579314, 'Savings Account', '3456', 'rdhfdgh dfgh', 'rdh dfgh', 'fghjfghj fghj', 555777, '', 0, ''),
+(8, 76324958, 'Savings Account', '12345678', 'sbi', 'rajarampuri', 'maha', 416001, '', 0, ''),
+(9, 76324958, 'Current Account', '123456', 'idbi', 'bagal chowk', 'maharashtra', 416216, '', 0, ''),
+(10, 71932546, 'Savings Account', '363456', 'rhdgfh', 'dfgh', 'Maharashtra', 416001, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -78,7 +84,32 @@ CREATE TABLE `tbl_family_info` (
 INSERT INTO `tbl_family_info` (`id`, `will_id`, `relationship`, `family_person_name`, `family_person_dob`, `family_person_age`, `guardian_name_title`, `guardian_name`, `major_age`, `is_minar`) VALUES
 (14, 43792816, 'Spouse', 'Sdhfgh Sfdgh', '16-06-1999', 20, 'Mr.', '', 0, 'no'),
 (15, 39854716, 'Spouse', 'Asjfgh Sdjfgh', '07-05-1974', 45, 'Mr.', '', 0, 'no'),
-(16, 39854716, 'Son', 'Dfgdfhj Dfgh', '21-08-2019', 0, 'Mr.', 'Asdhfg Jkhg', 21, 'yes');
+(16, 39854716, 'Son', 'Dfgdfhj Dfgh', '21-08-2019', 0, 'Mr.', 'Asdhfg Jkhg', 21, 'yes'),
+(17, 65938471, 'Spouse', 'Demo Spouse', '15-07-1981', 38, 'Mr.', '', 0, 'no'),
+(18, 71932546, 'Son', 'Rtty Erty', '04-09-2019', 0, 'Mr.', 'Dgj Dfgh', 21, 'yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_other_gift`
+--
+
+CREATE TABLE `tbl_other_gift` (
+  `id` int(11) NOT NULL,
+  `will_id` bigint(20) NOT NULL,
+  `gift_type` varchar(150) NOT NULL,
+  `gift_description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_other_gift`
+--
+
+INSERT INTO `tbl_other_gift` (`id`, `will_id`, `gift_type`, `gift_description`) VALUES
+(1, 86579314, 'Jewellery and Valuables', 'sdfgsdfg'),
+(2, 76324958, 'Jewellery and Valuables', '1 kg silver'),
+(3, 76324958, 'Remained Assets', 'historic item 1'),
+(4, 71932546, 'Jewellery and Valuables', 'ryrty');
 
 -- --------------------------------------------------------
 
@@ -119,7 +150,11 @@ INSERT INTO `tbl_personal_info` (`id`, `will_id`, `name_title`, `full_name`, `ge
 (3, 14283697, 'Mr.', 'Thdfh Fdgh', 'male', 'Married', 'no', '9900990099', 'learningdm12@gmail.com', '', '', 0, '', '', '', '', '', '', '', ''),
 (4, 93567482, 'Mr.', 'Thdfh Fdgh', 'male', 'Married', 'no', '9900990099', 'learningdm12@gmail.com', 'Fdghsdh Sfgh', 'Sfdgh', 111111, 'Fff', 'Dfghdfgh', 'Ddd', 'Dfgh', '667788990099', '', 'Indian', 'Hindu'),
 (5, 43792816, 'Mr.', 'Thdfh Fdgh', 'male', 'Married', 'no', '9900990099', 'srfsdf@gmail.com', 'Fdghsdh Sfgh', 'Sfdgh', 111111, 'Fff', 'India', '15/08/2019', 'Fgh', '998877665544', '', 'Indian', 'Hindu'),
-(6, 39854716, 'Mr.', 'Demo Will', 'male', 'Married', 'yes', '9988776655', 'datta@pixelbazar.com', 'Rajarampuri', 'Kolhapur', 555777, 'Maharashtra', 'India', '22-01-1959', 'Business', '552233669988', '', 'Indian', 'Hindu');
+(6, 39854716, 'Mr.', 'Demo Will', 'male', 'Married', 'yes', '9988776655', 'datta@pixelbazar.com', 'Rajarampuri', 'Kolhapur', 555777, 'Maharashtra', 'India', '22-01-1959', 'Business', '552233669988', '', 'Indian', 'Hindu'),
+(7, 95281763, 'Mr.', 'Demo Will', 'male', 'Unmarried', 'no', '9900998877', 'sfghd@mail.com', 'Rajarampuri', 'Kolhapur', 555777, 'Maharashtra', 'India', '07-01-1970', 'Business', '556633221144', '', 'Indian', 'Hindu'),
+(8, 65938471, 'Mr.', 'Demo Two', 'male', 'Married', 'yes', '8855669933', 'demotwo@email.com', 'Rajarampuri', 'Kolhapur', 555777, 'Maharashtra', 'India', '02-01-1979', 'Business', '112233445566', '', 'Indian', 'Hindu'),
+(9, 76324958, 'Mr.', 'Dhananjay', 'male', 'Unmarried', 'no', '9021182145', 'abc@gmail.com', 'Bagal Chowk', 'Kolhapur', 416001, 'Maharashtra', 'India', '25-08-1991', 'Businessman', '123456789456', 'Abcfd1234G', 'India', 'hindu'),
+(10, 71932546, 'Mr.', 'Stgfd Fdgh', 'male', 'Married', 'no', '9900990099', 'fgh@mail.com', 'Bagal Chowk', 'Kolhapur', 416001, 'Maharashtra', 'India', '01-02-1950', 'Stud', '223366554411', '', 'Indian', 'Hindu');
 
 -- --------------------------------------------------------
 
@@ -149,7 +184,14 @@ CREATE TABLE `tbl_real_estate` (
 
 INSERT INTO `tbl_real_estate` (`id`, `will_id`, `estate_type`, `estate_number`, `survey_number_type`, `survey_number`, `measurement_area`, `measurement_unit`, `real_estate_address`, `real_estate_city`, `real_estate_pin`, `real_estate_state`, `real_estate_country`) VALUES
 (3, 43792816, 'House', 'Fff', 'C.S. No.', '3456', '3456', 'Square Meter', 'Fdghsdh Sfgh', 'Sfdgh', 555666, 'Mh', 'India'),
-(4, 39854716, 'Commercial Shop Unit', '1234', 'C.S. No.', '4321', '555', 'Square Meter', 'Rajarampuri', 'Kolhapur', 333444, 'Maharashtra', 'India');
+(4, 39854716, 'Commercial Shop Unit', '1234', 'C.S. No.', '4321', '555', 'Square Meter', 'Rajarampuri', 'Kolhapur', 333444, 'Maharashtra', 'India'),
+(5, 95281763, 'House', 'Maharashtra', 'C.S. No.', '111', '222', 'Square Meter', 'Rajarampuri', 'Kolhapur', 333333, 'Maharashtra', 'India'),
+(6, 86579314, 'Commercial Shop Unit', 'Fff', 'C.S. No.', '2346', '3456', 'Square Meter', 'Fdghsdh Sfgh', 'Sfdgh', 111111, 'Maharashtra', 'India'),
+(7, 86579314, 'Commercial Shop Unit', '3456', 'C.S. No.', 'Gh', '5677', 'Square Meter', 'sdfg sdfg', 'Kolhapur', 555777, 'Maharashtra', 'India'),
+(8, 76324958, 'House', 'Maharashtra', 'C.S. No.', '4564', '1200', 'Square Feet', 'bagal Chowk', 'Kolhapur', 416001, 'Maharashtra', 'India'),
+(9, 76324958, 'Shop', '12456', 'C.S. No.', '98654', '1200', 'Square Feet', 'C.S.No. 345, Tarabai PArk', 'Kolhapur', 416003, 'Maharashtra', 'India'),
+(10, 76324958, 'Land', 'Maharashtra', 'C.S. No.', '123456', '1200', 'Square Feet', 'bagal Chowk', 'Kolhapur', 416001, 'Maharashtra', 'India'),
+(11, 71932546, 'Flat', 'q234', 'C.S. No.', '234', '234', 'Square Meter', 'bagal Chowk', 'Kolhapur', 416001, 'Mahashtra', 'India');
 
 -- --------------------------------------------------------
 
@@ -196,6 +238,29 @@ INSERT INTO `tbl_user` (`id`, `user_id`, `user_fullname`, `user_mobile_number`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_vehicle`
+--
+
+CREATE TABLE `tbl_vehicle` (
+  `id` int(11) NOT NULL,
+  `will_id` bigint(20) NOT NULL,
+  `vehicle_model_name` varchar(200) NOT NULL,
+  `vehicle_registration_no` varchar(100) NOT NULL,
+  `vehicle_make_year` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_vehicle`
+--
+
+INSERT INTO `tbl_vehicle` (`id`, `will_id`, `vehicle_model_name`, `vehicle_registration_no`, `vehicle_make_year`) VALUES
+(1, 76324958, 'maruti Suzuki', '12456378', 2018),
+(2, 76324958, 'Skoda Fabia', '98654123', 2015),
+(3, 71932546, 'kolhapur', 'e456', 2012);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_will`
 --
 
@@ -224,7 +289,11 @@ INSERT INTO `tbl_will` (`id`, `will_user_id`, `will_id`, `is_will_complete`, `is
 (3, 82651394, 14283697, 'no', 'no', '', '27-08-2019', '', 0, '', 'yes', '27-08-2019'),
 (4, 82651394, 93567482, 'no', 'no', '', '27-08-2019', '', 0, '', 'yes', '27-08-2019'),
 (5, 0, 43792816, 'no', 'no', '', '28-08-2019', '', 0, '', 'yes', '28-08-2019'),
-(6, 0, 39854716, 'no', 'no', '', '29-08-2019', '', 0, '', 'yes', '29-08-2019');
+(6, 0, 39854716, 'no', 'no', '', '29-08-2019', '', 0, '', 'yes', '29-08-2019'),
+(7, 0, 95281763, 'no', 'no', '', '30-08-2019', '', 0, '', 'yes', '30-08-2019'),
+(8, 0, 65938471, 'no', 'no', '', '30-08-2019', '', 0, '', 'yes', '30-08-2019'),
+(9, 0, 76324958, 'no', 'no', '', '01-09-2019', '', 0, '', 'yes', '01-09-2019'),
+(10, 0, 71932546, 'no', 'no', '', '03-09-2019', '', 0, '', 'yes', '03-09-2019');
 
 --
 -- Indexes for dumped tables
@@ -240,6 +309,12 @@ ALTER TABLE `tbl_bank_assets`
 -- Indexes for table `tbl_family_info`
 --
 ALTER TABLE `tbl_family_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_other_gift`
+--
+ALTER TABLE `tbl_other_gift`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -261,6 +336,12 @@ ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_vehicle`
+--
+ALTER TABLE `tbl_vehicle`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_will`
 --
 ALTER TABLE `tbl_will`
@@ -274,25 +355,31 @@ ALTER TABLE `tbl_will`
 -- AUTO_INCREMENT for table `tbl_bank_assets`
 --
 ALTER TABLE `tbl_bank_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_family_info`
 --
 ALTER TABLE `tbl_family_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `tbl_other_gift`
+--
+ALTER TABLE `tbl_other_gift`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_personal_info`
 --
 ALTER TABLE `tbl_personal_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_real_estate`
 --
 ALTER TABLE `tbl_real_estate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
@@ -301,10 +388,16 @@ ALTER TABLE `tbl_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tbl_vehicle`
+--
+ALTER TABLE `tbl_vehicle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_will`
 --
 ALTER TABLE `tbl_will`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
