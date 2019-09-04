@@ -668,6 +668,30 @@
     </div>
   </div>
 
+  <div class="row alert-div w-100" id="alert_success">
+    <div class="col-md-12">
+      <div class="alert alert-success " role="alert">
+        Information Saved Successfully.
+      </div>
+    </div>
+  </div>
+
+  <div class="row alert-div w-100" id="alert_update">
+    <div class="col-md-12">
+      <div class="alert alert-success " role="alert">
+        Information Updated Successfully.
+      </div>
+    </div>
+  </div>
+
+  <div class="row alert-div w-100" id="alert_delete">
+    <div class="col-md-12">
+      <div class="alert alert-success " role="alert">
+        Information Deleted Successfully.
+      </div>
+    </div>
+  </div>
+
 
 <!-- footer -->
   <?php include(__DIR__ .'../../footer.php');  ?>
@@ -710,5 +734,26 @@
       });
     </script>
   <?php } ?>
+  <?php $is_success = $this->session->flashdata('is_success');
+    if($is_success){ ?>
+      <input type="hidden" id="is_success" value="<?php echo $is_success; ?>">
+      <script type="text/javascript">
+        $(document).ready(function(){
+          var is_success = $('#is_success').val();
+          if(is_success == 'save'){
+            $('#alert_success').fadeIn(1000);
+            $('#alert_success').delay(3000).fadeOut(1000);
+          }
+          else if(is_success == 'update'){
+            $('#alert_update').fadeIn(1000);
+            $('#alert_update').delay(3000).fadeOut(1000);
+          }
+          else if(is_success == 'delete'){
+            $('#alert_delete').fadeIn(1000);
+            $('#alert_delete').delay(3000).fadeOut(1000);
+          }
+        });
+      </script>
+  <?php }  ?>
   </body>
 </html>

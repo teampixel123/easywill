@@ -184,11 +184,87 @@ class Will_Model extends CI_Model{
     return $result;
   }
 
-  // Delete Other Gift...
+  // Delete Destribution...
   public function delete_destribution($distribution_id, $will_id){
     $this->db->where('id', $distribution_id)
     ->where('will_id', $will_id)
     ->delete('tbl_distribution');
+  }
+  // Delete Destribution if assets deleted
+  public function delete_destribution_on_assets($real_estate_id, $will_id){
+    $this->db->where('estate_id', $real_estate_id)
+    ->where('will_id', $will_id)
+    ->delete('tbl_distribution');
+  }
+
+  //Save Executor...
+  public function save_executor_info($executor_data){
+    $this->db->insert('tbl_executor', $executor_data);
+  }
+  // Update Executor
+  public function update_executor_info($executor_id, $will_id, $executor_data_update){
+    $this->db->where('id', $executor_id)
+    ->where('will_id', $will_id)
+    ->update('tbl_executor', $executor_data_update);
+  }
+  //Save Witness...
+  public function save_witness_info($witness_data){
+    $this->db->insert('tbl_witness', $witness_data);
+  }
+  // Update Witness...
+  public function update_witness_info($witness_id, $will_id, $witness_data_update){
+    $this->db->where('id', $witness_id)
+    ->where('will_id', $will_id)
+    ->update('tbl_witness', $witness_data_update);
+  }
+  //Save Adequate Provision...
+  public function save_adequate_provision_info($adequate_provision_data){
+    $this->db->insert('tbl_adequate_provision', $adequate_provision_data);
+  }
+  // Update Adequate Provision...
+  public function update_adequate_provision_info($adequate_provision_id, $will_id, $adequate_provision_data_update){
+    $this->db->where('id', $adequate_provision_id)
+    ->where('will_id', $will_id)
+    ->update('tbl_adequate_provision', $adequate_provision_data_update);
+  }
+  // Save Date and Place... Update in tbl_will...
+  public function save_date_place_info($will_id, $date_place_data){
+    $this->db->where('will_id', $will_id)
+    ->update('tbl_will', $date_place_data);
+  }
+  // Get Executor List...
+  public function get_executor_list($will_id){
+    $query = $this->db->select('*')
+            ->where('will_id', $will_id)
+            ->from('tbl_executor')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+  // Get Witness List...
+  public function get_witness_list($will_id){
+    $query = $this->db->select('*')
+            ->where('will_id', $will_id)
+            ->from('tbl_witness')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+  // Get Adequate Provision List...
+  public function get_adequate_provision_list($will_id){
+    $query = $this->db->select('*')
+            ->where('will_id', $will_id)
+            ->from('tbl_adequate_provision')
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  //Delete Other Info...
+  public function delete_other_info($will_id, $other_delete_id, $table){
+    $this->db->where('id', $other_delete_id)
+    ->where('will_id', $will_id)
+    ->delete($table);
   }
 }
 ?>

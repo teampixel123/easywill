@@ -217,6 +217,7 @@
         );
         $this->Will_Model->save_real_estate_info($real_estate_data);
         $this->session->set_flashdata('assets_tab','real');
+        $this->session->set_flashdata('is_success','save');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -243,6 +244,7 @@
         );
         $this->Will_Model->update_real_estate_info($real_estate_id, $will_id, $real_estate_data_update);
         $this->session->set_flashdata('assets_tab','real');
+        $this->session->set_flashdata('is_success','update');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -255,6 +257,8 @@
       if($will_id){
         $real_estate_id = $this->input->post('real_estate_id');
         $this->Will_Model->delete_real_estate($real_estate_id, $will_id);
+        $this->Will_Model->delete_destribution_on_assets($real_estate_id, $will_id); // Delete destribution also
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');
@@ -278,6 +282,7 @@
         );
         $this->Will_Model->save_bank_assets_info($bank_assets_data);
         $this->session->set_flashdata('assets_tab','bank');
+        $this->session->set_flashdata('is_success','save');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -302,6 +307,7 @@
         );
         $this->Will_Model->update_bank_assets_info($assets_id, $will_id, $bank_assets_data_update);
         $this->session->set_flashdata('assets_tab','bank');
+        $this->session->set_flashdata('is_success','update');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -314,6 +320,8 @@
       if($will_id){
         $bank_assets_id = $this->input->post('bank_assets_id');
         $this->Will_Model->delete_bank_assets($bank_assets_id, $will_id);
+        $this->Will_Model->delete_destribution_on_assets($bank_assets_id, $will_id); // Delete destribution also
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');
@@ -331,6 +339,7 @@
         );
         $this->Will_Model->save_vehicle_assets_info($vehicle_data);
         $this->session->set_flashdata('assets_tab','vehicle');
+        $this->session->set_flashdata('is_success','save');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -349,6 +358,7 @@
         );
         $this->Will_Model->update_vehicle_assets_info($vehicle_id, $will_id, $vehicle_data_update);
         $this->session->set_flashdata('assets_tab','vehicle');
+        $this->session->set_flashdata('is_success','update');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -361,6 +371,8 @@
       if($will_id){
         $vehicle_id = $this->input->post('vehicle_id');
         $this->Will_Model->delete_vehicle($vehicle_id, $will_id);
+        $this->Will_Model->delete_destribution_on_assets($vehicle_id, $will_id); // Delete destribution also
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');
@@ -377,6 +389,7 @@
         );
         $this->Will_Model->save_other_gift_info($other_gift_data);
         $this->session->set_flashdata('assets_tab','other_gifts');
+        $this->session->set_flashdata('is_success','save');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -394,6 +407,7 @@
         );
         $this->Will_Model->update_other_gift_info($gift_id, $will_id, $other_gift_data_update);
         $this->session->set_flashdata('assets_tab','other_gifts');
+        $this->session->set_flashdata('is_success','update');
         header('Location:'.base_url().'Assets-Information');
       }
       else{
@@ -406,6 +420,8 @@
       if($will_id){
         $gift_id = $this->input->post('gift_id');
         $this->Will_Model->delete_other_gift($gift_id, $will_id);
+        $this->Will_Model->delete_destribution_on_assets($gift_id, $will_id); // Delete destribution also
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');
@@ -442,6 +458,7 @@
 
         $this->Will_Model->save_distribution($distribution_data);
         $this->session->set_flashdata('assets_tab',$flashdata);
+        $this->session->set_flashdata('is_success','save');
         header('Location:'.base_url().'Distribution');
     }
     else{
@@ -456,18 +473,188 @@
         $distribution_id = $this->input->post('distribution_id');
         // echo $distribution_id;
         $this->Will_Model->delete_destribution($distribution_id, $will_id);
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');
       }
     }
 
+
+/******************************************************************************/
+/*********************** Other Information ************************************/
+/*********** Executor, Witness, Adequate Provision, Date & Place **************/
+/******************************************************************************/
+
     // Other Information View...
-    // Executor, Witness, Date & Place...
     public function other_information(){
       $will_id = $this->session->userdata('will_id');
       if($will_id){
-        $this->load->view('pages/will/other_info');
+        $data['executor_info'] = $this->Will_Model->get_executor_list($will_id);
+        $data['witness_info'] = $this->Will_Model->get_witness_list($will_id);
+        $data['adequate_provision_info'] = $this->Will_Model->get_adequate_provision_list($will_id);
+        $data['will_data'] = $this->Will_Model->get_will_data($will_id);
+        $this->load->view('pages/will/other_info', $data);
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Save Executor...
+    public function save_executor_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $executor_data = array(
+          'will_id' => $will_id,
+          'executor_name_title' => $this->input->post('executor_name_title'),
+          'executor_name' => $this->input->post('executor_name'),
+          'executor_address' => $this->input->post('executor_address'),
+        );
+        $this->Will_Model->save_executor_info($executor_data);
+        $this->session->set_flashdata('other_tab','executor');
+        $this->session->set_flashdata('is_success','save');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Update Executor
+    public function update_executor_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $executor_id = $this->input->post('executor_id');
+        $executor_data_update = array(
+          'executor_name_title' => $this->input->post('executor_name_title'),
+          'executor_name' => $this->input->post('executor_name'),
+          'executor_address' => $this->input->post('executor_address'),
+        );
+        $this->Will_Model->update_executor_info($executor_id, $will_id, $executor_data_update);
+        $this->session->set_flashdata('other_tab','executor');
+        $this->session->set_flashdata('is_success','update');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Save Witness...
+    public function save_witness_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $witness_data = array(
+          'will_id' => $will_id,
+          'witness_name_title' => $this->input->post('witness_name_title'),
+          'witness_name' => $this->input->post('witness_name'),
+          'witness_address' => $this->input->post('witness_address'),
+        );
+        $this->Will_Model->save_witness_info($witness_data);
+        $this->session->set_flashdata('other_tab','witness');
+        $this->session->set_flashdata('is_success','save');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Update Executor
+    public function update_witness_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $witness_id = $this->input->post('witness_id');
+        $witness_data_update = array(
+          'witness_name_title' => $this->input->post('witness_name_title'),
+          'witness_name' => $this->input->post('witness_name'),
+          'witness_address' => $this->input->post('witness_address'),
+        );
+        $this->Will_Model->update_witness_info($witness_id, $will_id, $witness_data_update);
+        $this->session->set_flashdata('other_tab','witness');
+        $this->session->set_flashdata('is_success','update');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Save Adequate Provision...
+    public function save_adequate_provision_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $adequate_provision_data = array(
+          'will_id' => $will_id,
+          'adequate_provision_name_title' => $this->input->post('adequate_provision_name_title'),
+          'adequate_provision_name' => $this->input->post('adequate_provision_name'),
+          'adequate_provision_address' => $this->input->post('adequate_provision_address'),
+        );
+        $this->Will_Model->save_adequate_provision_info($adequate_provision_data);
+        $this->session->set_flashdata('other_tab','adequate_provision');
+        $this->session->set_flashdata('is_success','save');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Update Adequate Provision
+    public function update_adequate_provision_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $adequate_provision_id = $this->input->post('adequate_provision_id');
+        $adequate_provision_data_update = array(
+          'adequate_provision_name_title' => $this->input->post('adequate_provision_name_title'),
+          'adequate_provision_name' => $this->input->post('adequate_provision_name'),
+          'adequate_provision_address' => $this->input->post('adequate_provision_address'),
+        );
+        $this->Will_Model->update_adequate_provision_info($adequate_provision_id, $will_id, $adequate_provision_data_update);
+        $this->session->set_flashdata('other_tab','adequate_provision');
+        $this->session->set_flashdata('is_success','update');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Save Date and Place... Update in tbl_will...
+    public function save_date_place_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $date_place_data = array(
+          'will_date' => $this->input->post('will_date'),
+          'will_place' => $this->input->post('will_place'),
+        );
+        $this->Will_Model->save_date_place_info($will_id, $date_place_data);
+        $this->session->set_flashdata('other_tab','date_place');
+        $this->session->set_flashdata('is_success','save');
+        header('Location:'.base_url().'Other-Information');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
+
+    // Delete Other Info
+    public function delete_other_info(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $other_delete_id = $this->input->post('other_delete_id');
+        $other_delete_type = $this->input->post('other_delete_type');
+
+        if($other_delete_type == 'Executor'){
+          $table = 'tbl_executor';
+        } else if($other_delete_type == 'Witness'){
+          $table = 'tbl_witness';
+        } else if($other_delete_type == 'Adequate Provision'){
+          $table = 'tbl_adequate_provision';
+        }
+        $this->Will_Model->delete_other_info($will_id, $other_delete_id, $table);
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');

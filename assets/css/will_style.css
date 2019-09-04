@@ -57,6 +57,21 @@ h6{
 .f-14{
   font-size: 14px;
 }
+.f-16{
+  font-size: 16px;
+}
+.f-18{
+  font-size: 18px;
+}
+.f-20{
+  font-size: 20px;
+}
+.f-22{
+  font-size: 22px;
+}
+.f-waight-6{
+  font-weight: 600;
+}
 .form-group {
     margin-bottom: 10px;
 }
@@ -150,6 +165,8 @@ h6{
 }
 
 
+
+
 /* progress bar */
 
 .multi-steps > li.is-active:before, .multi-steps > li.is-active ~ li:before {
@@ -218,9 +235,31 @@ h6{
   background-color: #ededed;
   border-color: #ededed;
 }
-
-
 /* end progress */
+
+
+.alert-div{
+  position: fixed;
+  top:20px;
+  display:none;
+}
+.alert-div .alert{
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+}
+#alert_success .alert{
+  background: #28a745;
+}
+#alert_update .alert{
+  background: #007bff;
+}
+#alert_delete .alert{
+  background: #FF0000;
+}
 
 .input-box{
   box-shadow: none;
@@ -254,7 +293,7 @@ h6{
   border-image: initial;
   /* background: rgb(245, 247, 248); */
   border-radius: 8px;
-  padding: 30px 30px 20px;
+  padding: 20px 20px;
 }
 .info-box p{
   font-family: "Roboto", Arial, Helvetica, sans-serif;
