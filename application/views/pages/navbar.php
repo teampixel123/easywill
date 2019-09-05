@@ -1,7 +1,7 @@
 <div class="topstrip fixed-top"></div>
 <!-- <section class="shadow fixed-top">
   <div class="container"> -->
-    <nav class="navbar shadow  navbar-top navbar-expand-lg navbar-light bg-light ">
+    <nav class="navbar shadow sticky-top navbar-top navbar-expand-lg navbar-light bg-light ">
     <a class="navbar-brand" href="<?php echo base_url(); ?>"> <img src="<?php base_url(); ?>assets/images/website/easy_logo-01.svg" alt=""> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,12 @@
           <a class="nav-link" href="<?php echo base_url(); ?>Contact-Us">Contact Us</a>
         </li>
       </ul>
-      <button type="submit" class="login btn btn-sm btn-primary"><a href="<?php echo base_url(); ?>Login">Sign In / Sign Up</a></button>
+      <?php if($this->session->userdata('user_is_login')){ ?>
+        <button type="submit" class="login btn btn-sm btn-primary"><a href="<?php echo base_url(); ?>User-Dashboard">Dashboard</a></button>
+      <?php } else{ ?>
+        <button type="submit" class="login btn btn-sm btn-primary"><a href="<?php echo base_url(); ?>Login">Sign In / Sign Up</a></button>
+      <?php } ?>
+
     </div>
   </nav>
 <!-- </div>

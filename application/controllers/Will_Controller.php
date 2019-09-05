@@ -5,11 +5,35 @@
       parent::__construct();
       $this->load->Model('Will_Model');
     }
-
+    // Load Start Will Page... Datta...
+    public function start_will_view(){
+      $user_is_login = $this->session->userdata('user_is_login');
+      $user_id = $this->session->userdata('user_id');
+      if($user_is_login && $user_id){
+        $will_id = $this->input->post('will_id');
+        $this->session->set_userdata('will_id',$will_id);
+        header('location:'.base_url().'Start-Will');
+      }
+      else{
+        $this->session->unset_userdata('will_id');
+        header('location:'.base_url().'Start-Will');
+      }
+    }
     // Load Start Will Page... Datta...
     public function start_will(){
-      $this->load->view('pages/will/start_will');
+      $user_is_login = $this->session->userdata('user_is_login');
+      $user_id = $this->session->userdata('user_id');
+      $will_id = $this->session->userdata('will_id');
+
+      if($will_id && $user_id && $user_is_login){
+        $data['will_start_data'] = $this->Will_Model->get_personal_data($will_id);
+      }
+      else{
+        $data['will_start_data'] = '';
+      }
+      $this->load->view('pages/will/start_will',$data);
     }
+
     // Save Will Info and Start Info... Datta...
     public function save_start_info(){
       $login = $this->session->userdata('user_is_login');
@@ -39,8 +63,6 @@
         $name_title = 'Mrs.';
       }
 
-      echo $login;
-      echo $user_id;
 
       $will_date = date('d-m-Y');
       //
@@ -78,8 +100,47 @@
       $this->session->set_userdata('will_start','yes');
       $this->session->set_userdata('will_id',$will_id);
 
-      header('Location:'.base_url().'Persinal-Information');
+      header('Location:'.base_url().'Personal-Information');
        // echo $name_title;
+    }
+
+
+    public function update_start_info(){
+      $user_is_login = $this->session->userdata('user_is_login');
+      $user_id = $this->session->userdata('user_id');
+      $will_id = $this->session->userdata('will_id');
+      $will_date = date('d-m-Y');
+
+      if($user_is_login && $user_id && $will_id){
+        $gender = $this->input->post('gender');
+        $marital_status = $this->input->post('marital_status');
+
+        if($gender == 'male'){
+          $name_title = 'Mr.';
+        }
+        elseif ($gender == 'female' && ($marital_status == 'Unmarried' || $marital_status == 'Divorcee' || $marital_status == 'Widow' )) {
+          $name_title = 'Ms.';
+        }
+        elseif ($gender == 'female' && $marital_status == 'Married') {
+          $name_title = 'Mrs.';
+        }
+
+        $start_data_update = array(
+          'name_title' => $name_title,
+          'full_name' => $this->input->post('full_name'),
+          'gender' => $gender,
+          'marital_status' => $marital_status,
+          'is_have_child' => $this->input->post('is_have_child'),
+          'mobile_no' => $this->input->post('mobile_no'),
+          'email' => $this->input->post('email'),
+        );
+
+        $this->Will_Model->update_start_info($will_id, $start_data_update);
+        header('Location:'.base_url().'Personal-Information');
+      }
+      else{
+        header('Location:'.base_url().'Login');
+      }
     }
 
     public function personal_info(){

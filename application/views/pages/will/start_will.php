@@ -18,6 +18,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="input-box">
+
+
             <form class="" id="start_will_form" action="<?php echo base_url() ?>Will_Controller/save_start_info" method="post">
               <fieldset>
                 <h3 class="text-center mb-4">Personal Information </h3>
@@ -117,9 +119,15 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group text-center mt-4">
-                  <button type="button" class="btn btn-md btn-success pl-4 pr-4" id="start_save_btn">Save and Next</button>
-                </div>
+                <?php if($will_start_data){ ?>
+                  <div class="form-group text-center mt-4">
+                    <button type="button" class="btn btn-md btn-info pl-4 pr-4" id="start_save_btn">Update and Next</button>
+                  </div>
+                <?php } else{ ?>
+                  <div class="form-group text-center mt-4">
+                    <button type="button" class="btn btn-md btn-success pl-4 pr-4" id="start_save_btn">Save and Next</button>
+                  </div>
+                <?php } ?>
               </fieldset>
             </form>
           </div>
@@ -135,5 +143,55 @@
 <!-- footer -->
   <?php include(__DIR__ .'../../footer.php');  ?>
   <script src="<?php echo base_url(); ?>assets/js/will_js/start_will.js"></script>
+
+  <?php if($will_start_data){
+    foreach ($will_start_data as $will_start_data1) {
+    }
+  ?>
+    <input type="hidden" name="full_name2" id="full_name2" value="<?php echo $will_start_data1->full_name; ?>">
+    <input type="hidden" name="gender2" id="gender2" value="<?php echo $will_start_data1->gender; ?>">
+    <input type="hidden" name="marital_status2" id="marital_status2" value="<?php echo $will_start_data1->marital_status; ?>">
+    <input type="hidden" name="is_have_child2" id="is_have_child2" value="<?php echo $will_start_data1->is_have_child; ?>">
+    <input type="hidden" name="mobile_no2" id="mobile_no2" value="<?php echo $will_start_data1->mobile_no; ?>">
+    <input type="hidden" name="email2" id="email2" value="<?php echo $will_start_data1->email; ?>">
+
+    <script type="text/javascript">
+      $('#start_will_form').attr('action', "<?php echo base_url(); ?>Will_Controller/update_start_info");
+
+      var full_name = $('#full_name2').val();
+      var gender = $('#gender2').val();
+      var marital_status = $('#marital_status2').val();
+      var is_have_child = $('#is_have_child2').val();
+      var mobile_no = $('#mobile_no2').val();
+      var email = $('#email2').val();
+
+      $('#full_name').val(full_name);
+      $('#mobile_no').val(mobile_no);
+      $('#email').val(email);
+      $('#marital_status').val(marital_status);
+
+      if(gender == 'male'){
+        $('#male').prop("checked", true);
+      }
+      else if (gender == 'female'){
+        $('#female').prop("checked", true);
+        $('#Widove').prop('disabled', false)
+      }
+
+      if(marital_status != 'Unmarried'){
+        $('.have_child_div').show();
+      }
+      else{
+        $('.have_child_div').hide();
+      }
+
+      if(is_have_child == 'child_yes'){
+        $('#child_yes').prop("checked", true);
+      }
+      else if (is_have_child == 'child_no'){
+        $('#child_no').prop("checked", true);
+      }
+    </script>
+  <?php } ?>
   </body>
 </html>

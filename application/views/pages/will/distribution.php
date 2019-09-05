@@ -43,12 +43,14 @@
             <h5 class="text-left txt-black mb-4">Distribution of Assets </h5>
             <ul class="nav nav-tabs">
               <?php
-              $next = 0;
-              if($real_estate_data){ ?>
+                $next = 0;
+                if($real_estate_data){
+                $act_tab1 = ' active show ';
+              ?>
                 <li class="nav-item text-center" style="width:25%;">
                   <a id="real_estate_tab" class="nav-link active rem_class" data-toggle="tab" href="#real_estate"><i class="fa fa-home fa-2x"  ></i></br> Real Estate</a>
                 </li>
-              <?php } ?>
+              <?php } else { $act_tab1 = ''; } ?>
               <?php if($bank_assets_data){ ?>
                 <li class="nav-item text-center" style="width:26%;">
                   <a id="bank_assets_tab" class="nav-link rem_class" data-toggle="tab" href="#bank_assets"><i class="fa fa-university fa-2x" ></i></br> Bank Assets</a>
@@ -70,7 +72,7 @@
 
               <!------------------------------ Real Estate Add Destribution --------------------------->
 
-              <div class="tab-pane fade active show rem_class" id="real_estate">
+              <div class="tab-pane fade <?php echo $act_tab1; ?> rem_class" id="real_estate">
                 <h6 class="mt-3">Real Estate</h6>
                 <hr>
                 <?php

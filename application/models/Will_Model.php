@@ -9,6 +9,11 @@ class Will_Model extends CI_Model{
   public function save_start_info($start_data){
     $this->db->insert('tbl_personal_info',$start_data);
   }
+  //Update Personal Start Info...
+  public function update_start_info($will_id, $start_data_update){
+    $this->db->where('will_id', $will_id)
+    ->update('tbl_personal_info', $start_data_update);
+  }
   // Get Will Data... Datta...
   public function get_will_data($will_id){
     $this->db->select('*');

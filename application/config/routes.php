@@ -61,11 +61,14 @@ $route['Terms-and-Conditions'] = 'Website/terms_and_conditions';
 $route['Refund-and-Cancellation-Policy'] = 'Website/refund_cancellation';
 
 $route['Start-Will'] = 'Will_Controller/start_will';
-$route['Persinal-Information'] = 'Will_Controller/personal_info';
+$route['Personal-Information'] = 'Will_Controller/personal_info';
 $route['Family-Information'] = 'Will_Controller/family_information';
 $route['Assets-Information'] = 'Will_Controller/assets_info';
 $route['Distribution'] = 'Will_Controller/distribution_info';
 $route['Other-Information'] = 'Will_Controller/other_information';
+
+$route['User-Dashboard'] = 'User_Controller/dashboard';
+$route['User-Logout'] = 'User_Controller/user_logout';
 
 $route['clear'] = 'Login_Controller/clear_session';
 

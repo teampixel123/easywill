@@ -336,7 +336,7 @@ $('#btn-delete-member-confirm').click(function(){
 });
 
 $('#family_prev_btn').click(function(){
-  window.location.href = base_url+"Persinal-Information";
+  window.location.href = base_url+"Personal-Information";
 });
 $('#family_next_btn').click(function(){
   window.location.href = base_url+"Assets-Information";

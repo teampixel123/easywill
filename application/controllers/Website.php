@@ -28,6 +28,8 @@ class Website extends CI_Controller {
 		$this->load->view('pages/website/refund_cancellation');
 	}
 	public function login(){
+		$this->session->unset_userdata('user_is_login');
+		$this->session->unset_userdata('user_id');
 		$this->load->view('pages/website/login');
 	}
 	public function sign_up(){

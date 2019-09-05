@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="<?php base_url(); ?>assets/css/will_style.css">
   <?php } ?>
 
+  <?php if($will == 'user_dashboard'){ ?>
+    <link rel="stylesheet" href="<?php base_url(); ?>assets/css/dashboard.css">
+  <?php } ?>
+
   <!-- <link rel="stylesheet" href="css/newslider.css"> -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" rel="stylesheet" type="text/css"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
