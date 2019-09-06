@@ -95,6 +95,7 @@ class Will_Model extends CI_Model{
   public function get_bank_assets_data($will_id){
     $query = $this->db->select('*')
           ->where('will_id',$will_id)
+          ->order_by("FIELD(account_type,'Savings Account','Current Account','Fixed Deposits','PPF','Bank Locker','Mutual Funds','Stock Equities','Insurance Policy')",'',FALSE)
           ->from('tbl_bank_assets')
           ->get();
     $result = $query->result();
