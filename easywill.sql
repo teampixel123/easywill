@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2019 at 11:26 AM
+-- Generation Time: Sep 10, 2019 at 02:56 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -44,7 +44,8 @@ INSERT INTO `tbl_adequate_provision` (`id`, `will_id`, `adequate_provision_name_
 (3, 71932546, 'Mr.', 'Demo Adeq Up', 'Dfbfg Sdfg Kkk'),
 (4, 71932546, 'Mr.', 'Demo Adeq', 'Dfbfg Sdfg'),
 (5, 29843751, 'Mr.', 'Demo Adeq Up', 'Dfbfg Sdfg'),
-(6, 41569723, 'Mr.', 'Dfghdfgh Dfghdgh', 'Fdghfdgh Dfgh');
+(6, 41569723, 'Mr.', 'Dfghdfgh Dfghdgh', 'Fdghfdgh Dfgh'),
+(7, 89416732, 'Mr.', 'Dfghdfgh Dfgh', 'Dfghdfgh Dfgh');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,8 @@ INSERT INTO `tbl_bank_assets` (`id`, `will_id`, `account_type`, `account_number`
 (18, 71932546, 'Stock Equities', '56785678', 'gjkghjk', 'gjkghjk', '', 678678, '', 0, ''),
 (19, 71932546, 'Insurance Policy', '56785678', 'ghjkhjkghjk', 'uityuikgmjhghjk', '', 0, '', 899990, ''),
 (20, 71932546, 'PPF', '3767', 'dgjfghj', 'fghjfghj', 'fgjhfjh', 777888, '', 0, ''),
-(21, 29843751, 'Current Account', '123445676789', 'State Bank Of india', 'Kolhapur', 'Maharashtra', 555111, '', 0, '');
+(21, 29843751, 'Current Account', '123445676789', 'State Bank Of india', 'Kolhapur', 'Maharashtra', 555111, '', 0, ''),
+(22, 41569723, 'Savings Account', '2345', 'sfgsfdg sdfg', 'dsfgsdfg', 'mah', 111222, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -93,6 +95,7 @@ CREATE TABLE `tbl_distribution` (
   `will_id` bigint(20) NOT NULL,
   `estate_id` int(11) NOT NULL,
   `estate_type` varchar(50) NOT NULL,
+  `distribution_name_title` varchar(10) NOT NULL,
   `distribution_name` varchar(250) NOT NULL,
   `distribution_percent` float NOT NULL,
   `distribution_is_complete` varchar(10) NOT NULL DEFAULT 'no'
@@ -102,38 +105,45 @@ CREATE TABLE `tbl_distribution` (
 -- Dumping data for table `tbl_distribution`
 --
 
-INSERT INTO `tbl_distribution` (`id`, `will_id`, `estate_id`, `estate_type`, `distribution_name`, `distribution_percent`, `distribution_is_complete`) VALUES
-(53, 71932546, 3, 'vehicle_estate', 'Fghdfgh', 100, 'no'),
-(54, 71932546, 4, 'other_gift_estate', 'Dfhdfh Dfgh', 100, 'no'),
-(57, 71932546, 19, 'real_estate', 'Asdfsafg Ghlhjklhkl', 34, 'no'),
-(58, 71932546, 19, 'real_estate', 'Ghjkghjk Rtyurtyu', 66, 'no'),
-(64, 71932546, 17, 'bank_estate', 'Dfhdfh Dfgh', 100, 'no'),
-(65, 71932546, 18, 'bank_estate', 'Fgh Dfgh', 100, 'no'),
-(66, 71932546, 19, 'bank_estate', 'Dfgjh', 100, 'no'),
-(68, 71932546, 20, 'bank_estate', 'Rsdtdyj Dfghdfgh', 43, 'no'),
-(69, 71932546, 20, 'bank_estate', 'Ftuiytui Yuityui Tyuiytui', 57, 'no'),
-(73, 71932546, -1, 'omited_estate', 'Fghdfgh', 67, 'no'),
-(78, 71932546, -1, 'omited_estate', 'Dfhdfh Dfgh', 33, 'no'),
-(79, 71932546, 11, 'real_estate', 'Fghdfgh', 55, 'no'),
-(80, 71932546, 11, 'real_estate', 'Dfhdfh Dfgh', 45, 'no'),
-(81, 71932546, 10, 'bank_estate', 'Dfhdfh Dfgh', 33, 'no'),
-(82, 71932546, 10, 'bank_estate', 'Demo Bnk', 67, 'no'),
-(83, 71932546, 13, 'bank_estate', 'Fgh Dfgh', 100, 'no'),
-(84, 71932546, 14, 'bank_estate', 'Dfgjh', 50, 'no'),
-(85, 71932546, 14, 'bank_estate', 'Sdfh', 20, 'no'),
-(86, 71932546, 14, 'bank_estate', 'Ghjgjh Fghj', 30, 'no'),
-(87, 71932546, 15, 'bank_estate', 'Turtyhfhn Dfgdfg', 100, 'no'),
-(88, 71932546, 16, 'bank_estate', 'Wrterty Ertyufn', 100, 'no'),
-(89, 29843751, 20, 'real_estate', 'Distri Demo', 63, 'no'),
-(90, 29843751, 20, 'real_estate', 'Disti Tewo', 37, 'no'),
-(91, 29843751, 21, 'bank_estate', 'Dfghfgd Dfghfdgh Dfghdfgh', 100, 'no'),
-(92, 29843751, 7, 'vehicle_estate', 'Dfghdfgh Ertyrte Jkhjvhk', 100, 'no'),
-(93, 29843751, 17, 'other_gift_estate', 'Rtyuryuvbj Dfghdfgh Dfghdfgh', 100, 'no'),
-(94, 29843751, -1, 'omited_estate', 'Dfghfgd Dfghdh', 55, 'no'),
-(95, 29843751, -1, 'omited_estate', 'Ertyertyh Bvghj Dfgjjh', 45, 'no'),
-(96, 41569723, 21, 'real_estate', 'Fghdfgh Fghfghj', 100, 'no'),
-(97, 41569723, 18, 'other_gift_estate', 'Dghdfgh Dfghfdgh', 100, 'no'),
-(98, 41569723, -1, 'omited_estate', 'Dfghdfgh Dfghdfgh', 100, 'no');
+INSERT INTO `tbl_distribution` (`id`, `will_id`, `estate_id`, `estate_type`, `distribution_name_title`, `distribution_name`, `distribution_percent`, `distribution_is_complete`) VALUES
+(64, 71932546, 17, 'bank_estate', '', 'Dfhdfh Dfgh', 100, 'no'),
+(65, 71932546, 18, 'bank_estate', '', 'Fgh Dfgh', 100, 'no'),
+(66, 71932546, 19, 'bank_estate', '', 'Dfgjh', 100, 'no'),
+(68, 71932546, 20, 'bank_estate', '', 'Rsdtdyj Dfghdfgh', 43, 'no'),
+(69, 71932546, 20, 'bank_estate', '', 'Ftuiytui Yuityui Tyuiytui', 57, 'no'),
+(73, 71932546, -1, 'omited_estate', '', 'Fghdfgh', 67, 'no'),
+(84, 71932546, 14, 'bank_estate', '', 'Dfgjh', 50, 'no'),
+(85, 71932546, 14, 'bank_estate', '', 'Sdfh', 20, 'no'),
+(86, 71932546, 14, 'bank_estate', '', 'Ghjgjh Fghj', 30, 'no'),
+(87, 71932546, 15, 'bank_estate', '', 'Turtyhfhn Dfgdfg', 100, 'no'),
+(88, 71932546, 16, 'bank_estate', '', 'Wrterty Ertyufn', 100, 'no'),
+(89, 29843751, 20, 'real_estate', '', 'Distri Demo', 63, 'no'),
+(90, 29843751, 20, 'real_estate', '', 'Disti Tewo', 37, 'no'),
+(91, 29843751, 21, 'bank_estate', '', 'Dfghfgd Dfghfdgh Dfghdfgh', 100, 'no'),
+(92, 29843751, 7, 'vehicle_estate', '', 'Dfghdfgh Ertyrte Jkhjvhk', 100, 'no'),
+(93, 29843751, 17, 'other_gift_estate', '', 'Rtyuryuvbj Dfghdfgh Dfghdfgh', 100, 'no'),
+(94, 29843751, -1, 'omited_estate', '', 'Dfghfgd Dfghdh', 55, 'no'),
+(95, 29843751, -1, 'omited_estate', '', 'Ertyertyh Bvghj Dfgjjh', 45, 'no'),
+(96, 41569723, 21, 'real_estate', '', 'Fghdfgh Fghfghj', 100, 'no'),
+(99, 41569723, 22, 'real_estate', '', 'Drjrtyj Errety', 30, 'no'),
+(101, 41569723, -1, 'omited_estate', '', 'Dfgjdfghj Dfj', 100, 'no'),
+(103, 41569723, 22, 'bank_estate', '', 'Dfhdfh Dfgh', 100, 'no'),
+(104, 41569723, 18, 'other_gift_estate', '', 'Dfhdfh Dfgh', 100, 'no'),
+(105, 41569723, 22, 'real_estate', '', 'Dfhdfh Dfgh', 50, 'no'),
+(106, 41569723, 22, 'real_estate', '', 'Erter Wer', 20, 'no'),
+(107, 89416732, 23, 'real_estate', '', 'Rgerty', 100, 'no'),
+(108, 89416732, 19, 'other_gift_estate', '', 'Fgdhdfgh Dfghdfgh', 100, 'no'),
+(109, 89416732, -1, 'omited_estate', '', 'Fdghh Dfgh', 100, 'no'),
+(111, 71932546, 4, 'other_gift_estate', 'Mrs.', 'Sdgshg Sdfhgh', 50, 'no'),
+(112, 71932546, 3, 'vehicle_estate', 'Ms.', 'Xghfdgh Dfghdfgh', 100, 'no'),
+(114, 71932546, 10, 'bank_estate', 'Mrs.', 'Dghfgdh Dfghfgdh', 67, 'no'),
+(115, 71932546, -1, 'omited_estate', 'Mr.', 'Dfghdfgh Dfghfdgh', 33, 'no'),
+(116, 71932546, 13, 'bank_estate', 'Mr.', 'Gfhdfgh Dfgh', 100, 'no'),
+(117, 71932546, 10, 'bank_estate', 'Mrs.', 'Dfghfgdh Dfgh', 33, 'no'),
+(118, 71932546, 4, 'other_gift_estate', 'Mrs.', 'Tyrthyurtyu Rtyurtyu', 50, 'no'),
+(119, 71932546, 11, 'real_estate', 'Mr.', 'Dfhdfh Dfgh', 100, 'no'),
+(120, 71932546, 19, 'real_estate', 'Mr.', 'Tertyt Ertyerty', 30, 'no'),
+(121, 71932546, 19, 'real_estate', 'Mr.', 'Ertyrety Ertyerty', 70, 'no');
 
 -- --------------------------------------------------------
 
@@ -159,7 +169,8 @@ INSERT INTO `tbl_executor` (`id`, `will_id`, `executor_name_title`, `executor_na
 (22, 29843751, 'Mr.', 'Demo Exect Update', 'Asfgsdfg Sdfgsdfg Two Up'),
 (23, 29843751, 'Mr.', 'Demo Exec', 'Asfgsdfg Sdfgsdfg'),
 (24, 41569723, 'Mr.', 'Hdfghdfgh Dfgh', 'Fdghfgd Dfgh'),
-(25, 41569723, 'Mr.', 'Fdghfgdh Dfgh', 'Ghdfgh Dfgh');
+(25, 41569723, 'Mr.', 'Fdghfgdh Dfgh', 'Ghdfgh Dfgh'),
+(26, 89416732, 'Mr.', 'Fghdfgh Dfgh', 'Dfghdfgh Dfgh');
 
 -- --------------------------------------------------------
 
@@ -191,7 +202,8 @@ INSERT INTO `tbl_family_info` (`id`, `will_id`, `relationship`, `family_person_n
 (26, 29843751, 'Spouse', 'Wife Demo Name', '14-05-1955', 64, 'Mr.', '', 0, 'no'),
 (27, 29843751, 'Son', 'Demo Son Name', '29-10-1979', 39, 'Mr.', '', 0, 'no'),
 (28, 29843751, 'Daughter', 'Dfghdfg Dfghfdgh Dfghdfgh', '22-04-1982', 37, 'Mr.', '', 0, 'no'),
-(29, 41569723, 'Spouse', 'Dfghdfgh Dfgh', '31-10-1980', 38, 'Mr.', '', 0, 'no');
+(29, 41569723, 'Spouse', 'Dfghdfgh Dfgh', '31-10-1980', 38, 'Mr.', '', 0, 'no'),
+(30, 41569723, 'Son', 'Ghg Dfgh', '11-09-2019', 0, 'Mr.', 'Dfghfdgh Fghfdgh', 21, 'yes');
 
 -- --------------------------------------------------------
 
@@ -213,7 +225,8 @@ CREATE TABLE `tbl_other_gift` (
 INSERT INTO `tbl_other_gift` (`id`, `will_id`, `gift_type`, `gift_description`) VALUES
 (4, 71932546, 'Jewellery and Valuables', 'ryrty'),
 (17, 29843751, 'Jewellery and Valuables', '1kg Silver'),
-(18, 41569723, 'Jewellery and Valuables', 'dfghdfgh');
+(18, 41569723, 'Jewellery and Valuables', 'dfghdfgh'),
+(19, 89416732, 'Jewellery and Valuables', 'ertyerty');
 
 -- --------------------------------------------------------
 
@@ -251,7 +264,9 @@ CREATE TABLE `tbl_personal_info` (
 INSERT INTO `tbl_personal_info` (`id`, `will_id`, `name_title`, `full_name`, `gender`, `marital_status`, `is_have_child`, `mobile_no`, `email`, `address`, `city`, `pincode`, `state`, `country`, `birthdate`, `occupation`, `aadhar_no`, `pan_no`, `nationality`, `religion`) VALUES
 (10, 71932546, 'Mr.', 'Stgfd Fdgh', 'male', 'Married', 'no', '9900990099', 'fgh@mail.com', 'Bagal Chowk', 'Kolhapur', 416001, 'Maharashtra', 'India', '01-02-1950', 'Stud', '223366554411', '', 'Indian', 'Hindu'),
 (16, 29843751, 'Mr.', 'Demo One Logout', 'male', 'Married', 'yes', '9966332211', 'demoone@easywill.com', 'Rajarampuri, 1st Lane', 'Kolhapur', 555111, 'Maharashtra', 'India', '01-06-1950', 'Business', '888666333222', '', 'Indian', 'Hindu'),
-(17, 41569723, 'Mr.', 'Hasdfjg Jasfhgk', 'male', 'Married', 'no', '9900990099', 'demotwo@easywill.com', 'Dgjhdgj', 'Dgjgjh', 555222, 'Gdhjghj', 'Dghjgfhj', '26-06-1970', 'Dfghfgh', '778899009988', '', 'fghfgh', 'dfghdfgh');
+(17, 41569723, 'Mr.', 'Hasdfjg Jasfhgk', 'male', 'Married', 'no', '9900990099', 'demotwo@easywill.com', 'Dgjhdgj', 'Dgjgjh', 555222, 'Gdhjghj', 'Dghjgfhj', '26-06-1970', 'Dfghfgh', '778899009988', '', 'fghfgh', 'dfghdfgh'),
+(18, 87946512, 'Mr.', 'Fghjfhj Fghjfghj', 'male', 'Married', 'no', '9988776655', 'zgsdfg@dfdd.vvv', '', '', NULL, '', '', '', '', '', '', '', ''),
+(19, 89416732, 'Mr.', 'Sdhdfg Dfghfgh', 'male', 'Unmarried', 'no', '9900998899', 'dfdfg@dfgf.kkk', 'Zsdfsf', 'Dfgfd', 888999, 'Sdfg', 'Xcbxdfg', '18-07-1979', 'Zxcvzv', '112233665544', '', 'fgwert', 'wertwert');
 
 -- --------------------------------------------------------
 
@@ -283,7 +298,9 @@ INSERT INTO `tbl_real_estate` (`id`, `will_id`, `estate_type`, `estate_number`, 
 (11, 71932546, 'Flat', 'q234', 'C.S. No.', '234', '234', 'Square Meter', 'bagal Chowk', 'Kolhapur', 416001, 'Mahashtra', 'India'),
 (19, 71932546, 'Commercial Shop Unit', '4567', 'C.S. No.', '458', '8899', 'Square Meter', 'fghjfghj fghjfghj', 'Fghjfghj Fghj', 256321, 'Fghjfgjh', 'Fghjfghj'),
 (20, 29843751, 'House', '111', 'C.S. No.', '222', '333', 'Square Meter', 'Demo Address', 'Kolhapur', 555111, 'Maharashtra', 'India'),
-(21, 41569723, 'House', 'dfghdfgh', 'C.S. No.', 'Dhdfgh', '567567', 'Square Feet', 'dfghdfgh', 'Dfghdgh', 567676, 'Dfghdgh', 'Fdgh');
+(21, 41569723, 'House', 'dfghdfgh', 'C.S. No.', 'Dhdfgh', '567567', 'Square Feet', 'dfghdfgh', 'Dfghdgh', 567676, 'Dfghdgh', 'Fdgh'),
+(22, 41569723, 'House', '2345', 'C.S. No.', '2345', '555', 'Square Meter', 'sfgsfg', 'Fdgg', 222555, 'Sdfg', 'Jkgfhk'),
+(23, 89416732, 'Shop', 'ertyrety', 'C.S. No.', '74567', '5467', 'Square Meter', 'fghdfgh', 'Ertyerty', 777888, 'Ertyerty', 'Ertyert');
 
 -- --------------------------------------------------------
 
@@ -323,7 +340,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `user_id`, `user_fullname`, `user_mobile_number`, `user_email_id`, `profile_phto`, `user_reg_date`, `user_subscription`, `user_subscription_type`, `user_subscription_start_date`, `user_subscription_end_date`, `updation_end_date`, `promocode`, `is_promocode_used`, `max_will`, `rem_will`, `complete_will`, `incomplete_will`, `rem_updations`, `pdf_download`, `is_have_blur`, `user_password`, `user_username`, `reg_date`) VALUES
-(3, 63759248, 'Xfghfdg Dfghfdgh', 9999999999, '', '', '', 'no', '', '', '', '', '', 'yes', 0, 0, 0, 0, 0, 0, 'yes', '222', '', '27-08-2019'),
+(3, 63759248, 'Xfghfdg Dfghfdgh', 9999999999, '', '', '', 'no', '', '', '', '', '', 'yes', 0, 0, 1, 0, 0, 0, 'yes', '222', '', '27-08-2019'),
 (4, 94681253, 'Datta Mane', 8888888888, '', '', '', 'no', '', '', '', '', '', 'yes', 0, 0, 1, 0, 0, 0, 'yes', '123', '', '10-09-2019');
 
 -- --------------------------------------------------------
@@ -374,9 +391,11 @@ CREATE TABLE `tbl_will` (
 --
 
 INSERT INTO `tbl_will` (`id`, `will_user_id`, `will_id`, `is_will_complete`, `is_have_minar_child`, `will_place`, `will_date`, `will_time`, `will_rem_updations`, `updation_last_date`, `is_blur`, `date`) VALUES
-(10, 63759248, 71932546, 'yes', 'no', 'Kolhapur', '17-09-2019', '', 5, '25-09-2019', 'no', '03-09-2019'),
+(10, 63759248, 71932546, 'yes', 'no', 'Kolhapur', '17-09-2019', '', 1, '25-09-2019', 'no', '03-09-2019'),
 (16, 0, 29843751, 'yes', 'no', 'Kolhapur', '18-09-2019', '', 0, '', 'yes', '10-09-2019'),
-(17, 94681253, 41569723, 'yes', 'no', 'Kolhapur', '24-09-2019', '', 0, '', 'yes', '10-09-2019');
+(17, 94681253, 41569723, 'yes', 'no', 'Kolhapur', '24-09-2019', '', 0, '', 'yes', '10-09-2019'),
+(18, 63759248, 87946512, 'no', 'no', '', '10-09-2019', '', 0, '', 'yes', '10-09-2019'),
+(19, 0, 89416732, 'yes', 'no', 'Kolhapur', '25-09-2019', '', 0, '', 'yes', '10-09-2019');
 
 -- --------------------------------------------------------
 
@@ -402,7 +421,9 @@ INSERT INTO `tbl_witness` (`id`, `will_id`, `witness_name_title`, `witness_name`
 (9, 29843751, 'Mr.', 'Demo Witnesst Up', 'Xdfgh Sdfgf Kkk'),
 (10, 29843751, 'Mr.', 'Demo Witness Ppp', 'Xdfgh Sdfgf'),
 (11, 41569723, 'Mr.', 'Dfghfgdh Dfgh', 'Fgdhdfgh Dfgh'),
-(12, 41569723, 'Mr.', 'Dfghfgh Dfgh', ' Dfgh Dfgh');
+(12, 41569723, 'Mr.', 'Dfghfgh Dfgh', ' Dfgh Dfgh'),
+(13, 89416732, 'Mr.', 'Dfghdfgh Dfgh', 'Dfghfdgh Dfgh'),
+(14, 89416732, 'Mr.', 'Tjfghjfghj Fghj', 'Fghjfgh Fghj');
 
 --
 -- Indexes for dumped tables
@@ -488,49 +509,49 @@ ALTER TABLE `tbl_witness`
 -- AUTO_INCREMENT for table `tbl_adequate_provision`
 --
 ALTER TABLE `tbl_adequate_provision`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_bank_assets`
 --
 ALTER TABLE `tbl_bank_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tbl_distribution`
 --
 ALTER TABLE `tbl_distribution`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `tbl_executor`
 --
 ALTER TABLE `tbl_executor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tbl_family_info`
 --
 ALTER TABLE `tbl_family_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `tbl_other_gift`
 --
 ALTER TABLE `tbl_other_gift`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbl_personal_info`
 --
 ALTER TABLE `tbl_personal_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbl_real_estate`
 --
 ALTER TABLE `tbl_real_estate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
@@ -548,13 +569,13 @@ ALTER TABLE `tbl_vehicle`
 -- AUTO_INCREMENT for table `tbl_will`
 --
 ALTER TABLE `tbl_will`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tbl_witness`
 --
 ALTER TABLE `tbl_witness`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

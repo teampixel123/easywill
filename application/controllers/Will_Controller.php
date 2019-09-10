@@ -607,6 +607,7 @@
           'will_id' => $will_id,
           'estate_id' => $this->input->post('estate_id'),
           'estate_type' => $this->input->post('estate_type'),
+          'distribution_name_title' => $this->input->post('distribution_name_title'),
           'distribution_name' => $this->input->post('distribution_name'),
           'distribution_percent' => $this->input->post('distribution_percent')
         );

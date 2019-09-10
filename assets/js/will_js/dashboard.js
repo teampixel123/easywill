@@ -10,11 +10,15 @@ $('.btn_will_edit').click(function(){
 });
 
 $('#edit_will_confirm').click(function(){
+
   $('.edit_will_form').submit();
 });
 
 $('.btn_blur_edit').click(function(){
-  $('.edit_blur_form').submit();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  $(this).closest('.action-td').find('.edit_blur_form').submit();
+  // alert();
 });
 
 $('.btn_pdf').click(function(){

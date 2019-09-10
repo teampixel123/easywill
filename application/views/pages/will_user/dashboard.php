@@ -80,6 +80,16 @@
                 $updation_last_date = $will_list1->updation_last_date;
                 $is_blur = $will_list1->is_blur;
 
+                if($will_rem_updations == 0 && $is_blur == 'no'){
+                  $updation_last_date = 'Expired';
+                }
+                else if($is_blur == 'yes'){
+                  $updation_last_date = '';
+                }
+                else{
+                  $updation_last_date = $will_list1->updation_last_date;
+                }
+
                 $will_num++;
               ?>
                 <tr>
@@ -88,7 +98,7 @@
                   <td> <?php echo $will_list1->full_name; ?> </td>
                   <td> <?php echo $will_list1->mobile_no; ?> </td>
                   <td> <?php echo $will_list1->email; ?> </td>
-                  <td> <?php echo $will_list1->updation_last_date; ?> </td>
+                  <td> <?php echo $updation_last_date; ?> </td>
                   <td class="action-td">
 
                     <!-- Edit Button -->
@@ -166,7 +176,7 @@
   </div>
 
 
-
+<input type="hidden" id="is_reload" value="">
 <!-- footer -->
 <script type="text/javascript">var base_url = "<?php echo base_url() ?>";</script>
 <?php include(__DIR__ .'../../footer.php');  ?>

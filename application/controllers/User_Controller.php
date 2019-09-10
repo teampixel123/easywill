@@ -4,7 +4,9 @@ class User_Controller extends CI_Controller{
     parent::__construct();
     $this->load->model('User_Model');
   }
-
+  public function load_dashboard(){
+    header('location:'.base_url().'User-Dashboard');
+  }
   public function dashboard(){
     $user_is_login = $this->session->userdata('user_is_login');
     $user_id = $this->session->userdata('user_id');

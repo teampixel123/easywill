@@ -84,7 +84,7 @@
                   $i++;
                 ?>
                 <div class="row info-div">
-                  <div class="col-md-12">
+                  <div class="col-md-12 p-0">
                     <p class="mb-0 border-bottom pb-2">
                       <?php
                       echo '<b>'.$i.') <span class="estate_type">'.$real1->estate_type.'</span></b> no. <span class="estate_number">'.$real1->estate_number.'</span>
@@ -121,10 +121,17 @@
                         <input type="hidden" class="remain_assets_percent" name="remain_assets_percent" value="<?php echo $remaining; ?>">
                         <input type="hidden" name="flashdata" value="real">
                         <div class="form-row">
-                          <div class="form-group col-md-7">
+                          <div class="form-group col-md-2">
+                            <select class="required form-control form-control-sm pr-0 distribution_name_title" name="distribution_name_title" id="distribution_name_title">
+                              <option>Mr.</option>
+                              <option>Mrs.</option>
+                              <option>Ms.</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-6 p-0">
                             <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm distribution_name" id="inputEmail4" placeholder="Full Name">
                           </div>
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-2">
                             <input type="text" name="distribution_percent" class="required only_number form-control form-control-sm distribution_percent" id="inputPassword4" placeholder="%">
                           </div>
                           <div class="form-group col-md-2 align-self-center">
@@ -192,7 +199,7 @@
                   }
                 ?>
                   <div class="row info-div">
-                    <div class="col-md-12">
+                    <div class="col-md-12 p-0">
                       <p class="mb-0 border-bottom pb-2">
                         <?php
                           echo ''.$i.') Type: <b>'.$assets_type.'</b>, '.$name.': '.$bank->bank_name.', Branch: '.$bank->bank_branch.', '.$acc_no.': '.$bank->account_number.''.$other.'';
@@ -220,10 +227,17 @@
                           <input type="hidden" class="remain_assets_percent" name="remain_assets_percent" value="<?php echo $remaining; ?>">
                           <input type="hidden" name="flashdata" value="bank">
                           <div class="form-row">
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-md-2">
+                              <select class="required form-control form-control-sm pr-0 distribution_name_title" name="distribution_name_title" id="distribution_name_title">
+                                <option>Mr.</option>
+                                <option>Mrs.</option>
+                                <option>Ms.</option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-6 p-0">
                               <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm distribution_name" id="inputEmail4" placeholder="Full Name">
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                               <input type="text" name="distribution_percent" class="required only_number form-control form-control-sm distribution_percent" id="inputPassword4" placeholder="%">
                             </div>
                             <div class="form-group col-md-2 align-self-center">
@@ -256,7 +270,7 @@
                   $i++;
                 ?>
                 <div class="row info-div">
-                  <div class="col-md-12">
+                  <div class="col-md-12 p-0">
                     <p class="mb-0 border-bottom pb-2">
                       <?php echo ''.$i.') <b>Vehicle</b> with model name <b>'.$vehicle->vehicle_model_name.'</b>, registration no '.$vehicle->vehicle_registration_no.'. and make year '.$vehicle->vehicle_make_year.''; ?>
                     </p>
@@ -282,7 +296,14 @@
                         <input type="hidden" class="remain_assets_percent" name="remain_assets_percent" value="<?php echo $remaining; ?>">
                         <input type="hidden" name="flashdata" value="vehicle">
                         <div class="form-row">
-                          <div class="form-group col-md-10">
+                          <div class="form-group col-md-2">
+                            <select class="required form-control form-control-sm pr-0 distribution_name_title" name="distribution_name_title" id="distribution_name_title">
+                              <option>Mr.</option>
+                              <option>Mrs.</option>
+                              <option>Ms.</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-8 p-0">
                             <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm distribution_name" id="inputEmail4" placeholder="Full Name">
                           </div>
                           <input type="hidden" name="distribution_percent" class="distribution_percent" value="100">
@@ -317,7 +338,7 @@
                   $i++;
                 ?>
                 <div class="row info-div">
-                  <div class="col-md-12">
+                  <div class="col-md-12 p-0">
                     <p class="mb-0 border-bottom pb-2">
                       <?php echo ''.$i.') Gift Type : '.$other_gift->gift_type.', <br> Description : '.$other_gift->gift_description.''; ?>
                     </p>
@@ -335,22 +356,29 @@
                         $next++;
                     ?>
                     <div class="share_div">
-                      <!-- <p class="mb-0 mt-2 txt-red">Remaining <?php echo $remaining; ?> %
+                      <p class="mb-0 mt-2 txt-red">Remaining <?php echo $remaining; ?> %
                         <span class="percent_error txt-red" style="display:none;">Invalid value % entered.</span>
-                      </p> -->
+                      </p>
                       <form class="pt-2 distri-form" action="<?php echo base_url(); ?>Will_Controller/save_distribution" method="post">
                         <input type="hidden" id="estate_id" name="estate_id" value="<?php echo $other_gift->id; ?>">
                         <input type="hidden" id="estate_type" name="estate_type" value="other_gift_estate">
                         <input type="hidden" class="remain_assets_percent" name="remain_assets_percent" value="<?php echo $remaining; ?>">
                         <input type="hidden" name="flashdata" value="other_gifts">
                         <div class="form-row">
-                          <div class="form-group col-md-10">
+                          <div class="form-group col-md-2">
+                            <select class="required form-control form-control-sm pr-0 distribution_name_title" name="distribution_name_title" id="distribution_name_title">
+                              <option>Mr.</option>
+                              <option>Mrs.</option>
+                              <option>Ms.</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-6 p-0">
                             <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm distribution_name" id="inputEmail4" placeholder="Full Name">
                           </div>
-                          <input type="hidden" name="distribution_percent" class="distribution_percent" value="100">
-                          <!-- <div class="form-group col-md-3">
+                          <!-- <input type="hidden" name="distribution_percent" class="distribution_percent" value="100"> -->
+                          <div class="form-group col-md-2">
                             <input type="text" name="distribution_percent" class="required only_number form-control form-control-sm distribution_percent" id="inputPassword4" placeholder="%">
-                          </div> -->
+                          </div>
                           <div class="form-group col-md-2 align-self-center">
                             <button type="button" class="btn btn-sm btn-success w-100 real_estate_save_share">Save</button>
                           </div>
@@ -376,7 +404,7 @@
                 <hr>
 
                 <div class="row info-div">
-                  <div class="col-md-12">
+                  <div class="col-md-12 p-0">
                     <p class="mb-0 border-bottom pb-2">
                       Any assets, movable or immovable, which might be omitted from being mentioned in this will or which may hereafter be acquired by me.
                     </p>
@@ -404,11 +432,18 @@
                         <input type="hidden" class="remain_assets_percent" name="remain_assets_percent" value="<?php echo $remaining; ?>">
                         <input type="hidden" name="flashdata" value="omited">
                         <div class="form-row">
-                          <div class="form-group col-md-7">
+                          <div class="form-group col-md-2">
+                            <select class="required form-control form-control-sm pr-0 distribution_name_title" name="distribution_name_title" id="distribution_name_title">
+                              <option>Mr.</option>
+                              <option>Mrs.</option>
+                              <option>Ms.</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-6 p-0">
                             <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm distribution_name" id="inputEmail4" placeholder="Full Name">
                           </div>
                           <!-- <input type="hidden" name="distribution_percent" class="distribution_percent" value="100"> -->
-                          <div class="form-group col-md-3">
+                          <div class="form-group col-md-2">
                             <input type="text" name="distribution_percent" class="required only_number form-control form-control-sm distribution_percent" id="inputPassword4" placeholder="%">
                           </div>
                           <div class="form-group col-md-2 align-self-center">
@@ -491,7 +526,7 @@
                     <?php $j = 0; foreach ($real_destr_data as $real_destr_data1){  $j++ ?>
                       <tr>
                         <td><?php echo $j; ?></td>
-                        <td><?php echo $real_destr_data1->distribution_name; ?></td>
+                        <td><?php echo $real_destr_data1->distribution_name_title.' '.$real_destr_data1->distribution_name; ?></td>
                         <td><?php echo $real_destr_data1->distribution_percent; ?></td>
                         <td width="100px">
                           <input type="hidden" class="distribution_id" value="<?php echo $real_destr_data1->id; ?>">
@@ -554,7 +589,7 @@
                     <?php $j = 0; foreach ($bank_destr_data as $bank_destr_data1){  $j++ ?>
                       <tr>
                         <td><?php echo $j; ?></td>
-                        <td><?php echo $bank_destr_data1->distribution_name; ?></td>
+                        <td><?php echo $bank_destr_data1->distribution_name_title.' '.$bank_destr_data1->distribution_name; ?></td>
                         <td><?php echo $bank_destr_data1->distribution_percent; ?></td>
                         <td width="100px">
                           <input type="hidden" class="distribution_id" value="<?php echo $bank_destr_data1->id; ?>">
@@ -613,7 +648,7 @@
                       <?php $j = 0; foreach ($vehicle_destr_data as $vehicle_destr_data1){  $j++ ?>
                         <tr>
                           <td><?php echo $j; ?></td>
-                          <td><?php echo $vehicle_destr_data1->distribution_name; ?></td>
+                          <td><?php echo $vehicle_destr_data1->distribution_name_title.' '.$vehicle_destr_data1->distribution_name; ?></td>
                           <!-- <td><?php echo $vehicle_destr_data1->distribution_percent; ?></td> -->
                           <td  width="100px">
                             <input type="hidden" class="distribution_id" value="<?php echo $vehicle_destr_data1->id; ?>">
@@ -666,15 +701,15 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <!-- <th scope="col">%</th> -->
+                          <th scope="col">%</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <?php $j = 0; foreach ($gift_destr_data as $gift_destr_data1){  $j++ ?>
                         <tr>
                           <td><?php echo $j; ?></td>
-                          <td><?php echo $gift_destr_data1->distribution_name; ?></td>
-                          <!-- <td><?php echo $gift_destr_data1->distribution_percent; ?></td> -->
+                          <td><?php echo $gift_destr_data1->distribution_name_title.' '.$gift_destr_data1->distribution_name; ?></td>
+                          <td><?php echo $gift_destr_data1->distribution_percent; ?></td>
                           <td  width="100px">
                             <input type="hidden" class="distribution_id" value="<?php echo $gift_destr_data1->id; ?>">
                             <input type="hidden" class="distribution_estate_type" value="Real Estate">
@@ -729,7 +764,7 @@
                     <?php $j = 0; foreach ($ommit_destr_data as $ommit_destr_data1){  $j++ ?>
                       <tr>
                         <td><?php echo $j; ?></td>
-                        <td><?php echo $ommit_destr_data1->distribution_name; ?></td>
+                        <td><?php echo $ommit_destr_data1->distribution_name_title.' '.$ommit_destr_data1->distribution_name; ?></td>
                         <td><?php echo $ommit_destr_data1->distribution_percent; ?></td>
                         <td  width="100px">
                           <input type="hidden" class="distribution_id" value="<?php echo $ommit_destr_data1->id; ?>">

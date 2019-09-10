@@ -228,13 +228,15 @@ if($real_estate_data){
         $estate_type = 'real_estate';
         $real_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $real_destr_num = 0;
+
         foreach ($real_destr_data as $real_destr_data1) {
+          $distribution_name_title = $real_destr_data1->distribution_name_title;
           $real_destr_num++;
           if($real_destr_num == 1){
-            $html .=' '.$real_destr_data1->distribution_percent.'% to '.$real_destr_data1->distribution_name.'';
+            $html .=' '.$real_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$real_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$real_destr_data1->distribution_percent.'% to '.$real_destr_data1->distribution_name.'';
+            $html .=' and '.$real_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$real_destr_data1->distribution_name.'';
           }
         }
         if($real_destr_num > 1){
@@ -244,10 +246,18 @@ if($real_estate_data){
           $tlt4 = 'will';
         }
         else{
-          $tlt1 = 'him/her';
-          $tlt2 = 'his/her';
-          $tlt3 = 'he/she';
-          $tlt4 = 'shall';
+          if($distribution_name_title == 'Mr.'){
+            $tlt1 = 'him';
+            $tlt2 = 'his';
+            $tlt3 = 'he';
+            $tlt4 = 'shall';
+          }
+          else{
+            $tlt1 = 'her';
+            $tlt2 = 'her';
+            $tlt3 = 'she';
+            $tlt4 = 'shall';
+          }
         }
       $html .='
         absolutely to be held and enjoyed by '.$tlt1.' with full and absolute powers of alienation after my demise, the said property shall become
@@ -295,11 +305,12 @@ if($real_estate_data){
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
           $bank_destr_num++;
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='</p>';
@@ -329,12 +340,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='</p>';
@@ -366,12 +378,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='</p>';
@@ -403,12 +416,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='</p>';
@@ -439,12 +453,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='</p>';
@@ -475,12 +490,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='</p>';
@@ -512,12 +528,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='.</p>';
@@ -544,12 +561,13 @@ if($real_estate_data){
         $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
         $bank_destr_num = 0;
         foreach ($bank_destr_data as $bank_destr_data1) {
+          $distribution_name_title = $bank_destr_data1->distribution_name_title;
           $bank_destr_num++;
           if($bank_destr_num == 1){
-            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
           else{
-            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+            $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$distribution_name_title.' '.$bank_destr_data1->distribution_name.'';
           }
         }
         $html .='.</p>';
@@ -580,13 +598,13 @@ if($real_estate_data){
       $estate_type = 'vehicle_estate';
       $vehicle_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
       $vehicle_destr_num = 0;
-      foreach ($bank_destr_data as $bank_destr_data1) {
-        $bank_destr_num++;
-        if($bank_destr_num == 1){
-          $html .=' '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+      foreach ($vehicle_destr_data as $vehicle_destr_data1) {
+        $vehicle_destr_num++;
+        if($vehicle_destr_num == 1){
+          $html .=' '.$vehicle_destr_data1->distribution_percent.'% to '.$vehicle_destr_data1->distribution_name.'';
         }
         else{
-          $html .=' and '.$bank_destr_data1->distribution_percent.'% to '.$bank_destr_data1->distribution_name.'';
+          $html .=' and '.$vehicle_destr_data1->distribution_percent.'% to '.$vehicle_destr_data1->distribution_name.'';
         }
       }
       $html .='.</p>';

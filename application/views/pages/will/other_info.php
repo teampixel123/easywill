@@ -224,7 +224,7 @@
             <div class="col-6 mb-5 text-left">
               <button type="button" class="btn btn-md btn-primary" id="other_info_prev_btn">Previous</button>
             </div>
-            <?php if($ex_num < 2 || $wit_num < 2 || !$will_place){ ?>
+            <?php if($ex_num < 1 || $wit_num < 2 || !$will_place){ ?>
               <p class="f-14 txt-red f-waight-6">Fill all information for Create PDF.</p>
             <?php } else{ ?>
               <div class="col-6 mb-5 text-right">
@@ -243,14 +243,18 @@
             <?php  } else{ ?>
               <form target="_blank" class="create_pdf" id="create_pdf_form" action="<?php echo base_url(); ?>Pdf_Controller/final_pdf" method="post">
                 <input type="hidden" name="will_id" value="<?php echo $this->session->userdata('will_id'); ?>">
+                <input type="hidden" id="is_final_pdf" value="yes">
               </form>
-            <?php } ?>            
+            <?php } ?>
           <?php } else{ ?>
             <form target="_blank" class="create_pdf" id="create_pdf_form" action="<?php echo base_url(); ?>Pdf_Controller/blur_pdf" method="post">
               <input type="hidden" name="will_id" value="<?php echo $this->session->userdata('will_id'); ?>">
             </form>
           <?php } ?>
 
+          <!-- <?php if(isset($_COOKIE['set_update'])){ ?>
+            <input type="hidden" id="is_update" value="yes">
+          <?php } ?> -->
 
 
 

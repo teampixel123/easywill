@@ -36,6 +36,7 @@ class Pdf_Controller extends CI_Controller{
   public function final_pdf(){
     $will_id = $this->input->post('will_id');
     $this->Will_Model->set_will_complete($will_id);
+    $this->session->unset_userdata('will_id');
 
     $user_is_login = $this->session->userdata('user_is_login');
     $user_id = $this->session->userdata('user_id');
@@ -78,22 +79,27 @@ class Pdf_Controller extends CI_Controller{
 
   public function blur_pdf(){
     $will_id = $this->input->post('will_id');
+    if($will_id){
+      $this->session->unset_userdata('will_id');
+      $this->Will_Model->set_will_complete($will_id);
+      $data['personal_info'] = $this->Will_Model->get_personal_data($will_id);
+      $data['will_info'] = $this->Will_Model->get_will_data($will_id);
+      $data['family_info'] = $this->Will_Model->get_family_data($will_id);
+      $data['executor_info'] = $this->Will_Model->get_executor_list($will_id);
+      $data['real_estate_data'] = $this->Will_Model->get_real_estate_data($will_id);
+      $data['bank_assets_data'] = $this->Will_Model->get_bank_assets_data($will_id);
+      $data['vehicle_assets_data'] = $this->Will_Model->get_vehicle_assets_data($will_id);
+      $data['other_gift_data'] = $this->Will_Model->get_other_gift_data($will_id);
+      $data['executor_info'] = $this->Will_Model->get_executor_list($will_id);
+      $data['witness_info'] = $this->Will_Model->get_witness_list($will_id);
+      $data['adequate_provision_info'] = $this->Will_Model->get_adequate_provision_list($will_id);
 
-    $this->Will_Model->set_will_complete($will_id);
+      $this->load->view('pages/will/blur_pdf',$data);
+    }
+    else{
+      header('location:'.base_url().'Login');
+    }
 
-    $data['personal_info'] = $this->Will_Model->get_personal_data($will_id);
-    $data['will_info'] = $this->Will_Model->get_will_data($will_id);
-    $data['family_info'] = $this->Will_Model->get_family_data($will_id);
-    $data['executor_info'] = $this->Will_Model->get_executor_list($will_id);
-    $data['real_estate_data'] = $this->Will_Model->get_real_estate_data($will_id);
-    $data['bank_assets_data'] = $this->Will_Model->get_bank_assets_data($will_id);
-    $data['vehicle_assets_data'] = $this->Will_Model->get_vehicle_assets_data($will_id);
-    $data['other_gift_data'] = $this->Will_Model->get_other_gift_data($will_id);
-    $data['executor_info'] = $this->Will_Model->get_executor_list($will_id);
-    $data['witness_info'] = $this->Will_Model->get_witness_list($will_id);
-    $data['adequate_provision_info'] = $this->Will_Model->get_adequate_provision_list($will_id);
-
-    $this->load->view('pages/will/blur_pdf',$data);
     // echo $will_id;
   }
 }

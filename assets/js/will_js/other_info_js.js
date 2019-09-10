@@ -287,7 +287,14 @@ $('#other_info_prev_btn').click(function(){
 
 $('#create_pdf_btn').click(function(){
   $('#create_pdf_form').submit();
-  window.location.replace(base_url+"Distribution");
+  var is_final_pdf = $('#is_final_pdf').val();
+  if(is_final_pdf == 'yes'){
+    window.location.replace(base_url+"User_Controller/load_dashboard");
+  }
+  else{
+    window.location.replace(base_url+"Login");
+  }
+
   // window.location.href = base_url+"Distribution";
 });
 
