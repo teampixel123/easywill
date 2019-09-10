@@ -1,3 +1,20 @@
+<?php
+$user_is_login = $this->session->userdata('user_is_login');
+$user_id = $this->session->userdata('user_id');
+$will_id = $this->session->userdata('will_id');
+if($will_id){
+  $will_details = $this->Will_Model->get_will_data($will_id);
+  foreach ($will_details as $will_data) {
+  }
+}
+if($user_is_login && $user_id){
+  $user_details = $this->User_Model->user_details($user_id);
+  foreach ($user_details as $user) {
+    // code...
+  }
+}
+?>
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">

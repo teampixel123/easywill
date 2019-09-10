@@ -43,7 +43,23 @@
                 <br> <span>(inclusive of all applicable taxes , excluding payment gateway fees )</span>
               </div>
               <div class="text-center">
-                <button class=" btn btn-lg btn-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a> </button>
+                <?php if($user_is_login && $user_id){ ?>
+                  <form class="" action="<?php base_url() ?>Payment_Controller/payment" method="post">
+                    <input type="hidden" name="pack_name" id="pack_name" value="Silver" >
+                    <input type="hidden" name="amount" id="amount" value="1500" >
+                    <input type="hidden" name="promocode" id="no_promocode" value="no_promocode">
+                    <input type="hidden" name="name" id="name" value="<?php echo $user->user_fullname; ?>" >
+                    <input type="hidden" name="email" id="email" value="<?php echo $user->user_email_id; ?>" >
+                    <input type="hidden" name="mobile" id="mobile" value="<?php echo $user->user_mobile_number; ?>" >
+                    <div class="text-center">
+                    <input type="submit" class="btn btn-lg btn-primary" value="Get Started  »" />
+                    </div>
+                  </form>
+                <?php } else{ ?>
+                  <a href="<?php echo base_url(); ?>Login"><button class="btn btn-lg btn-primary" type="button">Get Started  »</button></a>
+                  <!-- <button class=" btn btn-lg btn-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a> </button> -->
+                <?php } ?>
+
               </div>
             </div>
           </div>
@@ -78,6 +94,7 @@
                 <li>same package will of user’s Spouse, Real Sister, Mother, Father, Son, Daughter’s is at <strong>Rs.2500</strong> </li>
                 <li>Final will delivery by <strong>E-mail</strong>  or <strong>Courier</strong>  at user’s choice in India.</li>
               </ul>
+
               <div class="text-center">
                 <button class="btn btn-lg btn-outline-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a></button>
               </div>

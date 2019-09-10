@@ -9,6 +9,7 @@ class User_Controller extends CI_Controller{
     $user_is_login = $this->session->userdata('user_is_login');
     $user_id = $this->session->userdata('user_id');
     if($user_is_login && $user_id){
+      $this->session->unset_userdata('will_id');
       $data['user_details'] = $this->User_Model->user_details($user_id);
       $data['will_list'] = $this->User_Model->get_will_list($user_id);
       $this->load->view('pages/will_user/dashboard', $data);

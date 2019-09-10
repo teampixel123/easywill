@@ -70,6 +70,8 @@ $route['Other-Information'] = 'Will_Controller/other_information';
 $route['User-Dashboard'] = 'User_Controller/dashboard';
 $route['User-Logout'] = 'User_Controller/user_logout';
 
+$route['Final-Will'] = 'Pdf_Controller/final_pdf';
+
 $route['clear'] = 'Login_Controller/clear_session';
 
 $route['404_override'] = '';

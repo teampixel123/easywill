@@ -136,3 +136,9 @@ div.dataTables_wrapper div.dataTables_length label, div.dataTables_wrapper div.d
     text-align: left;
     white-space: nowrap;
 }
+
+.subscribe_alert{
+  background: #F75454;
+  color: #fff !important;
+  display:none;
+}

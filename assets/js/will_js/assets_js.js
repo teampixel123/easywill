@@ -257,7 +257,7 @@ $('#bank_save_btn').click(function(){
 
   if(account_type == '0' || bank_name == '' || acc_no_addr == '' || bank_branch == ''
   || (account_type == 'Insurance Policy' && sum_assurance_amount == '')
-  || (account_type == 'PPF' && fd_recipt_no == '')
+  || (account_type == 'Fixed Deposits' && fd_recipt_no == '')
   || (account_type == 'Bank Locker' && key_number == '')
   || (account_type != 'Insurance Policy' && !pin_format.test(bank_pin_code))){
     // Blank...

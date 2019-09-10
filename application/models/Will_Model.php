@@ -46,6 +46,7 @@ class Will_Model extends CI_Model{
     $query = $this->db->select('*')
     ->from('tbl_family_info')
     ->where('will_id',$will_id)
+    ->order_by("FIELD(relationship,'Spouse','Son','Daughter')",'',FALSE)
     ->get();
     $result = $query->result();
     return $result;
@@ -256,6 +257,7 @@ class Will_Model extends CI_Model{
     $result = $query->result();
     return $result;
   }
+
   // Get Adequate Provision List...
   public function get_adequate_provision_list($will_id){
     $query = $this->db->select('*')
@@ -271,6 +273,24 @@ class Will_Model extends CI_Model{
     $this->db->where('id', $other_delete_id)
     ->where('will_id', $will_id)
     ->delete($table);
+  }
+
+  // Set Will Compete
+  public function set_will_complete($will_id){
+    $this->db->where('will_id', $will_id)
+    ->set('is_will_complete','yes')
+    ->update('tbl_will');
+  }
+  // Update Will Updation Count...
+  public function set_will_updation_count($will_id, $will_rem_updations){
+    $this->db->where('will_id', $will_id)
+    ->set('will_rem_updations',$will_rem_updations)
+    ->update('tbl_will');
+  }
+  //Update will Count..
+  public function update_will_count($will_count_data,$user_id){
+    $this->db->where('user_id',$user_id);
+    $this->db->update('tbl_user',$will_count_data);
   }
 }
 ?>

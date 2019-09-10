@@ -29,9 +29,9 @@
   </div>
 
   <?php
-    foreach ($will_data as $will_data1) {
-      $will_place = $will_data1->will_place;
-    }
+
+      $will_place = $will_data->will_place;
+
   ?>
 
   <section>
@@ -232,10 +232,25 @@
               </div>
             <?php } ?>
           </div>
+          <?php
+          $will_id = $this->session->userdata('will_id');
+          if($user_is_login && $user_id && $will_id){
+            $is_blur = $will_data->is_blur;
+            if($is_blur == 'yes'){ ?>
+              <form target="_blank" class="create_pdf" id="create_pdf_form" action="<?php echo base_url(); ?>Pdf_Controller/blur_pdf" method="post">
+                <input type="hidden" name="will_id" value="<?php echo $this->session->userdata('will_id'); ?>">
+              </form>
+            <?php  } else{ ?>
+              <form target="_blank" class="create_pdf" id="create_pdf_form" action="<?php echo base_url(); ?>Pdf_Controller/final_pdf" method="post">
+                <input type="hidden" name="will_id" value="<?php echo $this->session->userdata('will_id'); ?>">
+              </form>
+            <?php } ?>            
+          <?php } else{ ?>
+            <form target="_blank" class="create_pdf" id="create_pdf_form" action="<?php echo base_url(); ?>Pdf_Controller/blur_pdf" method="post">
+              <input type="hidden" name="will_id" value="<?php echo $this->session->userdata('will_id'); ?>">
+            </form>
+          <?php } ?>
 
-          <form target="_blank" class="create_pdf" id="create_pdf_form" action="<?php echo base_url(); ?>Pdf_Controller/create_pdf" method="post">
-            <input type="hidden" name="will_id" value="<?php echo $this->session->userdata('will_id'); ?>">
-          </form>
 
 
 
@@ -361,7 +376,7 @@
                 <div class="row info-div">
                   <div class="col-md-10">
                     <p class="mb-0">
-                      <?php echo 'Date : '.$will_data1->will_date.'<br> Place : '.$will_data1->will_place; ?>
+                      <?php echo 'Date : '.$will_data->will_date.'<br> Place : '.$will_data->will_place; ?>
                     </p>
                   </div>
                   <!-- <div class="col-md-2 align-self-center edit-btn-div pl-0 pr-0">

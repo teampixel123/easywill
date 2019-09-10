@@ -41,31 +41,34 @@
         <div class="col-md-6">
           <div class="input-box p-4">
             <h5 class="text-left txt-black mb-4">Distribution of Assets </h5>
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" style="height:105px;">
               <?php
                 $next = 0;
                 if($real_estate_data){
                 $act_tab1 = ' active show ';
               ?>
-                <li class="nav-item text-center" style="width:25%;">
-                  <a id="real_estate_tab" class="nav-link active rem_class" data-toggle="tab" href="#real_estate"><i class="fa fa-home fa-2x"  ></i></br> Real Estate</a>
+                <li class="nav-item text-center" style="width:20%; height:105px;">
+                  <a id="real_estate_tab" style="height:105px;" class="nav-link active rem_class" data-toggle="tab" href="#real_estate"><i class="fa fa-home fa-2x"  ></i></br>Real Estate</a>
                 </li>
               <?php } else { $act_tab1 = ''; } ?>
               <?php if($bank_assets_data){ ?>
-                <li class="nav-item text-center" style="width:26%;">
-                  <a id="bank_assets_tab" class="nav-link rem_class" data-toggle="tab" href="#bank_assets"><i class="fa fa-university fa-2x" ></i></br> Bank Assets</a>
+                <li class="nav-item text-center" style="width:20%; height:105px;">
+                  <a id="bank_assets_tab" style="height:105px;" class="nav-link rem_class" data-toggle="tab" href="#bank_assets"><i class="fa fa-university fa-2x" ></i></br>Bank Assets</a>
                 </li>
               <?php } ?>
               <?php if($vehicle_assets_data){ ?>
-              <li class="nav-item text-center" style="width:24%;">
-                <a id="vehicle_tab" class="nav-link rem_class" data-toggle="tab" href="#vehicle"><i class="fa fa-car fa-2x"  ></i></br> Vehicle</a>
+              <li class="nav-item text-center" style="width:20%; height:105px;">
+                <a id="vehicle_tab"  style="height:105px;" class="nav-link rem_class" data-toggle="tab" href="#vehicle"><i class="fa fa-car fa-2x"  ></i></br>Vehicle</a>
               </li>
               <?php } ?>
               <?php if($other_gift_data){ ?>
-              <li class="nav-item text-center" style="width:24%;">
-                <a id="other_gifts_tab" class="nav-link rem_class" data-toggle="tab" href="#other_gifts"><i class="fa fa-gift fa-2x"  ></i></br> Other Gifts</a>
+              <li class="nav-item text-center" style="width:20%; height:105px;">
+                <a id="other_gifts_tab" style="height:105px;" class="nav-link rem_class" data-toggle="tab" href="#other_gifts"><i class="fa fa-gift fa-2x"  ></i></br>Other Gifts</a>
               </li>
               <?php } ?>
+              <li class="nav-item text-center" style="width:20%; height:105px;">
+                <a id="omitted_tab" style="height:105px;" class="nav-link rem_class" data-toggle="tab" href="#omitted"><i class="fa fa-eye-slash fa-2x"  ></i></br>Omitted Assets</a>
+              </li>
             </ul>
 
             <div id="myTabContent" class="tab-content">
@@ -363,6 +366,63 @@
                 <hr class="mt-1 mb-0">
                 <?php } ?>
               </div>
+
+
+              <!------------------------------ Omited Assets Destribution --------------------------->
+
+
+              <div class="tab-pane fade rem_class" id="omitted">
+                <h6 class="mt-3">Omited Assets</h6>
+                <hr>
+
+                <div class="row info-div">
+                  <div class="col-md-12">
+                    <p class="mb-0 border-bottom pb-2">
+                      Any assets, movable or immovable, which might be omitted from being mentioned in this will or which may hereafter be acquired by me.
+                    </p>
+
+                    <?php
+                      $estate_id = '-1';
+                      $will_id = $this->session->userdata('will_id');
+                      $estate_type = 'omited_estate';
+                      $omited_destr_percent = $this->Will_Model->get_distribution_percent($estate_id, $will_id, $estate_type);
+                      foreach ($omited_destr_percent as $omited_destr_percent1){
+                      }
+                      $om_destr_percent = $omited_destr_percent1->distribution_percent;
+                      $remaining = 100 - $om_destr_percent;
+                      if($remaining > 0){
+                        $next++;
+                    ?>
+                    <div class="share_div">
+                      <p class="mb-0 mt-2 txt-red">Remaining <?php echo $remaining; ?> %
+                        <span class="percent_error txt-red" style="display:none;">Invalid value % entered.</span>
+                      </p>
+
+                      <form class="pt-2 distri-form" action="<?php echo base_url(); ?>Will_Controller/save_distribution" method="post">
+                        <input type="hidden" id="estate_id" name="estate_id" value="-1">
+                        <input type="hidden" id="estate_type" name="estate_type" value="omited_estate">
+                        <input type="hidden" class="remain_assets_percent" name="remain_assets_percent" value="<?php echo $remaining; ?>">
+                        <input type="hidden" name="flashdata" value="omited">
+                        <div class="form-row">
+                          <div class="form-group col-md-7">
+                            <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm distribution_name" id="inputEmail4" placeholder="Full Name">
+                          </div>
+                          <!-- <input type="hidden" name="distribution_percent" class="distribution_percent" value="100"> -->
+                          <div class="form-group col-md-3">
+                            <input type="text" name="distribution_percent" class="required only_number form-control form-control-sm distribution_percent" id="inputPassword4" placeholder="%">
+                          </div>
+                          <div class="form-group col-md-2 align-self-center">
+                            <button type="button" class="btn btn-sm btn-success w-100 real_estate_save_share">Save</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  <?php } else{ ?>
+                    <p class="mb-0 mt-2 txt-green">Distribution completed.</p>
+                  <?php } ?>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -638,6 +698,62 @@
             </div>
           <?php } ?>
 
+
+          <div class="info-box pt-3 mb-2">
+            <h6 class="txt-black">Omited Assets Distribution</h6>
+            <hr>
+            <?php
+              $i=0;
+              // foreach($other_gift_data as $other_gift1){
+              $i++;
+              $estate_id = '-1';
+              $will_id = $this->session->userdata('will_id');
+              $estate_type = 'omited_estate';
+              $ommit_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
+            ?>
+            <div class="row info-div">
+              <div class="col-md-12">
+                <?php if($ommit_destr_data){ ?>
+                  <p class="mb-0 border-bottom pb-2">
+                      Any assets, movable or immovable, which might be omitted from being mentioned in this will or which may hereafter be acquired by me
+                  </p>
+                  <table class="table w-100 distri_table mb-0 pl-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">%</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <?php $j = 0; foreach ($ommit_destr_data as $ommit_destr_data1){  $j++ ?>
+                      <tr>
+                        <td><?php echo $j; ?></td>
+                        <td><?php echo $ommit_destr_data1->distribution_name; ?></td>
+                        <td><?php echo $ommit_destr_data1->distribution_percent; ?></td>
+                        <td  width="100px">
+                          <input type="hidden" class="distribution_id" value="<?php echo $ommit_destr_data1->id; ?>">
+                          <input type="hidden" class="distribution_estate_type" value="Omited Estate">
+                          <input type="hidden" class="distribution_estate_details" value="<?php echo 'Assets Type : Omited Estate'?>">
+                          <input type="hidden" class="distribution_estate_person" value="<?php echo $ommit_destr_data1->distribution_name; ?>">
+                          <input type="hidden" class="distribution_estate_percent" value="<?php echo $ommit_destr_data1->distribution_percent; ?>">
+
+                          <button style="width:70px;" type="button" name="button" class="row text-center badge1">
+                            <a class="col-12 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
+                            <!-- <a class="col-6 text-center p-0" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
+                          </button>
+                        </td>
+                      </tr>
+                    <?php  } ?>
+                  </table>
+                  <hr class="mt-0">
+                <?php } ?>
+              </div>
+            </div>
+            <?php //} ?>
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -732,6 +848,11 @@
           $('#other_gifts').addClass('active');
           $('#other_gifts').addClass('show');
           $('#other_gifts_tab').addClass('active');
+        }
+        else if(assets_open_tab == 'omited'){
+          $('#omitted').addClass('active');
+          $('#omitted').addClass('show');
+          $('#omitted_tab').addClass('active');
         }
       });
     </script>

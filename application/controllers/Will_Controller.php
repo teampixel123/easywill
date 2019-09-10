@@ -4,15 +4,32 @@
     function __construct(){
       parent::__construct();
       $this->load->Model('Will_Model');
+      $this->load->model('User_Model');
     }
     // Load Start Will Page... Datta...
     public function start_will_view(){
       $user_is_login = $this->session->userdata('user_is_login');
       $user_id = $this->session->userdata('user_id');
+
       if($user_is_login && $user_id){
         $will_id = $this->input->post('will_id');
-        $this->session->set_userdata('will_id',$will_id);
-        header('location:'.base_url().'Start-Will');
+        $is_edit = $this->input->post('is_edit');
+
+        if($will_id && $is_edit){
+          $will_rem_updations = $this->input->post('will_rem_updations');
+          $this->session->set_userdata('will_id',$will_id);
+          setcookie('set_update',$will_id, time() + (86400 * 30), "/");
+          setcookie('will_rem_updations',$will_rem_updations, time() + (86400 * 30), "/");
+          header('location:'.base_url().'Start-Will');
+        }
+        else if($will_id && !$is_edit){
+          $this->session->set_userdata('will_id',$will_id);
+          header('location:'.base_url().'Start-Will');
+        }
+        else{
+          $this->session->unset_userdata('will_id');
+          header('location:'.base_url().'Start-Will');
+        }
       }
       else{
         $this->session->unset_userdata('will_id');
@@ -25,13 +42,44 @@
       $user_id = $this->session->userdata('user_id');
       $will_id = $this->session->userdata('will_id');
 
-      if($will_id && $user_id && $user_is_login){
-        $data['will_start_data'] = $this->Will_Model->get_personal_data($will_id);
+      if($user_id && $user_is_login){
+
+        $user_details = $this->User_Model->user_details($user_id);
+        foreach ($user_details as $user_details1){
+        }
+
+        $is_have_blur = $user_details1->is_have_blur;
+        $rem_will = $user_details1->rem_will;
+        $user_subscription = $user_details1->user_subscription;
+        $rem_updations = $user_details1->rem_updations;
+        if($will_id){
+          $data['will_start_data'] = $this->Will_Model->get_personal_data($will_id);
+        }
+        else{
+          $data['will_start_data'] = '';
+        }
+
+        if($user_subscription == 'yes' && $max_will > 0){
+          $this->load->view('pages/will/start_will',$data);
+        }
+        else if($user_subscription == 'yes' && $rem_updations > 0 && $will_id ){
+          $this->load->view('pages/will/start_will',$data);
+        }
+        else if($is_have_blur == 'no'){
+          $this->load->view('pages/will/start_will',$data);
+        }
+        else if($is_have_blur == 'yes' && $will_id){
+          $this->load->view('pages/will/start_will',$data);
+        }
+        else{
+          $this->session->set_flashdata('is_have_blur','yes');
+          header('location:'.base_url().'User-Dashboard');
+        }
       }
       else{
         $data['will_start_data'] = '';
+        $this->load->view('pages/will/start_will',$data);
       }
-      $this->load->view('pages/will/start_will',$data);
     }
 
     // Save Will Info and Start Info... Datta...
@@ -63,23 +111,69 @@
         $name_title = 'Mrs.';
       }
 
-
       $will_date = date('d-m-Y');
-      //
+      // If User is Login...
       if($login && $user_id){
+
+        $user_details = $this->User_Model->user_details($user_id);
+        foreach ($user_details as $user) {
+          $max_will_old = $user->max_will;
+          $rem_will_old = $user->rem_will;
+          $complete_will_old = $user->complete_will;
+          $rem_updations_old = $user->rem_updations;
+          $is_have_blur = $user->is_have_blur;
+          $updation_end_date = $user->updation_end_date;
+          $user_subscription_type = $user->user_subscription_type;
+        }
+
+        if($max_will_old == 0){
+          $updation_end_date = '';
+          $is_have_blur = 'yes';
+          $is_blur = 'yes';
+          $max_will = $max_will_old;
+          $rem_will = $rem_will_old;
+        }
+        else{
+          $is_have_blur = 'no';
+          $is_blur = 'no';
+          $max_will = $max_will_old - 1;
+          $rem_will = $rem_will_old - 1;
+        }
+        if($max_will_old > 0 && $user_subscription_type == 'Platinum'){
+          $rem_updations = 2;
+        }
+        else if($max_will_old > 0 && ($user_subscription_type == 'Silver' || $user_subscription_type == 'Gold')){
+          $rem_updations = 1;
+        }
+        else{
+          $rem_updations = 0;
+        }
+        $complete_will = $complete_will_old + 1;
+
+        //update in tbl_user
+         $will_count_data = array(
+           'complete_will' => $complete_will,
+           'is_have_blur' => $is_have_blur,
+           'max_will' => $max_will,
+         );
+
         $will_data = array(
           'will_user_id' => $user_id,
           'will_id' => $will_id,
           'will_date' => $will_date,
           'date' => $will_date,
-          'is_blur' => 'yes',
+          'will_rem_updations' => $rem_updations,
+          'updation_last_date' => $updation_end_date,
+          'is_blur' => $is_blur,
         );
+        $this->Will_Model->update_will_count($will_count_data,$user_id);
       }
       else{
         $will_data = array(
           'will_id' => $will_id,
           'will_date' => $will_date,
           'date' => $will_date,
+          'will_rem_updations' => 0,
           'is_blur' => 'yes',
         );
       }

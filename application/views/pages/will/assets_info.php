@@ -664,7 +664,7 @@
   <?php
   $assets_open_tab = $this->session->flashdata('assets_tab');
   if($assets_open_tab){ ?>
-    <input type="text" id="assets_open_tab" value="<?php echo $assets_open_tab; ?>">
+    <input type="hidden" id="assets_open_tab" value="<?php echo $assets_open_tab; ?>">
     <script type="text/javascript">
       $(document).ready(function(){
         var assets_open_tab = $('#assets_open_tab').val();
@@ -700,9 +700,11 @@
       <script type="text/javascript">
         $(document).ready(function(){
           var is_success = $('#is_success').val();
+
           if(is_success == 'save'){
             $('#alert_success').fadeIn(1000);
             $('#alert_success').delay(3000).fadeOut(1000);
+            // $('#alert_success')show();
           }
           else if(is_success == 'update'){
             $('#alert_update').fadeIn(1000);
