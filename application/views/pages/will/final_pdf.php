@@ -79,11 +79,9 @@ $year = date("Y", $timestamp);
 
 $html = '
   <h1 style="text-align:center; font-family: times, serif; font-size:18px;">
-    LAST WILL AND TESTAMENT OF
+    LAST WILL AND TESTAMENT <br>of<br>
+    <span style="text-align:center; font-family: times, serif; font-size:16px; " >'.$personal_info1->full_name.'</span>
   </h1>
-  <p style="text-align:center; font-family: times, serif; font-size:16px; ">
-    '.$personal_info1->full_name.'
-  </p>
   <p style="text-align:center; font-family: times, serif; font-size:16px; ">
     This Last Will and Testament is executed at '.$will_info1->will_place.' on this '.$day.' day of month '.$month.' of year '.$year.'.
   </p>
@@ -184,19 +182,22 @@ $html .='
       $exec_num++;
       if($exec_num == '1'){
         $html .=' '.$executor_info1->executor_name_title.' '.$executor_info1->executor_name;
+        $exec_val = 'executor';
       }
       else{
         $html .=' and '.$executor_info1->executor_name_title.' '.$executor_info1->executor_name;
+        $exec_val = 'executors';
       }
     }
-    $html .=' as Executor of my will.
-    My executor shall upon my death, administer my estate and effect the bequests and distribution of my estates and executor will assist my
-    family after my death.
+    $html .=' as '.$exec_val.' of my will.
+    My '.$exec_val.' shall upon my death, administer my estate and effect the bequests and distribution of my estates and '.$exec_val.' will
+    assist my family after my death.
   </p>
 
   <p style="text-align:justify; font-family: times, serif; font-size:16px;">'
-    .++$num.'. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I hereby direct that my executor shall first pay all my debts and liabilities out of my
-    estate. All expenses in relation to my funeral and other obsequies ceremonies should be considered reasonable by my executor out of my estate.
+    .++$num.'. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I hereby direct that my '.$exec_val.' shall first pay all my debts and liabilities
+    out of my estate. All expenses in relation to my funeral and other obsequies ceremonies should be considered reasonable by my executor
+    out of my estate.
   </p>
 ';
 $html .='
@@ -218,8 +219,11 @@ if($real_estate_data){
     $real_num++;
     $html .='
       <p style="text-align:justify; font-family: times, serif; font-size:16px; ">'
-        .$real_num.'. &nbsp;&nbsp;&nbsp; Whereas I am the owner of flat / house no. 202 having property bearing C.S. no. 1718 measuring about 124 sq.mtrs.
-        of Second floor, located at Rajarampuri 6th lane, Kolhapur.
+        .$real_num.'. &nbsp;&nbsp;&nbsp; Whereas I am the owner of '.$real_estate_data1->estate_type.' no. '.$real_estate_data1->estate_number.'
+        having property bearing '.$real_estate_data1->survey_number_type.' '.$real_estate_data1->survey_number.'
+        measuring about '.$real_estate_data1->measurement_area.' '.$real_estate_data1->measurement_unit.',
+        located at '.$real_estate_data1->real_estate_address.', '.$real_estate_data1->real_estate_city.',
+        Pin No. '.$real_estate_data1->real_estate_pin.', '.$real_estate_data1->real_estate_state.', '.$real_estate_data1->real_estate_country.'.
       </p>
       <p style="text-align:justify; font-family: times, serif; font-size:16px; text-indent:40px;">
         I bequeath this property with all my rights, titles and interest therein';
@@ -714,7 +718,7 @@ if($real_estate_data){
 
   if($adequate_provision_info){
     $adeq_num = 0;
-    $html .= '<p style="font-size:12; font-family: times, serif; text-indent:40px;">
+    $html .= '<p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
       During my life time, I have already made adequate provisions for ';
       foreach ($adequate_provision_info as $adequate_provision_info1) {
         $adeq_num++;
@@ -731,21 +735,21 @@ if($real_estate_data){
   }
 
   $html .= '
-  <p style="font-size:12; font-family: times, serif; text-indent:40px;">
+  <p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
     This is my final last will and testament.
   </p>
 
-  <p style="font-size:12; font-family: times, serif; text-indent:40px;">
+  <p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
     I am a person of sound mind and not affected in any manner by any legal disability while making this Will. I have made and executed this Will
     of my own accord, voluntarily and without any dictate, coercion or without any undue influence or outside pressure. I have made this will being
     in full possession of my faculties of sense and being fully aware after understanding the true purpose, legal meaning and effect thereof.
   </p>
 
-  <p style="font-size:12; font-family: times, serif; text-indent:40px;">
+  <p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
     That the contents of this will have been explained to me parawise which I have understood and found to be correct as per my instructions.
   </p>
 
-  <p style="font-size:12; font-family: times, serif; text-indent:40px;">
+  <p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
     In witness whereof I have executed this Last will and Testament, voluntarily, without any outside pressure and in my full sense in the
     presence of the following witnesses on the date and place mentioned below.
   </p>
@@ -789,7 +793,7 @@ if($real_estate_data){
     Witnesses
   </h1>
 
-  <p style="font-size:12; font-family: times, serif; text-indent:40px;">
+  <p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
     We, the witnesses have signed this Will on the request of testator, who has also sighed this will in our presence after understanding the
     contents of this will,   that the testator signs and executes this instrument as the testator`s last will and that the testator signs it
     willingly, and that each of us in the presence and hearing of the testator, hereby signs this will as witness to the testator`s signing,
@@ -838,10 +842,10 @@ $pdf->AddPage();
     $wit_ttl2 = 'her';
   }
   $html2 = '<h1 style="text-align:center; font-family: times, serif; font-size:18px;">
-    Checklist and Certificate
+    Certificate
   </h1>
 
-  <p style="font-size:12; font-family: times, serif; text-indent:40px;">
+  <p style="text-align:justify; font-size:12; font-family: times, serif; text-indent:40px;">
     This is to certify that I have examined within signed Name '.$personal_info1->name_title.' '.$personal_info1->full_name.' on the date of this will and is found to be conscious,
     well oriented in time and space also he is absolutely normal as regards cognition, emotions and intellect. I found '.$wit_ttl1.' in normal position of
     '.$wit_ttl2.' mental faculties at the time of examination.

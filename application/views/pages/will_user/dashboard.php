@@ -19,6 +19,19 @@
           <a href="#" class="alert-link">Subscribe for create new will.</a>
         </div>
 
+        <?php
+          $complete_wills = 0;
+          $incomplete_wills = 0;
+          foreach ($will_list as $will_count) {
+            $is_will_complete = $will_count->is_will_complete;
+            if($is_will_complete == 'yes'){
+              $complete_wills++;
+            }
+            else{
+              $incomplete_wills++;
+            }
+          }
+        ?>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item active text-dark" aria-current="page"><h4 class="m-0">Dashboard</h4></li>
@@ -27,7 +40,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="alert alert-success" role="alert">
-              <h4 class="alert-heading font-weight-bold">1</h4>
+              <h4 class="alert-heading font-weight-bold"><?php echo $complete_wills; ?></h4>
               <hr>
               <p class="mb-0">Complete Will</p>
             </div>
@@ -35,7 +48,7 @@
 
           <div class="col-md-4">
             <div class="alert alert-danger" role="alert">
-              <h4 class="alert-heading font-weight-bold">1</h4>
+              <h4 class="alert-heading font-weight-bold"><?php echo $incomplete_wills; ?></h4>
               <hr>
               <p class="mb-0">Incomplete Will</p>
             </div>
@@ -43,7 +56,7 @@
 
           <div class="col-md-4">
             <div class="alert alert-primary" role="alert">
-              <h4 class="alert-heading font-weight-bold">1</h4>
+              <h4 class="alert-heading font-weight-bold"><?php echo $user->user_subscription_end_date; ?></h4>
               <hr>
               <p class="mb-0">End Subscription Date</p>
             </div>

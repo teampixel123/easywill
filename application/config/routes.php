@@ -68,6 +68,7 @@ $route['Distribution'] = 'Will_Controller/distribution_info';
 $route['Other-Information'] = 'Will_Controller/other_information';
 
 $route['User-Dashboard'] = 'User_Controller/dashboard';
+$route['User-Profile'] = 'User_Controller/user_profile';
 $route['User-Logout'] = 'User_Controller/user_logout';
 
 $route['Final-Will'] = 'Pdf_Controller/final_pdf';

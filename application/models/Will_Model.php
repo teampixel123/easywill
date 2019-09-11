@@ -168,7 +168,12 @@ class Will_Model extends CI_Model{
   public function save_distribution($distribution_data){
     $this->db->insert('tbl_distribution',$distribution_data);
   }
-
+  // Update Destribution Info...
+  public function update_distribution($distribution_id, $will_id, $distribution_data_update){
+    $this->db->where('id', $distribution_id)
+    ->where('will_id', $will_id)
+    ->update('tbl_distribution', $distribution_data_update);
+  }
   public function get_distribution_percent($estate_id, $will_id, $estate_type){
     $query = $this->db->select('SUM(distribution_percent) as distribution_percent')
             ->where('estate_id', $estate_id)

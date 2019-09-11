@@ -141,8 +141,10 @@
                       </form>
                     </div>
                   <?php } else{ ?>
-                    <p class="mb-0 mt-2 txt-green">100% distribution completed.</p>
+                    <p class="mb-0 mt-2 txt-green distri_complete">100% distribution completed.</p>
                   <?php } ?>
+
+
                   </div>
                 </div>
                 <hr class="mt-1 mb-0">
@@ -505,6 +507,12 @@
               $will_id = $this->session->userdata('will_id');
               $estate_type = 'real_estate';
               $real_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
+
+              $destr_data = $this->Will_Model->get_distribution_percent($estate_id, $will_id, $estate_type);
+              foreach ($destr_data as $destr_data1){
+              }
+              $distribution_percent = $destr_data1->distribution_percent;
+              $real_remaining = 100 - $distribution_percent;
             ?>
             <div class="row info-div">
               <div class="col-md-12">
@@ -532,11 +540,15 @@
                           <input type="hidden" class="distribution_id" value="<?php echo $real_destr_data1->id; ?>">
                           <input type="hidden" class="distribution_estate_type" value="Real Estate">
                           <input type="hidden" class="distribution_estate_details" value="<?php echo ''.$real1->estate_type.', No.'.$real1->estate_number.'';?>">
+                          <input type="hidden" class="distribution_name_title" value="<?php echo $real_destr_data1->distribution_name_title; ?>">
                           <input type="hidden" class="distribution_estate_person" value="<?php echo $real_destr_data1->distribution_name; ?>">
                           <input type="hidden" class="distribution_estate_percent" value="<?php echo $real_destr_data1->distribution_percent; ?>">
+                          <input type="hidden" class="distribution_remaining_per" value="<?php echo $real_remaining; ?>">
+                          <input type="hidden" class="distribution_flashdata" value="real">
+
                           <button style="width:70px;" type="button" name="button" class="row text-center badge1">
-                            <a class="col-12 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
-                            <!-- <a class="col-6 text-center p-0" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
+                            <a class="col-6 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
+                            <a class="col-6 text-center p-0 edit_destribution" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a>
                           </button>
                         </td>
                       </tr>
@@ -568,6 +580,12 @@
               $will_id = $this->session->userdata('will_id');
               $estate_type = 'bank_estate';
               $bank_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
+
+              $destr_data = $this->Will_Model->get_distribution_percent($estate_id, $will_id, $estate_type);
+              foreach ($destr_data as $destr_data1){
+              }
+              $distribution_percent = $destr_data1->distribution_percent;
+              $bank_remaining = 100 - $distribution_percent;
             ?>
             <div class="row info-div">
               <div class="col-md-12">
@@ -595,11 +613,15 @@
                           <input type="hidden" class="distribution_id" value="<?php echo $bank_destr_data1->id; ?>">
                           <input type="hidden" class="distribution_estate_type" value="Real Estate">
                           <input type="hidden" class="distribution_estate_details" value="<?php echo ''.$assets_type.' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.$bank1->bank_name.', Branch: '.$bank1->bank_branch.', <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No: '.$bank1->account_number; ?>">
+                          <input type="hidden" class="distribution_name_title" value="<?php echo $bank_destr_data1->distribution_name_title; ?>">
                           <input type="hidden" class="distribution_estate_person" value="<?php echo $bank_destr_data1->distribution_name; ?>">
                           <input type="hidden" class="distribution_estate_percent" value="<?php echo $bank_destr_data1->distribution_percent; ?>">
+                          <input type="hidden" class="distribution_remaining_per" value="<?php echo $bank_remaining; ?>">
+                          <input type="hidden" class="distribution_flashdata" value="bank">
+
                           <button style="width:70px;" type="button" name="button" class="row text-center badge1">
-                            <a class="col-12 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
-                            <!-- <a class="col-6 text-center p-0" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
+                            <a class="col-6 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
+                            <a class="col-6 text-center p-0 edit_destribution" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a>
                           </button>
                         </td>
                       </tr>
@@ -629,6 +651,12 @@
                 $will_id = $this->session->userdata('will_id');
                 $estate_type = 'vehicle_estate';
                 $vehicle_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
+                // Get Remaining % ...
+                $destr_data = $this->Will_Model->get_distribution_percent($estate_id, $will_id, $estate_type);
+                foreach ($destr_data as $destr_data1){
+                }
+                $distribution_percent = $destr_data1->distribution_percent;
+                $vehicle_remaining = 100 - $distribution_percent;
               ?>
               <div class="row info-div">
                 <div class="col-md-12">
@@ -654,12 +682,15 @@
                             <input type="hidden" class="distribution_id" value="<?php echo $vehicle_destr_data1->id; ?>">
                             <input type="hidden" class="distribution_estate_type" value="Real Estate">
                             <input type="hidden" class="distribution_estate_details" value="<?php echo 'Vehicle - '.$vehicle1->vehicle_model_name.', <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No. : '.$vehicle1->vehicle_registration_no.'. <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Year : '.$vehicle1->vehicle_make_year.''; ?>">
+                            <input type="hidden" class="distribution_name_title" value="<?php echo $vehicle_destr_data1->distribution_name_title; ?>">
                             <input type="hidden" class="distribution_estate_person" value="<?php echo $vehicle_destr_data1->distribution_name; ?>">
                             <input type="hidden" class="distribution_estate_percent" value="<?php echo $vehicle_destr_data1->distribution_percent; ?>">
+                            <input type="hidden" class="distribution_remaining_per" value="<?php echo $vehicle_remaining; ?>">
+                            <input type="hidden" class="distribution_flashdata" value="vehicle">
 
                             <button style="width:70px;" type="button" name="button" class="row text-center badge1">
                               <a class="col-12 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
-                              <!-- <a class="col-6 text-center p-0" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
+                              <!-- <a class="col-6 text-center p-0 edit_destribution" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
                             </button>
                           </td>
                         </tr>
@@ -689,6 +720,13 @@
                 $will_id = $this->session->userdata('will_id');
                 $estate_type = 'other_gift_estate';
                 $gift_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
+
+                // Get Remaining % ...
+                $destr_data = $this->Will_Model->get_distribution_percent($estate_id, $will_id, $estate_type);
+                foreach ($destr_data as $destr_data1){
+                }
+                $distribution_percent = $destr_data1->distribution_percent;
+                $gift_remaining = 100 - $distribution_percent;
               ?>
               <div class="row info-div">
                 <div class="col-md-12">
@@ -714,12 +752,15 @@
                             <input type="hidden" class="distribution_id" value="<?php echo $gift_destr_data1->id; ?>">
                             <input type="hidden" class="distribution_estate_type" value="Real Estate">
                             <input type="hidden" class="distribution_estate_details" value="<?php echo 'Gift Type : '.$other_gift1->gift_type.', <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description : '.$other_gift1->gift_description; ?>">
+                            <input type="hidden" class="distribution_name_title" value="<?php echo $gift_destr_data1->distribution_name_title; ?>">
                             <input type="hidden" class="distribution_estate_person" value="<?php echo $gift_destr_data1->distribution_name; ?>">
                             <input type="hidden" class="distribution_estate_percent" value="<?php echo $gift_destr_data1->distribution_percent; ?>">
+                            <input type="hidden" class="distribution_remaining_per" value="<?php echo $gift_remaining; ?>">
+                            <input type="hidden" class="distribution_flashdata" value="other_gifts">
 
                             <button style="width:70px;" type="button" name="button" class="row text-center badge1">
-                              <a class="col-12 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
-                              <!-- <a class="col-6 text-center p-0" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
+                              <a class="col-6 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
+                              <a class="col-6 text-center p-0 edit_destribution" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a>
                             </button>
                           </td>
                         </tr>
@@ -745,6 +786,12 @@
               $will_id = $this->session->userdata('will_id');
               $estate_type = 'omited_estate';
               $ommit_destr_data = $this->Will_Model->get_distribution_list($estate_id, $will_id, $estate_type);
+              // Get Remaining % ...
+              $destr_data = $this->Will_Model->get_distribution_percent($estate_id, $will_id, $estate_type);
+              foreach ($destr_data as $destr_data1){
+              }
+              $distribution_percent = $destr_data1->distribution_percent;
+              $ommit_remaining = 100 - $distribution_percent;
             ?>
             <div class="row info-div">
               <div class="col-md-12">
@@ -770,12 +817,15 @@
                           <input type="hidden" class="distribution_id" value="<?php echo $ommit_destr_data1->id; ?>">
                           <input type="hidden" class="distribution_estate_type" value="Omited Estate">
                           <input type="hidden" class="distribution_estate_details" value="<?php echo 'Assets Type : Omited Estate'?>">
+                          <input type="hidden" class="distribution_name_title" value="<?php echo $ommit_destr_data1->distribution_name_title; ?>">
                           <input type="hidden" class="distribution_estate_person" value="<?php echo $ommit_destr_data1->distribution_name; ?>">
                           <input type="hidden" class="distribution_estate_percent" value="<?php echo $ommit_destr_data1->distribution_percent; ?>">
+                          <input type="hidden" class="distribution_remaining_per" value="<?php echo $ommit_remaining; ?>">
+                          <input type="hidden" class="distribution_flashdata" value="omited">
 
                           <button style="width:70px;" type="button" name="button" class="row text-center badge1">
-                            <a class="col-12 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
-                            <!-- <a class="col-6 text-center p-0" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a> -->
+                            <a class="col-6 text-center p-0 delete_destribution" ><i class="fa fa-trash" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;"></i></a>
+                            <a class="col-6 text-center p-0 edit_destribution" ><i class="fa fa-edit" aria-hidden="true" style="font-size:15px; width:15px; padding-top:3px;;"></i></a>
                           </button>
                         </td>
                       </tr>
@@ -798,6 +848,54 @@
   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch demo modal
   </button> -->
+
+  <!-- Modal Real Estate Update-->
+  <div class="modal fade" id="edit_destribution_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title txt-black" id="exampleModalLabel">Update Destribution</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="pt-2 distri_update_form" action="<?php echo base_url(); ?>Will_Controller/update_distribution" method="post">
+            <input type="hidden" id="edit_distribution_id" name="distribution_id">
+            <input type="hidden" id="rem_per" name="rem_per">
+            <input type="hidden" id="flashdata" name="flashdata">
+            <div class="form-row">
+              <label class="col-md-3 text-right" for="exampleInputEmail1">Name </label>
+              <div class="form-group col-md-2">
+                <select class="required form-control form-control-sm pr-0 edit_distribution_name_title" name="distribution_name_title" id="edit_distribution_name_title">
+                  <option>Mr.</option>
+                  <option>Mrs.</option>
+                  <option>Ms.</option>
+                </select>
+              </div>
+              <div class="form-group col-md-7">
+                <input type="text" name="distribution_name" class="required text title-case form-control form-control-sm edit_distribution_name" id="edit_distribution_name" placeholder="Full Name">
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="col-md-3 text-right" for="exampleInputEmail1">Percentage </label>
+              <div class="form-group col-md-3">
+                <input type="text" name="distribution_percent" class="required only_number form-control form-control-sm edit_distribution_percent" id="edit_distribution_percent" placeholder="%">
+              </div>
+              <div class="form-group col-md-6">
+                <p class="f-14 txt-green edit_rem_per"></p>
+              </div>
+            </div>
+            <p class="f-14 txt-red text-center per_error" style="display:none;">Invalid percentage value</p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" id="btn_update_destribution_confirm" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal Real Estate Delete-->
   <div class="modal fade" id="delete_destribution_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

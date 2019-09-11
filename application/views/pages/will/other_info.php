@@ -49,7 +49,7 @@
                   <a style="height:100px;" id="witness_tab" class="nav-link rem_class" data-toggle="tab" href="#witness"><i class="fa fa-users fa-2x" ></i></br>Witness</a>
                 </li>
               <li class="nav-item text-center" style="width:24%;">
-                <a style="height:100px;" id="adequate_provision_tab" class="nav-link rem_class" data-toggle="tab" href="#adequate_provision"><i class="fa fa-user-times fa-2x"  ></i></br>Adequate Provision</a>
+                <a style="height:100px;" id="adequate_provision_tab" class="nav-link rem_class" data-toggle="tab" href="#adequate_provision"><i class="fa fa-user-times fa-2x"  ></i></br>Exclude Person</a>
               </li>
               <li class="nav-item text-center" style="width:24%;">
                 <a style="height:100px;" id="date_place_tab" class="nav-link rem_class" data-toggle="tab" href="#date_place"><i class="fa fa-calendar fa-2x"  ></i></br>Date and Place</a>
@@ -152,7 +152,7 @@
                 </form>
               </div>
               <div class="tab-pane fade rem_class" id="adequate_provision">
-                <h6 class="mt-3">Make Adequate Provision (Optional)</h6>
+                <h6 class="mt-3">Exclude Person (Optional)</h6>
                 <hr>
                 <form class="" id="form_save_adequate_provision" action="<?php echo base_url(); ?>Will_Controller/save_adequate_provision_info" method="post">
                   <input type="hidden" name="adequate_provision_id" id="adequate_provision_id">

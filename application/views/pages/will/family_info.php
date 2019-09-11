@@ -135,7 +135,7 @@
               <button type="button" class="btn btn-md btn-primary" id="family_prev_btn">Previous</button>
             </div>
             <div class="col-6 mb-5 text-right">
-              <button type="button" class="btn btn-md btn-primary" id="family_next_btn">Skip & Next</button>
+              <button type="button" class="btn btn-md btn-primary" id="family_next_btn">Next</button>
             </div>
           </div>
         </div>

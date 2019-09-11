@@ -621,7 +621,25 @@
       header('Location:'.base_url().'');
     }
     }
-
+    public function update_distribution(){
+      $will_id = $this->session->userdata('will_id');
+      if($will_id){
+        $flashdata = $this->input->post('flashdata');
+        $distribution_id = $this->input->post('distribution_id');
+        $distribution_data_update = array(
+          'distribution_name_title' => $this->input->post('distribution_name_title'),
+          'distribution_name' => $this->input->post('distribution_name'),
+          'distribution_percent' => $this->input->post('distribution_percent')
+        );
+        $this->Will_Model->update_distribution($distribution_id, $will_id, $distribution_data_update);
+        $this->session->set_flashdata('assets_tab',$flashdata);
+        $this->session->set_flashdata('is_success','update');
+        header('Location:'.base_url().'Distribution');
+      }
+      else{
+        header('Location:'.base_url().'');
+      }
+    }
     // Delete Destribution...
     public function delete_destribution(){
       $will_id = $this->session->userdata('will_id');

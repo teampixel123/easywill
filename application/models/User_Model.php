@@ -51,5 +51,26 @@ class User_Model extends CI_Model{
     $this->db->where('will_id',$will_id);
     $this->db->update('tbl_will');
   }
+
+  public function update_profile($user_id, $update_profile_data){
+    $this->db->where('user_id',$user_id);
+    $this->db->update('tbl_user', $update_profile_data);
+  }
+
+  public function check_user_password($user_id, $old_password){
+    $query = $this->db->select('*')
+    ->where('user_id', $user_id)
+    ->where('user_password', $old_password)
+    ->from('tbl_user')
+    ->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  public function update_password($user_id, $new_password){
+    $this->db->set('user_password',$new_password);
+    $this->db->where('user_id',$user_id);
+    $this->db->update('tbl_user');
+  }
 }
 ?>

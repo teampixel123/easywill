@@ -142,3 +142,41 @@ div.dataTables_wrapper div.dataTables_length label, div.dataTables_wrapper div.d
   color: #fff !important;
   display:none;
 }
+
+.alert-div{
+  position: fixed;
+  top:100px;
+  display:none;
+  z-index: 1026;
+}
+.alert-div .alert{
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+}
+#alert_success .alert{
+  background: #28a745;
+}
+#alert_update .alert{
+  background: #007bff;
+}
+#alert_delete .alert{
+  background: #FF0000;
+}
+
+/* User Profile */
+.user-profile .card-body{
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+.user-profile .list-group-item{
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+#form_update_password .confirm_pwd_error{
+  color: red;
+  display: none;
+}
