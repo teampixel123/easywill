@@ -297,5 +297,11 @@ class Will_Model extends CI_Model{
     $this->db->where('user_id',$user_id);
     $this->db->update('tbl_user',$will_count_data);
   }
+
+  // Add user to blur will...
+  public function update_will_on_login($will_id, $will_data){
+    $this->db->where('will_id', $will_id)
+    ->update('tbl_will', $will_data);
+  }
 }
 ?>

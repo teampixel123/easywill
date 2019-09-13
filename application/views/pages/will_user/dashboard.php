@@ -10,11 +10,8 @@
 
   <div class="container-fluid">
     <div class="row">
-
       <?php include('user_sidebar.php'); ?>
-
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="min-height:calc(100vh - 150px);;">
-
         <div class="alert alert-danger subscribe_alert" id="subscribe_alert" role="alert">
           <a href="#" class="alert-link">Subscribe for create new will.</a>
         </div>
@@ -32,6 +29,17 @@
             }
           }
         ?>
+        <?php if($user->max_will == 0 && $user->is_have_blur == 'no'){ ?>
+          <div class="alert alert-danger" role="alert">
+            <a href="<?php echo base_url(); ?>Pricing"><b>Subscribe Now</b></a> to create new will.
+          </div>
+        <?php } ?>
+        <?php if($user->max_will == 0 && $user->is_have_blur == 'yes'){ ?>
+          <div class="alert alert-danger" role="alert">
+            <a href="<?php echo base_url(); ?>Pricing"><b>Subscribe Now</b></a> to see your blur will.
+          </div>
+        <?php } ?>
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item active text-dark" aria-current="page"><h4 class="m-0">Dashboard</h4></li>
@@ -45,7 +53,6 @@
               <p class="mb-0">Complete Will</p>
             </div>
           </div>
-
           <div class="col-md-4">
             <div class="alert alert-danger" role="alert">
               <h4 class="alert-heading font-weight-bold"><?php echo $incomplete_wills; ?></h4>
@@ -53,7 +60,6 @@
               <p class="mb-0">Incomplete Will</p>
             </div>
           </div>
-
           <div class="col-md-4">
             <div class="alert alert-primary" role="alert">
               <h4 class="alert-heading font-weight-bold"><?php echo $user->user_subscription_end_date; ?></h4>
@@ -63,13 +69,11 @@
           </div>
         </div>
         <hr>
-
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb my-5">
             <li class="breadcrumb-item active text-dark" aria-current="page">Will List</li>
           </ol>
         </nav>
-
         <div class="table-responsive mb-5">
           <table class="table table-striped table-sm" id="will_list1">
             <thead>
@@ -102,7 +106,6 @@
                 else{
                   $updation_last_date = $will_list1->updation_last_date;
                 }
-
                 $will_num++;
               ?>
                 <tr>
@@ -121,7 +124,7 @@
                       </button>
                       <input type="hidden" name="will_id" class="will_id" value="<?php echo $will_list1->will_id; ?>">
                       <input type="hidden" name="will_rem_updations" class="will_rem_updations" value="<?php echo $will_rem_updations; ?>">
-                    <?php } else if($is_blur == 'yes'){ ?>
+                    <?php } else if($is_blur == 'yes' || $is_will_complete == 'no'){ ?>
                       <button type="button" class="btn btn-sm btn-outline-info btn-outline mx-1 btn_blur_edit"><i class="fa fa-edit"></i> Edit</button>
                     <?php } else{ ?>
                       <button type="button" class="btn btn-sm btn-outline-info btn-outline mx-1" disabled><i class="fa fa-edit"></i> Edit</button>
@@ -136,7 +139,9 @@
 
                     <!-- Subscribe Button -->
                     <?php if($is_blur == 'yes'){ ?>
+                      <a href="<?php echo base_url(); ?>/Pricing">
                       <button type="button" class="btn btn-sm btn-outline-secondary btn-outline mx-1"><i></i>Subscribe</button>
+                      </a>
                     <?php } ?>
                     <!-- PDF Forms -->
                     <?php if($is_blur == 'no'){ ?>

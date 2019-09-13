@@ -50,6 +50,7 @@
 
         $is_have_blur = $user_details1->is_have_blur;
         $rem_will = $user_details1->rem_will;
+        $max_will = $user_details1->max_will;
         $user_subscription = $user_details1->user_subscription;
         $rem_updations = $user_details1->rem_updations;
         if($will_id){
@@ -155,6 +156,7 @@
            'complete_will' => $complete_will,
            'is_have_blur' => $is_have_blur,
            'max_will' => $max_will,
+           'rem_will' => $rem_will,
          );
 
         $will_data = array(

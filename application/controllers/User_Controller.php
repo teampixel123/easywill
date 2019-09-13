@@ -11,6 +11,7 @@ class User_Controller extends CI_Controller{
     $user_is_login = $this->session->userdata('user_is_login');
     $user_id = $this->session->userdata('user_id');
     if($user_is_login && $user_id){
+      $this->session->unset_userdata('blur_will_id');
       $this->session->unset_userdata('will_id');
       $data['user_details'] = $this->User_Model->user_details($user_id);
       $data['will_list'] = $this->User_Model->get_will_list($user_id);
@@ -94,25 +95,19 @@ class User_Controller extends CI_Controller{
       $this->load->library('upload',$config);
       if($this->upload->do_upload("profile_phto")){
         if($old_photo != 'default_profile.png'){
-          unlink(base_url().'assets/images/will_user/'.$old_photo);
+          unlink('./assets/images/will_user/'.$old_photo);
         }
-        // unlink($get_file);
         $data = array('upload_data' => $this->upload->data());
-          $update_user = array(
-          'profile_phto' =>$data['upload_data']['file_name'],
+
+        $update_user = array(
+        'profile_phto' =>$data['upload_data']['file_name'],
         );
 
+        $this->User_Model->update_profile($user_id, $update_user);
+        $this->session->set_flashdata('is_success','update');
       }
 
-      echo $data['upload_data']['file_name'];
-      // else{
-      //   $update_user = array(
-      //     'user_fullname'=>$this->input->post('username'),
-      //     'user_mobile_number'=>$this->input->post('mobile'),
-      //     'user_email_id'=>$this->input->post('email'),
-      //   );
-      // }
-      // $this->User_Model->update_user($update_user,$user_id);
+      header('location:'.base_url().'User-Profile');
 
     }
   }

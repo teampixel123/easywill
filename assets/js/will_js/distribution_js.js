@@ -27,6 +27,7 @@ $('.real_estate_save_share').click(function(){
 
     }
     else{
+      $("#save_load_modal").modal("show");
       $(this).closest('.distri-form').submit();
     }
   }
@@ -56,7 +57,7 @@ $('#btn_delete_destribution_confirm').click(function(){
   $.ajax({
      data: {'distribution_id':distribution_id},
      type: "post",
-     url: base_url+"Will_controller/delete_destribution",
+     url: base_url+"Will_Controller/delete_destribution",
      success: function (data){
        window.location.href = base_url+"Distribution";
      }
@@ -116,6 +117,7 @@ $('#btn_update_destribution_confirm').click(function(){
     $('.per_error').show().delay(3000).fadeOut();
   }
   else{
+    $("#save_load_modal").modal("show");
     $('.distri_update_form').submit();
   }
 

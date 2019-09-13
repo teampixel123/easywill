@@ -79,7 +79,12 @@ class Pdf_Controller extends CI_Controller{
 
   public function blur_pdf(){
     $will_id = $this->input->post('will_id');
+    $user_is_login = $this->session->userdata('user_is_login');
+
     if($will_id){
+      if(!$user_is_login){
+        $this->session->set_userdata('blur_will_id',$will_id);
+      }
       $this->session->unset_userdata('will_id');
       $this->Will_Model->set_will_complete($will_id);
       $data['personal_info'] = $this->Will_Model->get_personal_data($will_id);

@@ -37,7 +37,7 @@
             				 </select>
                     </div> -->
                     <div class="col-md-6">
-            					<input type="text" name="full_name" id="full_name" class="required text title-case form-control" placeholder="Full Name">
+            					<input type="text" name="full_name" id="full_name" class="required text title-case form-control form-control-sm" placeholder="Full Name">
             				</div>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
             				<div class="col-md-2"></div>
                     <label class="col-md-2 text-right" for="exampleInputEmail1">Marital status</label>
             				<div class="col-md-4">
-            					<select class="required form-control" name="marital_status" id="marital_status">
+            					<select class="required form-control form-control-sm" name="marital_status" id="marital_status">
             					 <option value="0">select </option>
             					 <option id="Married">Married</option>
             					 <option id="Unmarried">Unmarried</option>
@@ -84,11 +84,11 @@
             				</div>
             				<div class="col-md-3" style="padding-left:30px;">
             					<div class="row">
-            					<div class="custom-control custom-radio col-md-6">
+            					<div class="custom-control form-control-sm custom-radio col-md-6">
             						<input type="radio" id="child_yes" name="is_have_child" class="custom-control-input" value="yes">
             						<label class="custom-control-label" for="child_yes">Yes</label>
             					</div>
-            					<div class="custom-control custom-radio col-md-6">
+            					<div class="custom-control form-control-sm custom-radio col-md-6">
             						<input type="radio" id="child_no" name="is_have_child" value="no" class="custom-control-input" checked="">
             						<label class="custom-control-label" for="child_no">No</label>
             					</div>
@@ -104,7 +104,7 @@
                       <label for="exampleInputEmail1">Mobile No</label>
                     </div>
                     <div class="col-md-4">
-                      <input type="text" name="mobile_no" class="required mobile only_number form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
+                      <input type="text" name="mobile_no" class="required mobile only_number form-control form-control-sm" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
                       <label for="exampleInputEmail1">Email</label>
                     </div>
                     <div class="col-md-4">
-                      <input type="email" name="email" class="required email form-control" id="email" aria-describedby="emailHelp" placeholder="Email Id">
+                      <input type="email" name="email" class="required email form-control form-control-sm" id="email" aria-describedby="emailHelp" placeholder="Email Id">
                     </div>
                   </div>
                 </div>

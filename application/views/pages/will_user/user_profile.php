@@ -149,12 +149,12 @@
           </div>
 
         </div>
-        <hr>
+        <!-- <hr>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb my-5">
             <li class="breadcrumb-item active text-dark" aria-current="page">Will List</li>
           </ol>
-        </nav>
+        </nav> -->
 
 
       </main>

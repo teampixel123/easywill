@@ -201,7 +201,7 @@ $('#btn-delete-other-confirm').click(function(){
      data: {'other_delete_id':other_delete_id,
             'other_delete_type':other_delete_type},
      type: "post",
-     url: base_url+"Will_controller/delete_other_info",
+     url: base_url+"Will_Controller/delete_other_info",
      success: function (data){
        window.location.href = base_url+"Other-Information";
      }

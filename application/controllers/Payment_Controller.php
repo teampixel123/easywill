@@ -36,32 +36,32 @@ class Payment_Controller extends CI_Controller{
       curl_setopt($ch, CURLOPT_HTTPHEADER,
       array("X-Api-Key:test_0d6432ff71bdad7c1c14113908c","X-Auth-Token:test_26525dbef8eb3c043dc53600da4"));
       // For Localhost..
-      $payload = Array(
-       'purpose' => 'EasyWill Payment',
-       'amount' => $amount,
-       'phone' => $mobile,
-       'buyer_name' => $user_id,
-       'redirect_url' => 'http://www.islamic.easywillindia.com/Payment_Gateway/success',
-       'send_email' => true,
-       'webhook' => 'http://www.islamic.easywillindia.com/Payment_Gateway/webhook',
-       'send_sms' => true,
-       'email' => $email,
-       'allow_repeated_payments' => false
-      );
+      // $payload = Array(
+      //  'purpose' => 'EasyWill Payment',
+      //  'amount' => $amount,
+      //  'phone' => $mobile,
+      //  'buyer_name' => $user_id,
+      //  'redirect_url' => 'http://www.islamic.easywillindia.com/Payment_Gateway/success',
+      //  'send_email' => true,
+      //  'webhook' => 'http://www.islamic.easywillindia.com/Payment_Gateway/webhook',
+      //  'send_sms' => true,
+      //  'email' => $email,
+      //  'allow_repeated_payments' => false
+      // );
 
       // // For Online..
-      // $payload = Array(
-      //   'purpose' => 'Will Payment',
-      //   'amount' => $amount,
-      //   'phone' => $mobile,
-      //   'buyer_name' => $user_id,
-      //   'redirect_url' => base_url().'Payment_Gateway/success',
-      //   'send_email' => true,
-      //   'webhook' => base_url().'Payment_Gateway/webhook',
-      //   'send_sms' => true,
-      //   'email' => $email,
-      //   'allow_repeated_payments' => false
-      // );
+      $payload = Array(
+        'purpose' => 'Will Payment',
+        'amount' => $amount,
+        'phone' => $mobile,
+        'buyer_name' => $user_id,
+        'redirect_url' => base_url().'Payment_Controller/success',
+        'send_email' => true,
+        'webhook' => base_url().'Payment_Controller/webhook',
+        'send_sms' => true,
+        'email' => $email,
+        'allow_repeated_payments' => false
+      );
 
       curl_setopt($ch, CURLOPT_POST, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
@@ -120,12 +120,12 @@ class Payment_Controller extends CI_Controller{
       $subscription_info = array(
         'user_subscription' => 'yes',
         'user_subscription_type' => $pack_name,
-        'user_subscription_start_date' => 'yes',
-        'user_subscription_end_date' => 'yes',
+        'user_subscription_start_date' => $date,
+        'user_subscription_end_date' => $thirty_days,
         'updation_end_date' => $updation_end_date,
         'max_will' => $max_will,
         'rem_will' => $rem_will,
-        'rem_updations' => $rem_updations;
+        'rem_updations' => $rem_updations,
       );
       $this->User_Model->update_subscription_info($user_id,$subscription_info);
 

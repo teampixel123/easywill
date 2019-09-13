@@ -4,7 +4,8 @@ class Login_Controller extends CI_Controller{
   function __construct(){
     parent::__construct();
     $this->load->model('Login_Model');
-    // $this->load->model('Will_Model');
+    $this->load->model('Will_Model');
+    $this->load->model('User_Model');
   }
 
   public function send_security_code(){
@@ -31,60 +32,59 @@ class Login_Controller extends CI_Controller{
       $this->session->set_userdata('otp',$security_code);
 
       if ($contact_type=='mobile_number') {
-      //   //echo $security_code;
-      //   $fields = array(
-      //       "sender_id" => "FSTSMS",
-      //       "message" => "Islamic Will OTP: $security_code",
-      //       "language" => "english",
-      //       "route" => "p",
-      //       "numbers" => $reg_mob_email,
-      //   );
-      //
-      //   $curl = curl_init();
-      //   curl_setopt_array($curl, array(
-      //     CURLOPT_URL => "https://www.fast2sms.com/dev/bulk",
-      //     CURLOPT_RETURNTRANSFER => true,
-      //     CURLOPT_ENCODING => "",
-      //     CURLOPT_MAXREDIRS => 10,
-      //     CURLOPT_TIMEOUT => 30,
-      //     CURLOPT_SSL_VERIFYHOST => 0,
-      //     CURLOPT_SSL_VERIFYPEER => 0,
-      //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      //     CURLOPT_CUSTOMREQUEST => "POST",
-      //     CURLOPT_POSTFIELDS => json_encode($fields),
-      //     CURLOPT_HTTPHEADER => array(
-      //       "authorization: zHGpE0Cl6iqLKWtmBrNx3oARIkjnVh8c7Xde9MvfDSFOTZ4aJ5Sa0mUig3pQqET2IvFjK1AwrkbzfCyu",
-      //       "accept: */*",
-      //       "cache-control: no-cache",
-      //       "content-type: application/json"
-      //     ),
-      //   ));
-      //   $res = curl_exec($curl);
-      //   $err = curl_error($curl);
-      //   curl_close($curl);
+        //echo $security_code;
+        $fields = array(
+            "sender_id" => "FSTSMS",
+            "message" => "EasyWill OTP: $security_code",
+            "language" => "english",
+            "route" => "p",
+            "numbers" => $reg_mob_email,
+        );
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://www.fast2sms.com/dev/bulk",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_SSL_VERIFYHOST => 0,
+          CURLOPT_SSL_VERIFYPEER => 0,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => json_encode($fields),
+          CURLOPT_HTTPHEADER => array(
+            "authorization: zHGpE0Cl6iqLKWtmBrNx3oARIkjnVh8c7Xde9MvfDSFOTZ4aJ5Sa0mUig3pQqET2IvFjK1AwrkbzfCyu",
+            "accept: */*",
+            "cache-control: no-cache",
+            "content-type: application/json"
+          ),
+        ));
+        $res = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
       }
       else
       {
-       //  $from_email = "info@easywillindia.com";
-       //  $formcontent='
-  			//  <p style="color:#698291; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 20px;font-family: Georgia, serif; ">
-  			//  Welcome to Easy Islamic Will
-  			//  </p>
-  			//  <hr>
-  			//  <p style="color:#698291; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px;font-family: Times, serif; ">
-  			//  Your Security Code is: '.$security_code.'
-  			//  </p>
-  		 // ';
-       //  $recipient = $reg_mob_email;
-       //  $subject = "Easy Islamic Will Security Code";
-       //
-       //  $headers  = 'MIME-Version: 1.0' . "\r\n";
-       //  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-       //  $headers .= 'From: '.$from_email."\r\n".
-       //              'Reply-To: '.$from_email."\r\n" .
-       //              'X-Mailer: PHP/' . phpversion();
-       //
-       //  mail($recipient, $subject, $formcontent, $headers);
+        $from_email = "info@easywillindia.com";
+        $formcontent='
+  			 <p style="color:#698291; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 20px;font-family: Georgia, serif; ">
+  			 Welcome to Easy Islamic Will
+  			 </p>
+  			 <hr>
+  			 <p style="color:#698291; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px;font-family: Times, serif; ">
+  			 Your Security Code is: '.$security_code.'
+  			 </p>
+  		 ';
+        $recipient = $reg_mob_email;
+        $subject = "Easy Will Security Code";
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: '.$from_email."\r\n".
+                    'Reply-To: '.$from_email."\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+        mail($recipient, $subject, $formcontent, $headers);
       }
       $error = $security_code;  // Change this value to success after project complete...
       echo json_encode($error);
@@ -154,51 +154,63 @@ class Login_Controller extends CI_Controller{
       if($get_data){
          $user_id = $get_data[0]['user_id'];
          $user_subscription = $get_data[0]['user_subscription'];
+         $user_subscription_type = $get_data[0]['user_subscription_type'];
          $incomplete_will = $get_data[0]['incomplete_will'];
          $complete_will = $get_data[0]['complete_will'];
          $is_have_blur = $get_data[0]['is_have_blur'];
          $max_will = $get_data[0]['max_will'];
+         $rem_will = $get_data[0]['rem_will'];
          $updation_end_date = $get_data[0]['updation_end_date'];
+         $rem_updations = $get_data[0]['rem_updations'];
 
-         // if($this->session->userdata('temp_will_id') && $user_subscription == 1 && $max_will > 0){
-         //   $will_id=$this->session->userdata('temp_will_id');
-         //   $this->Login_Model->update_will_user($will_id,$user_id);
-         //   $complete_will = $complete_will +1;
-         //   $incomplete_will = $incomplete_will - 1;
-         //   $will_count_data = array(
-         //     'complete_will' => $complete_will,
-         //     'incomplete_will' => $incomplete_will,
-         //     'max_will' => 0,
-         //   );
-         //   $this->Will_Model->update_will_count($will_count_data,$user_id);
-         //
-         //   $key = 'no';
-         //   $this->Will_Model->set_user_noblur($user_id,$key);
-         //   $this->Will_Model->set_will_noblur($will_id,$key);
-         //
-         //   $will_updation_count_data = array(
-         //     'will_rem_updations' => 1,
-         //     'updation_last_date' => $updation_end_date,
-         //   );
-         //   // Save Will Updation Count and Date.. In Will Table..
-         //   $this->Will_Model->save_date_place_info($will_id,$will_updation_count_data);
-         // }
-         // else if($this->session->userdata('temp_will_id') && $is_have_blur=='no' && $max_will == 0){
-         //   $will_id=$this->session->userdata('temp_will_id');
-         //   $this->Login_Model->update_will_user($will_id,$user_id);
-         //   $complete_will = $complete_will +1;
-         //   $incomplete_will = $incomplete_will - 1;
-         //   $will_count_data = array(
-         //     'complete_will' => $complete_will,
-         //     'incomplete_will' => $incomplete_will,
-         //   );
-         //   $this->Will_Model->update_will_count($will_count_data,$user_id);
-         //
-         //   $key = 'yes';
-         //   $this->Will_Model->set_user_noblur($user_id,$key);
-         //   $this->Will_Model->set_will_noblur($will_id,$key);
-         // }
+         $blur_will_id = $this->session->userdata('blur_will_id');
+         if($blur_will_id && $user_subscription == 'yes' && $max_will > 0){
+           if($user_subscription_type == 'Silver' || $user_subscription_type == 'Gold'){
+             $will_rem_updations = 1;
+             $rem_updations = $rem_updations + 1;
+           }
+           else if($user_subscription_type == 'Platinum'){
+             $will_rem_updations = 2;
+             $rem_updations = $rem_updations + 2;
+           }
 
+           $will_data = array(
+             'will_user_id' => $user_id,
+             'updation_last_date' => $updation_end_date,
+             'will_rem_updations' => $will_rem_updations,
+             'is_blur' => 'no',
+           );
+
+           $this->Will_Model->update_will_on_login($blur_will_id, $will_data);
+
+           $complete_will = $complete_will + 1;
+           $max_will = $max_will - 1;
+           $rem_will = $rem_will - 1;
+
+           $will_count_data = array(
+             'complete_will' => $complete_will,
+             'max_will' => $max_will,
+             'rem_will' => $rem_will,
+             'rem_updations' => $rem_updations,
+             'is_have_blur' => 'no',
+           );
+           $this->User_Model->update_subscription_info($user_id,$will_count_data);
+
+         }
+         else if($blur_will_id && $is_have_blur=='no' && $max_will == 0){
+           $will_data = array(
+             'will_user_id' => $user_id,
+             'is_blur' => 'yes',
+           );
+           $this->Will_Model->update_will_on_login($blur_will_id, $will_data);
+
+           $complete_will = $complete_will + 1;
+           $will_count_data = array(
+             'complete_will' => $complete_will,
+             'is_have_blur' => 'yes',
+           );
+           $this->User_Model->update_subscription_info($user_id,$will_count_data);
+         }
 
          $session_data = array('user_is_login' => 'YES','user_id' =>$user_id);
          $this->session->set_userdata($session_data);

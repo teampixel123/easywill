@@ -17,11 +17,6 @@
 
   <div class="topstrip"></div>
 
-  <!-- <section class="terms">
-    <div class="text-center">
-      <h1 class="">Start Your Will Now</h1>
-    </div>
-  </section> -->
   <div class="container-fluid mt-3">
   <ul class="list-unstyled multi-steps m-0 pt-3 pb-3">
     <li class="personal-tab" >Personal Information</li>
@@ -340,7 +335,7 @@
               <button type="button" class="btn btn-md btn-primary" id="assets_prev_btn">Previous</button>
             </div>
             <div class="col-6 mb-5 text-right">
-              <?php if($real_estate_data || $bank_assets_data || $vehicle_assets_data){ ?>
+              <?php if($real_estate_data || $bank_assets_data || $vehicle_assets_data || $other_gift_data){ ?>
                 <button type="button" class="btn btn-md btn-primary" id="assets_next_btn">Next</button>
               <?php } else{
                 echo '<p style="color:red;"><b>Add Information for Next</b></p>';

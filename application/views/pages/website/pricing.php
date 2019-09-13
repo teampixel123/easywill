@@ -43,7 +43,12 @@
                 <br> <span>(inclusive of all applicable taxes , excluding payment gateway fees )</span>
               </div>
               <div class="text-center">
-                <?php if($user_is_login && $user_id){ ?>
+                <?php
+                  if($user_is_login && $user_id){
+                  if($user->max_will > 0){ ?>
+                  <button class="btn btn-lg btn-primary" type="button" data-toggle="modal" data-target="#subscribedModal">Get Started  »</button>
+                <?php  } else{
+                ?>
                   <form class="" action="<?php base_url() ?>Payment_Controller/payment" method="post">
                     <input type="hidden" name="pack_name" id="pack_name" value="Silver" >
                     <input type="hidden" name="amount" id="amount" value="1500" >
@@ -55,7 +60,8 @@
                     <input type="submit" class="btn btn-lg btn-primary" value="Get Started  »" />
                     </div>
                   </form>
-                <?php } else{ ?>
+                <?php }
+              } else{ ?>
                   <a href="<?php echo base_url(); ?>Login"><button class="btn btn-lg btn-primary" type="button">Get Started  »</button></a>
                   <!-- <button class=" btn btn-lg btn-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a> </button> -->
                 <?php } ?>
@@ -96,7 +102,23 @@
               </ul>
 
               <div class="text-center">
-                <button class="btn btn-lg btn-outline-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a></button>
+                <?php if($user_is_login && $user_id){ ?>
+                  <form class="" action="<?php base_url() ?>Payment_Controller/payment" method="post">
+                    <input type="hidden" name="pack_name" id="pack_name" value="Gold" >
+                    <input type="hidden" name="amount" id="amount" value="3500" >
+                    <input type="hidden" name="promocode" id="no_promocode" value="no_promocode">
+                    <input type="hidden" name="name" id="name" value="<?php echo $user->user_fullname; ?>" >
+                    <input type="hidden" name="email" id="email" value="<?php echo $user->user_email_id; ?>" >
+                    <input type="hidden" name="mobile" id="mobile" value="<?php echo $user->user_mobile_number; ?>" >
+                    <div class="text-center">
+                    <input type="submit" class="btn btn-lg btn-primary" value="Get Started  »" />
+                    </div>
+                  </form>
+                <?php } else{ ?>
+                  <a href="<?php echo base_url(); ?>Login"><button class="btn btn-lg btn-primary" type="button">Get Started  »</button></a>
+                  <!-- <button class=" btn btn-lg btn-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a> </button> -->
+                <?php } ?>
+
               </div>
             </div>
           </div>
@@ -136,9 +158,25 @@ customization as per users requirement.
                   <li>same package will of user’s Spouse, Real Sister, Mother, Father, Son, Daughter’s is at <strong>Rs.6000</strong>  + GST @ 18%</li>
                   <li>Final will document delivery for execution of user by E mail or Courier at user’s choice in India.</li>
                 </ul>
-            <div class="text-center">
-            <button class=" btn btn-lg btn-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a></button>
-            </div>
+                <div class="text-center">
+                  <?php if($user_is_login && $user_id){ ?>
+                    <form class="" action="<?php base_url() ?>Payment_Controller/payment" method="post">
+                      <input type="hidden" name="pack_name" id="pack_name" value="Platinum" >
+                      <input type="hidden" name="amount" id="amount" value="9000" >
+                      <input type="hidden" name="promocode" id="no_promocode" value="no_promocode">
+                      <input type="hidden" name="name" id="name" value="<?php echo $user->user_fullname; ?>" >
+                      <input type="hidden" name="email" id="email" value="<?php echo $user->user_email_id; ?>" >
+                      <input type="hidden" name="mobile" id="mobile" value="<?php echo $user->user_mobile_number; ?>" >
+                      <div class="text-center">
+                      <input type="submit" class="btn btn-lg btn-primary" value="Get Started  »" />
+                      </div>
+                    </form>
+                  <?php } else{ ?>
+                    <a href="<?php echo base_url(); ?>Login"><button class="btn btn-lg btn-primary" type="button">Get Started  »</button></a>
+                    <!-- <button class=" btn btn-lg btn-primary" type="button" name="button"><a href="makewill.html">Get Started  »</a> </button> -->
+                  <?php } ?>
+
+                </div>
           </div>
         </div>
       </div>
@@ -148,6 +186,28 @@ customization as per users requirement.
   <section class="p-2 protect text-center">
     <h2>Protect Your Family Today </h2>
   </section>
+
+  <!-- Edit Msg Modal -->
+  <div class="modal fade" id="subscribedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Already Subscribed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>You are already Subscribed.</p>
+          <p>Start your will now.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a href="<?php echo base_url(); ?>Will_Controller/start_will_view"><button type="button" class="btn btn-primary">Start Will</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- footer -->
 <?php include(__DIR__ .'../../footer.php');  ?>

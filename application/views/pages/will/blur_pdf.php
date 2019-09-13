@@ -160,9 +160,9 @@ $pdf->writeHTML($html, true, 0, true, 0);
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 $pdf->AddPage();
 // get the current page break margin
-$bMargin = $pdf->getBreakMargin();
+// $bMargin = $pdf->getBreakMargin();
 // get current auto-page-break mode
-$auto_page_break = $pdf->getAutoPageBreak();
+// $auto_page_break = $pdf->getAutoPageBreak();
 // disable auto-page-break
 $pdf->SetAutoPageBreak(false, 0);
 // set bacground image

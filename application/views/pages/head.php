@@ -20,6 +20,7 @@ if($user_is_login && $user_id){
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>EasyWill - Home</title>
+  <link rel="icon" href="<?php echo base_url(); ?>assets/images/website/fevicon.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700,700i" rel="stylesheet">
   <!-- Bootstrap -->
   <link href="<?php base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet"/>

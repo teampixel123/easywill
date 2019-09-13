@@ -37,6 +37,7 @@ $('#real_estate_save_btn').click(function(){
 
  }
  else{
+   $("#save_load_modal").modal("show");
    $('#form_real_estate').submit();
  }
 });
@@ -150,7 +151,7 @@ $('#btn-delete-assets-confirm').click(function(){
   $.ajax({
      data: {'real_estate_id':real_estate_id},
      type: "post",
-     url: base_url+"Will_controller/delete_real_estate",
+     url: base_url+"Will_Controller/delete_real_estate",
      success: function (data){
        window.location.href = base_url+"Assets-Information";
      }
@@ -263,6 +264,7 @@ $('#bank_save_btn').click(function(){
     // Blank...
   }
   else{
+    $("#save_load_modal").modal("show");
     $('#form_bank_assets').submit();
   }
 });
@@ -401,15 +403,6 @@ $('#bank_update_btn').click(function(){
     $("#save_load_modal").modal("show");
     $('#form_bank_assets').attr('action', base_url+"Will_Controller/update_bank_assets_info");
     $('#form_bank_assets').submit();
-    // var form_data = $('#form_bank_assets').serialize();
-    // $.ajax({
-    //    data: form_data,
-    //    type: "post",
-    //    url: base_url+"Will_controller/update_bank_assets_info",
-    //    success: function (data){
-    //      window.location.href = base_url+"Assets-Information";
-    //    }
-    // });
   }
 });
 
@@ -434,7 +427,7 @@ $('#btn-delete-bank-confirm').click(function(){
   $.ajax({
      data: {'bank_assets_id':bank_assets_id},
      type: "post",
-     url: base_url+"Will_controller/delete_bank_assets",
+     url: base_url+"Will_Controller/delete_bank_assets",
      success: function (data){
        window.location.href = base_url+"Assets-Information";
      }
@@ -479,6 +472,7 @@ $('#vehicle_save_btn').click(function(){
     // Blank...
   }
   else {
+    $("#save_load_modal").modal("show");
     $('#form_vehicle').submit();
   }
 });
@@ -563,7 +557,7 @@ $('#btn-delete-vehicle-confirm').click(function(){
   $.ajax({
      data: {'vehicle_id':vehicle_id},
      type: "post",
-     url: base_url+"Will_controller/delete_vehicle",
+     url: base_url+"Will_Controller/delete_vehicle",
      success: function (data){
        window.location.href = base_url+"Assets-Information";
      }
@@ -590,6 +584,7 @@ $('#gift_save_btn').click(function(){
     // Blank...
   }
   else {
+    $("#save_load_modal").modal("show");
     $('#form_other_gifts').submit();
   }
 });
@@ -667,7 +662,7 @@ $('#btn-delete-other-gift-confirm').click(function(){
   $.ajax({
      data: {'gift_id':gift_id},
      type: "post",
-     url: base_url+"Will_controller/delete_other_gift",
+     url: base_url+"Will_Controller/delete_other_gift",
      success: function (data){
        window.location.href = base_url+"Assets-Information";
      }

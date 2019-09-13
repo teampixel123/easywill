@@ -25,9 +25,9 @@
         </li>
       </ul>
       <?php if($this->session->userdata('user_is_login')){ ?>
-        <button type="submit" class="login btn btn-sm btn-primary"><a href="<?php echo base_url(); ?>User-Dashboard">Dashboard</a></button>
+        <a href="<?php echo base_url(); ?>User-Dashboard"><button type="submit" class="login btn btn-sm btn-primary">Dashboard</button></a>
       <?php } else{ ?>
-        <button type="submit" class="login btn btn-sm btn-primary"><a href="<?php echo base_url(); ?>Login">Sign In / Sign Up</a></button>
+        <a href="<?php echo base_url(); ?>Login"><button type="submit" class="login btn btn-sm btn-primary">Sign In / Sign Up</button></a>
       <?php } ?>
 
     </div>

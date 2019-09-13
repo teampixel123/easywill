@@ -72,5 +72,6 @@ class User_Model extends CI_Model{
     $this->db->where('user_id',$user_id);
     $this->db->update('tbl_user');
   }
+
 }
 ?>

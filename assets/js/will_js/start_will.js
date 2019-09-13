@@ -301,7 +301,7 @@ $('#family_update_btn').click(function(){
     $.ajax({
        data: form_data,
        type: "post",
-       url: base_url+"Will_controller/update_family_member",
+       url: base_url+"Will_Controller/update_family_member",
        success: function (data){
          window.location.href = base_url+"Family-Information";
        }
@@ -326,7 +326,7 @@ $('#btn-delete-member-confirm').click(function(){
   $.ajax({
      data: {'member_id':member_id},
      type: "post",
-     url: base_url+"Will_controller/delete_family_member",
+     url: base_url+"Will_Controller/delete_family_member",
      success: function (data){
        window.location.href = base_url+"Family-Information";
      }

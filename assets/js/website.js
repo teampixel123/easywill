@@ -62,7 +62,7 @@ $('#btn_register').click(function(){
       $.ajax({
         data: data,
         type: "post",
-        url: base_url+"Login_controller/send_security_code",
+        url: base_url+"Login_Controller/send_security_code",
         success: function(data){
           var info = JSON.parse(data);
 
@@ -106,7 +106,7 @@ $('#btn_register').click(function(){
         'security_code': security_code,
         'contact_type': contact_type },
         type: "post",
-        url: base_url+"Login_controller/user_register",
+        url: base_url+"Login_Controller/user_register",
         success: function(data){
           var responce = JSON.parse(data);
           if (responce['responce'] == 'Valide') {
@@ -168,7 +168,7 @@ $('#btn_register').click(function(){
             'user_password' : user_password,
            },
           type: 'post',
-          url: base_url+"Login_controller/login_user",
+          url: base_url+"Login_Controller/login_user",
           success: function(data){
             var responce = JSON.parse(data);
             if(responce['responce'] == 'Success'){
