@@ -303,8 +303,8 @@
           'major_age' => $this->input->post('major_age'),
           'is_minar' => $is_minar,
         );
-
         $this->Will_Model->save_family_info($family_data);
+        $this->session->set_flashdata('is_success','save');
         header('Location:'.base_url().'Family-Information');
       }
     }
@@ -327,6 +327,7 @@
           'is_minar' => $is_minar,
         );
         $this->Will_Model->update_family_member($member_id, $will_id, $family_update_data);
+        $this->session->set_flashdata('is_success','update');
       }
     }
 
@@ -335,6 +336,7 @@
       if($will_id){
         $member_id = $this->input->post('member_id');
         $this->Will_Model->delete_family_member($member_id, $will_id);
+        $this->session->set_flashdata('is_success','delete');
       }
       else{
         header('Location:'.base_url().'');

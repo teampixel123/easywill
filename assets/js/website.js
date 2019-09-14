@@ -181,3 +181,38 @@ $('#btn_register').click(function(){
         });
       }
   }
+
+// Active Menu...
+  $(document).ready(function() {
+      var url = window.location.href;
+      var activePage = url;
+      $('.top-nav-item').removeClass('active');
+      // alert(activePage);
+      $('.top-nav a').each(function () {
+          var linkPage = this.href;
+          if (activePage == linkPage) {
+              $(this).closest(".nav-item").addClass("active");
+          }
+      });
+  });
+
+// Go To Top...
+// Hide logo on Scroll.
+  $(document).scroll(function() {
+    go_top();
+  });
+
+// Show go top on scroll
+function go_top(){
+  if( $(this).scrollTop() > 200 ) {
+    $('#go-top').fadeIn();
+  } else {
+    $('#go-top').fadeOut();
+  }
+}
+
+// Go to top..
+$('#go-top').on( "click", function() {
+    $('html, body').animate({scrollTop: 0});
+    return false;
+});

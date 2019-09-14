@@ -108,7 +108,9 @@ Put family in comfortable position by taking raght step today."</h2>
     <div class="container-fluid pb-5">
       <div class="row text-center">
         <div class="col-12 ">
-          <button class="hvr-float-shadow btn btn-lg btn-primary start" type="button" name="button"><a href="pricing.html">Start Your Will  »</a></button>
+          <a href="<?php echo base_url(); ?>Will_Controller/start_will_view">
+          <button class="hvr-float-shadow btn btn-lg btn-primary start" type="button" name="button">Start Your Will »</button>
+          </a>
         </div>
       </div>
     </div>
@@ -157,8 +159,9 @@ Put family in comfortable position by taking raght step today."</h2>
 <div class="container-fluid pb-5">
   <div class="row text-center">
     <div class="col-12 ">
-      <button class="hvr-float-shadow btn btn-lg btn-primary start mt-4" type="button" name="button"><a href="pricing.html">Start Your Will  »</a></button>
-
+      <a href="<?php echo base_url(); ?>Will_Controller/start_will_view">
+        <button class="hvr-float-shadow btn btn-lg btn-primary start mt-4" type="button" name="button">Start Your Will »</button>
+      </a>
     </div>
   </div>
 </div>

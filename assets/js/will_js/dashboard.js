@@ -6,6 +6,7 @@ $('.btn_will_edit').click(function(){
   var will_rem_updations = $(this).closest('.action-td').find('.will_rem_updations').val();
   $('#will_id').val(will_id);
   $('#will_rem_updations').val(will_rem_updations);
+  $('#modal_p').text('Only '+will_rem_updations+' time you can edit this will.')
   $('#editModal').modal('show');
 });
 
@@ -83,4 +84,19 @@ $('#btn_update_password').click(function(){
   else{
     $('#form_update_password').submit();
   }
+});
+
+
+// Active Menu...
+$(document).ready(function() {
+    var url = window.location.href;
+    var activePage = url;
+    $('.sidebar-link').removeClass('active');
+    // alert(activePage);
+    $('.sidebar a').each(function () {
+        var linkPage = this.href;
+        if (activePage == linkPage) {
+            $(this).closest(".sidebar-link").addClass("active");
+        }
+    });
 });

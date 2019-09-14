@@ -72,6 +72,14 @@ class User_Model extends CI_Model{
     $this->db->where('user_id',$user_id);
     $this->db->update('tbl_user');
   }
+  public function save_payment_info($payment_data){
+    $this->db->insert('tbl_user_subscription',$payment_data);
+  }
 
+  public function update_user_sub_tbl($payment_id,$user_id, $update_user_sub_tbl_data){
+    $this->db->where('subscription_user_id',$user_id);
+    $this->db->where('payment_id',$payment_id);
+    $this->db->update('tbl_user_subscription',$update_user_sub_tbl_data);
+  }
 }
 ?>

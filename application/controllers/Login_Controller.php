@@ -120,6 +120,7 @@ class Login_Controller extends CI_Controller{
           'user_mobile_number' => $this->session->userdata('reg_mob_email'),
           'user_password' => $user_password,
           'reg_date' => $date,
+          'profile_phto' => 'default_profile.png',
         );
       }
       else {
@@ -130,6 +131,7 @@ class Login_Controller extends CI_Controller{
           'user_email_id' => $this->session->userdata('reg_mob_email'),
           'user_password' => $user_password,
           'reg_date' => $date,
+          'profile_phto' => 'default_profile.png',
         );
       }
 

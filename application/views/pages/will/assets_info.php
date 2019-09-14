@@ -712,6 +712,13 @@
         });
       </script>
   <?php }  ?>
-
+  <script type="text/javascript">
+    $('.personal-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Personal-Information";
+    });
+    $('.family-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Family-Information";
+    });
+  </script>
   </body>
 </html>

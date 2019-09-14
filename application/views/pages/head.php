@@ -43,6 +43,10 @@ if($user_is_login && $user_id){
     <link rel="stylesheet" href="<?php base_url(); ?>assets/css/dashboard.css">
   <?php } ?>
 
+  <?php if($will == 'owner'){ ?>
+    <link rel="stylesheet" href="<?php base_url(); ?>assets/css/owner.css">
+  <?php } ?>
+
   <!-- <link rel="stylesheet" href="css/newslider.css"> -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" rel="stylesheet" type="text/css"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet" type="text/css"/>

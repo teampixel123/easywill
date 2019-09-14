@@ -520,5 +520,19 @@
       </script>
   <?php }  ?>
 
+  <script type="text/javascript">
+    $('.personal-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Personal-Information";
+    });
+    $('.family-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Family-Information";
+    });
+    $('.assets-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Assets-Information";
+    });
+    $('.executor-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Distribution";
+    });
+  </script>
   </body>
 </html>

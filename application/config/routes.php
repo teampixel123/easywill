@@ -59,6 +59,7 @@ $route['Sign-Up'] = 'Website/sign_up';
 $route['Disclaimer'] = 'Website/disclaimer';
 $route['Terms-and-Conditions'] = 'Website/terms_and_conditions';
 $route['Refund-and-Cancellation-Policy'] = 'Website/refund_cancellation';
+$route['Owner-Login'] = 'Website/owner_login';
 
 $route['Start-Will'] = 'Will_Controller/start_will';
 $route['Personal-Information'] = 'Will_Controller/personal_info';
@@ -74,6 +75,9 @@ $route['User-Logout'] = 'User_Controller/user_logout';
 $route['Final-Will'] = 'Pdf_Controller/final_pdf';
 
 $route['clear'] = 'Login_Controller/clear_session';
+
+$route['Owner-Dashboard'] = 'Owner_Controller/owner_dashboard';
+$route['Will-List'] = 'Owner_Controller/will_list';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

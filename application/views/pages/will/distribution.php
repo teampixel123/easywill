@@ -923,6 +923,7 @@
     </div>
   </div>
 
+ <!-- Alerts -->
   <div class="row alert-div w-100" id="alert_success">
     <div class="col-md-12">
       <div class="alert alert-success " role="alert">
@@ -1015,5 +1016,16 @@
         });
       </script>
   <?php }  ?>
+  <script type="text/javascript">
+    $('.personal-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Personal-Information";
+    });
+    $('.family-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Family-Information";
+    });
+    $('.assets-tab').click(function(){
+      window.location.href = "<?php echo base_url(); ?>Assets-Information";
+    });
+  </script>
   </body>
 </html>

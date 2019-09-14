@@ -82,7 +82,10 @@ class Payment_Controller extends CI_Controller{
     date_default_timezone_set('Asia/Kolkata');
     $user_id = $this->session->userdata('user_id');
     $date = date('d-m-Y');
+    $payment_id = $_GET['payment_id'];
     if($user_id){
+      $payment_id = $_GET['payment_id'];
+
       $pack_name = $this->session->flashdata('pack_name');
       $pack_amount = $this->session->flashdata('pack_amount');
       $thirty_days =  date('d-m-Y', strtotime("+30 days"));
@@ -95,6 +98,7 @@ class Payment_Controller extends CI_Controller{
         $rem_will_old = $user->rem_will;
         $rem_updations_old = $user->rem_updations;
         $is_have_blur = $user->is_have_blur;
+
       }
 
       // Add will count...
@@ -160,6 +164,21 @@ class Payment_Controller extends CI_Controller{
         $this->Will_Model->save_date_place_info($will_id,$will_updation_count_data);
       }
 
+      // save data (update to subscription list table)...
+      $user_details2 = $this->User_Model->user_details($user_id);
+      foreach ($user_details2 as $user2) {
+        $user_subscription_type = $user2->user_subscription_type;
+        $user_subscription_end_date = $user2->user_subscription_end_date;
+        $updation_end_date = $user2->updation_end_date;
+      }
+
+      $update_user_sub_tbl_data = array(
+        'subscription_packege_name' => $user_subscription_type,
+        'subscription_end_date' => $user_subscription_end_date,
+        'subscription_updation_end' => $updation_end_date,
+      );
+      $this->User_Model->update_user_sub_tbl($payment_id,$user_id, $update_user_sub_tbl_data);
+
       header('location:'.base_url().'User-Dashboard');
     }
     else{
@@ -184,14 +203,14 @@ class Payment_Controller extends CI_Controller{
     if($satus = 'Credit'){
       $user_details = $this->User_Model->user_details($user_id);
       foreach ($user_details as $user) {
+        $user_fullname = $user->user_fullname;
       }
-      $user_fullname = $user->user_fullname;
       $payment_data = array(
-        'user_id' => $user_id,
-        'payment_user_name' => $user_fullname,
+        'subscription_user_id' => $user_id,
+        'subscription_user_name' => $user_fullname,
         'payment_id' => $payment_id,
         'payment_request_id' => $payment_request_id,
-        'payment_date' => $date,
+        'subscription_start_date' => $date,
         'payment_time' => $time,
         'payment_amount' => $amount,
         'payment_fees' => $fees,

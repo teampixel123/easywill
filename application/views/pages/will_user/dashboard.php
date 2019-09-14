@@ -28,6 +28,8 @@
               $incomplete_wills++;
             }
           }
+
+        $user_subscription_end_date = $user->user_subscription_end_date;
         ?>
         <?php if($user->max_will == 0 && $user->is_have_blur == 'no'){ ?>
           <div class="alert alert-danger" role="alert">
@@ -62,7 +64,11 @@
           </div>
           <div class="col-md-4">
             <div class="alert alert-primary" role="alert">
-              <h4 class="alert-heading font-weight-bold"><?php echo $user->user_subscription_end_date; ?></h4>
+              <h4 class="alert-heading font-weight-bold">
+                <?php if($user_subscription_end_date){ echo $user_subscription_end_date; }
+                      else{ echo 'Not Subscribed'; }
+                ?>
+              </h4>
               <hr>
               <p class="mb-0">End Subscription Date</p>
             </div>
@@ -178,7 +184,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Only 1 time you can edit this will.</p>
+          <p id="modal_p"></p>
           <form class="edit_will_form" action="<?php echo base_url(); ?>Will_Controller/start_will_view" method="post">
             <input type="hidden" name="will_id" id="will_id" class="will_id">
             <input type="hidden" name="is_edit" value="yes">

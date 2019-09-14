@@ -2,21 +2,27 @@
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link sidebar-link active" href="<?php echo base_url(); ?>User-Dashboard">
+        <a class="nav-link sidebar-link active" href="<?php echo base_url(); ?>Owner-Dashboard">
           <i class="fa fa-dashboard"></i>
           Dashboard <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link sidebar-link" href="<?php echo base_url(); ?>Will_Controller/start_will_view">
+        <a class="nav-link sidebar-link" href="<?php echo base_url(); ?>Will-List">
           <i class="fa fa-edit"></i>
-          Make a Will
+          Will List
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link sidebar-link" href="<?php echo base_url(); ?>User-Profile">
+        <a class="nav-link sidebar-link" href="<?php echo base_url(); ?>">
           <i class="fa fa-user"></i>
-          Profile
+          User List
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link sidebar-link" href="<?php echo base_url(); ?>">
+          <i class="fa fa-sign-out"></i>
+          Payment List
         </a>
       </li>
       <li class="nav-item">
