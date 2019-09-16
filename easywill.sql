@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2019 at 02:56 PM
+-- Generation Time: Sep 16, 2019 at 06:49 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -111,7 +111,6 @@ INSERT INTO `tbl_distribution` (`id`, `will_id`, `estate_id`, `estate_type`, `di
 (66, 71932546, 19, 'bank_estate', '', 'Dfgjh', 100, 'no'),
 (68, 71932546, 20, 'bank_estate', '', 'Rsdtdyj Dfghdfgh', 43, 'no'),
 (69, 71932546, 20, 'bank_estate', '', 'Ftuiytui Yuityui Tyuiytui', 57, 'no'),
-(73, 71932546, -1, 'omited_estate', '', 'Fghdfgh', 67, 'no'),
 (84, 71932546, 14, 'bank_estate', '', 'Dfgjh', 50, 'no'),
 (85, 71932546, 14, 'bank_estate', '', 'Sdfh', 20, 'no'),
 (86, 71932546, 14, 'bank_estate', '', 'Ghjgjh Fghj', 30, 'no'),
@@ -136,14 +135,20 @@ INSERT INTO `tbl_distribution` (`id`, `will_id`, `estate_id`, `estate_type`, `di
 (109, 89416732, -1, 'omited_estate', '', 'Fdghh Dfgh', 100, 'no'),
 (111, 71932546, 4, 'other_gift_estate', 'Mrs.', 'Sdgshg Sdfhgh', 50, 'no'),
 (112, 71932546, 3, 'vehicle_estate', 'Ms.', 'Xghfdgh Dfghdfgh', 100, 'no'),
-(114, 71932546, 10, 'bank_estate', 'Mrs.', 'Dghfgdh Dfghfgdh', 67, 'no'),
+(114, 71932546, 10, 'bank_estate', 'Mrs.', 'Dghfgdh Dfghfgdh', 55, 'no'),
 (115, 71932546, -1, 'omited_estate', 'Mr.', 'Dfghdfgh Dfghfdgh', 33, 'no'),
 (116, 71932546, 13, 'bank_estate', 'Mr.', 'Gfhdfgh Dfgh', 100, 'no'),
-(117, 71932546, 10, 'bank_estate', 'Mrs.', 'Dfghfgdh Dfgh', 33, 'no'),
 (118, 71932546, 4, 'other_gift_estate', 'Mrs.', 'Tyrthyurtyu Rtyurtyu', 50, 'no'),
-(119, 71932546, 11, 'real_estate', 'Mr.', 'Dfhdfh Dfgh', 100, 'no'),
+(119, 71932546, 11, 'real_estate', 'Mr.', 'Sfljghkfd Sdfkgjhfg', 100, 'no'),
 (120, 71932546, 19, 'real_estate', 'Mr.', 'Tertyt Ertyerty', 30, 'no'),
-(121, 71932546, 19, 'real_estate', 'Mr.', 'Ertyrety Ertyerty', 70, 'no');
+(122, 71932546, 19, 'real_estate', 'Mrs.', 'Dghfgj Fdghdfg', 50, 'no'),
+(123, 71932546, -1, 'omited_estate', 'Mr.', 'Fdghfdgh Dfgh', 50, 'no'),
+(124, 71932546, 19, 'real_estate', 'Mr.', 'Erturtyu Rtyurtyu', 20, 'no'),
+(125, 71932546, 10, 'bank_estate', 'Mr.', 'Hjgjkjhk Ghjk', 45, 'no'),
+(126, 71932546, -1, 'omited_estate', 'Mr.', 'Ghjkghjkjhgk Ghjkghjk', 17, 'no'),
+(127, 87946512, 20, 'other_gift_estate', 'Mr.', 'Dghdfgh Dfgh', 100, 'no'),
+(128, 87946512, -1, 'omited_estate', 'Mr.', 'Fghjfghj Fghj', 40, 'no'),
+(129, 87946512, -1, 'omited_estate', 'Mr.', 'Fghjfghj Fghjfgjh', 60, 'no');
 
 -- --------------------------------------------------------
 
@@ -226,7 +231,8 @@ INSERT INTO `tbl_other_gift` (`id`, `will_id`, `gift_type`, `gift_description`) 
 (4, 71932546, 'Jewellery and Valuables', 'ryrty'),
 (17, 29843751, 'Jewellery and Valuables', '1kg Silver'),
 (18, 41569723, 'Jewellery and Valuables', 'dfghdfgh'),
-(19, 89416732, 'Jewellery and Valuables', 'ertyerty');
+(19, 89416732, 'Jewellery and Valuables', 'ertyerty'),
+(20, 87946512, 'Jewellery and Valuables', 'sadgasgd');
 
 -- --------------------------------------------------------
 
@@ -265,7 +271,7 @@ INSERT INTO `tbl_personal_info` (`id`, `will_id`, `name_title`, `full_name`, `ge
 (10, 71932546, 'Mr.', 'Stgfd Fdgh', 'male', 'Married', 'no', '9900990099', 'fgh@mail.com', 'Bagal Chowk', 'Kolhapur', 416001, 'Maharashtra', 'India', '01-02-1950', 'Stud', '223366554411', '', 'Indian', 'Hindu'),
 (16, 29843751, 'Mr.', 'Demo One Logout', 'male', 'Married', 'yes', '9966332211', 'demoone@easywill.com', 'Rajarampuri, 1st Lane', 'Kolhapur', 555111, 'Maharashtra', 'India', '01-06-1950', 'Business', '888666333222', '', 'Indian', 'Hindu'),
 (17, 41569723, 'Mr.', 'Hasdfjg Jasfhgk', 'male', 'Married', 'no', '9900990099', 'demotwo@easywill.com', 'Dgjhdgj', 'Dgjgjh', 555222, 'Gdhjghj', 'Dghjgfhj', '26-06-1970', 'Dfghfgh', '778899009988', '', 'fghfgh', 'dfghdfgh'),
-(18, 87946512, 'Mr.', 'Fghjfhj Fghjfghj', 'male', 'Married', 'no', '9988776655', 'zgsdfg@dfdd.vvv', '', '', NULL, '', '', '', '', '', '', '', ''),
+(18, 87946512, 'Mr.', 'Fghjfhj Fghjfghj', 'male', 'Married', 'no', '9988776655', 'zgsdfg@dfdd.vvv', 'Sdfsfd Sdfgsdfg', 'Sdfgsdfg', 666777, 'Sdfgsdfg', 'Fghdfgh', '12-02-1959', 'Fdghdfh', '667788990099', '', 'fghdfgh', 'dfghdfgh'),
 (19, 89416732, 'Mr.', 'Sdhdfg Dfghfgh', 'male', 'Unmarried', 'no', '9900998899', 'dfdfg@dfgf.kkk', 'Zsdfsf', 'Dfgfd', 888999, 'Sdfg', 'Xcbxdfg', '18-07-1979', 'Zxcvzv', '112233665544', '', 'fgwert', 'wertwert');
 
 -- --------------------------------------------------------
@@ -340,8 +346,29 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `user_id`, `user_fullname`, `user_mobile_number`, `user_email_id`, `profile_phto`, `user_reg_date`, `user_subscription`, `user_subscription_type`, `user_subscription_start_date`, `user_subscription_end_date`, `updation_end_date`, `promocode`, `is_promocode_used`, `max_will`, `rem_will`, `complete_will`, `incomplete_will`, `rem_updations`, `pdf_download`, `is_have_blur`, `user_password`, `user_username`, `reg_date`) VALUES
-(3, 63759248, 'Xfghfdg Dfghfdgh', 9999999999, '', '', '', 'no', '', '', '', '', '', 'yes', 0, 0, 1, 0, 0, 0, 'yes', '222', '', '27-08-2019'),
-(4, 94681253, 'Datta Mane', 8888888888, '', '', '', 'no', '', '', '', '', '', 'yes', 0, 0, 1, 0, 0, 0, 'yes', '123', '', '10-09-2019');
+(3, 63759248, 'Xfghfdg Dfghfdgh', 9999999999, 'demo_up@easywill.com', '63759248_93518264.png', '', 'yes', 'Silver', '25-08-2019', '25-09-2019', '25-09-2019', '', 'yes', 0, 0, 1, 0, 0, 0, 'yes', '222', '', '27-08-2019'),
+(4, 94681253, 'Datta Mane', 8888888888, '', 'default_profile.png', '', 'no', '', '', '', '', '', 'yes', 0, 0, 1, 0, 0, 0, 'yes', '123', '', '10-09-2019');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_subscription`
+--
+
+CREATE TABLE `tbl_user_subscription` (
+  `id` int(11) NOT NULL,
+  `subscription_user_id` bigint(20) NOT NULL,
+  `subscription_user_name` varchar(50) NOT NULL,
+  `subscription_packege_name` varchar(250) NOT NULL,
+  `subscription_start_date` varchar(15) NOT NULL,
+  `subscription_end_date` varchar(15) NOT NULL,
+  `subscription_updation_end` varchar(15) NOT NULL,
+  `payment_time` varchar(25) NOT NULL,
+  `payment_amount` double NOT NULL,
+  `payment_fees` double NOT NULL,
+  `payment_id` varchar(500) NOT NULL,
+  `payment_request_id` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -391,7 +418,7 @@ CREATE TABLE `tbl_will` (
 --
 
 INSERT INTO `tbl_will` (`id`, `will_user_id`, `will_id`, `is_will_complete`, `is_have_minar_child`, `will_place`, `will_date`, `will_time`, `will_rem_updations`, `updation_last_date`, `is_blur`, `date`) VALUES
-(10, 63759248, 71932546, 'yes', 'no', 'Kolhapur', '17-09-2019', '', 1, '25-09-2019', 'no', '03-09-2019'),
+(10, 63759248, 71932546, 'yes', 'no', 'Kolhapur', '17-09-2019', '', 0, '25-09-2019', 'no', '03-09-2019'),
 (16, 0, 29843751, 'yes', 'no', 'Kolhapur', '18-09-2019', '', 0, '', 'yes', '10-09-2019'),
 (17, 94681253, 41569723, 'yes', 'no', 'Kolhapur', '24-09-2019', '', 0, '', 'yes', '10-09-2019'),
 (18, 63759248, 87946512, 'no', 'no', '', '10-09-2019', '', 0, '', 'yes', '10-09-2019'),
@@ -484,6 +511,12 @@ ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_user_subscription`
+--
+ALTER TABLE `tbl_user_subscription`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_vehicle`
 --
 ALTER TABLE `tbl_vehicle`
@@ -521,7 +554,7 @@ ALTER TABLE `tbl_bank_assets`
 -- AUTO_INCREMENT for table `tbl_distribution`
 --
 ALTER TABLE `tbl_distribution`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `tbl_executor`
@@ -539,7 +572,7 @@ ALTER TABLE `tbl_family_info`
 -- AUTO_INCREMENT for table `tbl_other_gift`
 --
 ALTER TABLE `tbl_other_gift`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_personal_info`
@@ -558,6 +591,12 @@ ALTER TABLE `tbl_real_estate`
 --
 ALTER TABLE `tbl_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_user_subscription`
+--
+ALTER TABLE `tbl_user_subscription`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_vehicle`
