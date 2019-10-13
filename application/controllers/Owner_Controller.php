@@ -8,6 +8,13 @@ class Owner_Controller extends CI_Controller{
     $this->load->helper('string');
   }
 
+  public function owner_login(){
+    $owner_username = $this->input->post('owner_username');
+    $owner_password = $this->input->post('owner_password');
+
+    
+  }
+
   public function owner_dashboard(){
     $this->load->view('pages/owner/owner_dashboard');
   }

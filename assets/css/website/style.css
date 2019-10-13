@@ -63,7 +63,6 @@ p {
 	position: relative;
 }
 
-
 .top_banner2 {
 	background:url(../../images/website/slides/slide-02.png) no-repeat top center;
 	-webkit-background-size: cover;
@@ -129,13 +128,11 @@ p {
   height:10px;
   background-color: #00738d;
   z-index: 5000;
-
 }
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
   color: #00738d;
   font-weight: 600;
-
 }
 
 .navbar-light .navbar-nav .nav-link::before {
@@ -146,7 +143,6 @@ p {
  height  : 10px;
  border-left:1px solid #aaaaaa;
  margin-right: .75rem;
-
 }
 
 /* .top-nav li{
@@ -168,8 +164,7 @@ p {
   font-size: 1rem;
 }
 
-
- .navbar-expand-lg .navbar-nav .nav-link {
+.navbar-expand-lg .navbar-nav .nav-link {
    padding-right: .75rem;
    padding-left: .75rem;
  }
@@ -193,37 +188,29 @@ p {
 .starter {
   background-color: #fff;
   padding: 0 0 3rem;
-  }
+}
 
-  .platinum {
-    background-color: #fff;
-    padding: 0 0 3rem;
-
-  }
+.platinum {
+  background-color: #fff;
+  padding: 0 0 3rem;
+}
 
 .pricetop {
   width: 100%;
   height:4px;
   background-color: #00738d;
-
 }
-
-
 
 .protect {
   background-color: #00738d;
 }
 
-
-
-}
 .starter ul li {
   line-height: 2rem;
 }
 
 .protect h2 {
   color: #fff;
-
 }
 
 .Protect-100 {
@@ -234,24 +221,24 @@ p {
 }
 
 .btn-success.disabled, .btn-success:disabled {
-    color: #fff;
-    background-color: #00738d;
-    border-color: #00738d;
+  color: #fff;
+  background-color: #00738d;
+  border-color: #00738d;
 }
 
 .btn-success.focus, .btn-success:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0,115,141,.5);
+  box-shadow: 0 0 0 0.2rem rgba(0,115,141,.5);
 }
 .btn-success {
-    color: #fff;
-    background-color: #00738d;
-    border-color: #00738d;
+  color: #fff;
+  background-color: #00738d;
+  border-color: #00738d;
 }
 
 .btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
-    color: #fff;
-    background-color: #00738d;
-    border-color: #00738d;
+  color: #fff;
+  background-color: #00738d;
+  border-color: #00738d;
 }
 
 .btn-primary {
@@ -273,11 +260,9 @@ p {
   border-color:#1d9db2;
 }
 
-
 #footer {
   background-color:#e5e5e5;
   padding-top: 2rem;
-
 }
 
 .footmain {
@@ -291,7 +276,6 @@ p {
   background-color:#000;
   padding: 1rem 0;
   color: #777;
-
 }
 
 .Copyright p {

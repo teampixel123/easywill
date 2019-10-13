@@ -11,3 +11,28 @@ $(document).ready(function() {
         }
     });
 });
+
+
+$('#btn_owner_login').click(function(){
+  alert();
+  // var owner_username = $('#owner_username').val();
+  // var owner_password = $('#owner_password').val();
+  //
+  // $('.required').each(function(){
+  //    var val = $(this).val();
+  //    if(val == '' || val == '0'){
+  //      $(this).addClass('required-input');
+  //      $(this).attr("placeholder", "This field is required");
+  //    }
+  //    else{
+  //      $(this).removeClass('required-input');
+  //    }
+  //  });
+  //
+  //  if(owner_username == '' || owner_password == ''){
+  //
+  //  }
+  //  else{
+  //    $('#owner_loginform').submit();
+  //  }
+});
