@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2019 at 06:49 AM
+-- Generation Time: Oct 18, 2019 at 08:48 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -233,6 +233,20 @@ INSERT INTO `tbl_other_gift` (`id`, `will_id`, `gift_type`, `gift_description`) 
 (18, 41569723, 'Jewellery and Valuables', 'dfghdfgh'),
 (19, 89416732, 'Jewellery and Valuables', 'ertyerty'),
 (20, 87946512, 'Jewellery and Valuables', 'sadgasgd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_owner`
+--
+
+CREATE TABLE `tbl_owner` (
+  `id` int(11) NOT NULL,
+  `owner_id` bigint(20) NOT NULL,
+  `owner_username` varchar(100) NOT NULL,
+  `owner_password` varchar(100) NOT NULL,
+  `owner_email` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -493,6 +507,12 @@ ALTER TABLE `tbl_other_gift`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_owner`
+--
+ALTER TABLE `tbl_owner`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_personal_info`
 --
 ALTER TABLE `tbl_personal_info`
@@ -573,6 +593,12 @@ ALTER TABLE `tbl_family_info`
 --
 ALTER TABLE `tbl_other_gift`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `tbl_owner`
+--
+ALTER TABLE `tbl_owner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_personal_info`
